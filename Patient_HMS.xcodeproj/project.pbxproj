@@ -1,0 +1,614 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DFC22CA52BD26AE200B2AD68 /* Patient_HMSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */; };
+		DFC22CA72BD26AE200B2AD68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC22CA62BD26AE200B2AD68 /* ContentView.swift */; };
+		DFC22CA92BD26AE400B2AD68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFC22CA82BD26AE400B2AD68 /* Assets.xcassets */; };
+		DFC22CAD2BD26AE400B2AD68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFC22CAC2BD26AE400B2AD68 /* Preview Assets.xcassets */; };
+		DFC22CB72BD26AE400B2AD68 /* Patient_HMSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC22CB62BD26AE400B2AD68 /* Patient_HMSTests.swift */; };
+		DFC22CC12BD26AE400B2AD68 /* Patient_HMSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC22CC02BD26AE400B2AD68 /* Patient_HMSUITests.swift */; };
+		DFC22CC32BD26AE400B2AD68 /* Patient_HMSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC22CC22BD26AE400B2AD68 /* Patient_HMSUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DFC22CB32BD26AE400B2AD68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DFC22C992BD26AE200B2AD68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFC22CA02BD26AE200B2AD68;
+			remoteInfo = Patient_HMS;
+		};
+		DFC22CBD2BD26AE400B2AD68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DFC22C992BD26AE200B2AD68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFC22CA02BD26AE200B2AD68;
+			remoteInfo = Patient_HMS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DFC22CA12BD26AE200B2AD68 /* Patient_HMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Patient_HMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient_HMSApp.swift; sourceTree = "<group>"; };
+		DFC22CA62BD26AE200B2AD68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DFC22CA82BD26AE400B2AD68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DFC22CAA2BD26AE400B2AD68 /* Patient_HMS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Patient_HMS.entitlements; sourceTree = "<group>"; };
+		DFC22CAC2BD26AE400B2AD68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DFC22CB22BD26AE400B2AD68 /* Patient_HMSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Patient_HMSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFC22CB62BD26AE400B2AD68 /* Patient_HMSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient_HMSTests.swift; sourceTree = "<group>"; };
+		DFC22CBC2BD26AE400B2AD68 /* Patient_HMSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Patient_HMSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFC22CC02BD26AE400B2AD68 /* Patient_HMSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient_HMSUITests.swift; sourceTree = "<group>"; };
+		DFC22CC22BD26AE400B2AD68 /* Patient_HMSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient_HMSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DFC22C9E2BD26AE200B2AD68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFC22CAF2BD26AE400B2AD68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFC22CB92BD26AE400B2AD68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DFC22C982BD26AE200B2AD68 = {
+			isa = PBXGroup;
+			children = (
+				DFC22CA32BD26AE200B2AD68 /* Patient_HMS */,
+				DFC22CB52BD26AE400B2AD68 /* Patient_HMSTests */,
+				DFC22CBF2BD26AE400B2AD68 /* Patient_HMSUITests */,
+				DFC22CA22BD26AE200B2AD68 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DFC22CA22BD26AE200B2AD68 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DFC22CA12BD26AE200B2AD68 /* Patient_HMS.app */,
+				DFC22CB22BD26AE400B2AD68 /* Patient_HMSTests.xctest */,
+				DFC22CBC2BD26AE400B2AD68 /* Patient_HMSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DFC22CA32BD26AE200B2AD68 /* Patient_HMS */ = {
+			isa = PBXGroup;
+			children = (
+				DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */,
+				DFC22CA62BD26AE200B2AD68 /* ContentView.swift */,
+				DFC22CA82BD26AE400B2AD68 /* Assets.xcassets */,
+				DFC22CAA2BD26AE400B2AD68 /* Patient_HMS.entitlements */,
+				DFC22CAB2BD26AE400B2AD68 /* Preview Content */,
+			);
+			path = Patient_HMS;
+			sourceTree = "<group>";
+		};
+		DFC22CAB2BD26AE400B2AD68 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DFC22CAC2BD26AE400B2AD68 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DFC22CB52BD26AE400B2AD68 /* Patient_HMSTests */ = {
+			isa = PBXGroup;
+			children = (
+				DFC22CB62BD26AE400B2AD68 /* Patient_HMSTests.swift */,
+			);
+			path = Patient_HMSTests;
+			sourceTree = "<group>";
+		};
+		DFC22CBF2BD26AE400B2AD68 /* Patient_HMSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DFC22CC02BD26AE400B2AD68 /* Patient_HMSUITests.swift */,
+				DFC22CC22BD26AE400B2AD68 /* Patient_HMSUITestsLaunchTests.swift */,
+			);
+			path = Patient_HMSUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DFC22CA02BD26AE200B2AD68 /* Patient_HMS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFC22CC62BD26AE400B2AD68 /* Build configuration list for PBXNativeTarget "Patient_HMS" */;
+			buildPhases = (
+				DFC22C9D2BD26AE200B2AD68 /* Sources */,
+				DFC22C9E2BD26AE200B2AD68 /* Frameworks */,
+				DFC22C9F2BD26AE200B2AD68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Patient_HMS;
+			productName = Patient_HMS;
+			productReference = DFC22CA12BD26AE200B2AD68 /* Patient_HMS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DFC22CB12BD26AE400B2AD68 /* Patient_HMSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFC22CC92BD26AE400B2AD68 /* Build configuration list for PBXNativeTarget "Patient_HMSTests" */;
+			buildPhases = (
+				DFC22CAE2BD26AE400B2AD68 /* Sources */,
+				DFC22CAF2BD26AE400B2AD68 /* Frameworks */,
+				DFC22CB02BD26AE400B2AD68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFC22CB42BD26AE400B2AD68 /* PBXTargetDependency */,
+			);
+			name = Patient_HMSTests;
+			productName = Patient_HMSTests;
+			productReference = DFC22CB22BD26AE400B2AD68 /* Patient_HMSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DFC22CBB2BD26AE400B2AD68 /* Patient_HMSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFC22CCC2BD26AE400B2AD68 /* Build configuration list for PBXNativeTarget "Patient_HMSUITests" */;
+			buildPhases = (
+				DFC22CB82BD26AE400B2AD68 /* Sources */,
+				DFC22CB92BD26AE400B2AD68 /* Frameworks */,
+				DFC22CBA2BD26AE400B2AD68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFC22CBE2BD26AE400B2AD68 /* PBXTargetDependency */,
+			);
+			name = Patient_HMSUITests;
+			productName = Patient_HMSUITests;
+			productReference = DFC22CBC2BD26AE400B2AD68 /* Patient_HMSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DFC22C992BD26AE200B2AD68 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					DFC22CA02BD26AE200B2AD68 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					DFC22CB12BD26AE400B2AD68 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = DFC22CA02BD26AE200B2AD68;
+					};
+					DFC22CBB2BD26AE400B2AD68 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = DFC22CA02BD26AE200B2AD68;
+					};
+				};
+			};
+			buildConfigurationList = DFC22C9C2BD26AE200B2AD68 /* Build configuration list for PBXProject "Patient_HMS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DFC22C982BD26AE200B2AD68;
+			productRefGroup = DFC22CA22BD26AE200B2AD68 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DFC22CA02BD26AE200B2AD68 /* Patient_HMS */,
+				DFC22CB12BD26AE400B2AD68 /* Patient_HMSTests */,
+				DFC22CBB2BD26AE400B2AD68 /* Patient_HMSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DFC22C9F2BD26AE200B2AD68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFC22CAD2BD26AE400B2AD68 /* Preview Assets.xcassets in Resources */,
+				DFC22CA92BD26AE400B2AD68 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFC22CB02BD26AE400B2AD68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFC22CBA2BD26AE400B2AD68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DFC22C9D2BD26AE200B2AD68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFC22CA72BD26AE200B2AD68 /* ContentView.swift in Sources */,
+				DFC22CA52BD26AE200B2AD68 /* Patient_HMSApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFC22CAE2BD26AE400B2AD68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFC22CB72BD26AE400B2AD68 /* Patient_HMSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFC22CB82BD26AE400B2AD68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFC22CC12BD26AE400B2AD68 /* Patient_HMSUITests.swift in Sources */,
+				DFC22CC32BD26AE400B2AD68 /* Patient_HMSUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DFC22CB42BD26AE400B2AD68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFC22CA02BD26AE200B2AD68 /* Patient_HMS */;
+			targetProxy = DFC22CB32BD26AE400B2AD68 /* PBXContainerItemProxy */;
+		};
+		DFC22CBE2BD26AE400B2AD68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFC22CA02BD26AE200B2AD68 /* Patient_HMS */;
+			targetProxy = DFC22CBD2BD26AE400B2AD68 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DFC22CC42BD26AE400B2AD68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DFC22CC52BD26AE400B2AD68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		DFC22CC72BD26AE400B2AD68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Patient_HMS/Patient_HMS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Patient_HMS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "an6189-srmist.edu.in.Patient-HMS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DFC22CC82BD26AE400B2AD68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Patient_HMS/Patient_HMS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Patient_HMS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "an6189-srmist.edu.in.Patient-HMS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DFC22CCA2BD26AE400B2AD68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "an6189-srmist.edu.in.Patient-HMSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Patient_HMS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Patient_HMS";
+			};
+			name = Debug;
+		};
+		DFC22CCB2BD26AE400B2AD68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "an6189-srmist.edu.in.Patient-HMSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Patient_HMS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Patient_HMS";
+			};
+			name = Release;
+		};
+		DFC22CCD2BD26AE400B2AD68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "an6189-srmist.edu.in.Patient-HMSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Patient_HMS;
+			};
+			name = Debug;
+		};
+		DFC22CCE2BD26AE400B2AD68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "an6189-srmist.edu.in.Patient-HMSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Patient_HMS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DFC22C9C2BD26AE200B2AD68 /* Build configuration list for PBXProject "Patient_HMS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFC22CC42BD26AE400B2AD68 /* Debug */,
+				DFC22CC52BD26AE400B2AD68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFC22CC62BD26AE400B2AD68 /* Build configuration list for PBXNativeTarget "Patient_HMS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFC22CC72BD26AE400B2AD68 /* Debug */,
+				DFC22CC82BD26AE400B2AD68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFC22CC92BD26AE400B2AD68 /* Build configuration list for PBXNativeTarget "Patient_HMSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFC22CCA2BD26AE400B2AD68 /* Debug */,
+				DFC22CCB2BD26AE400B2AD68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFC22CCC2BD26AE400B2AD68 /* Build configuration list for PBXNativeTarget "Patient_HMSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFC22CCD2BD26AE400B2AD68 /* Debug */,
+				DFC22CCE2BD26AE400B2AD68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DFC22C992BD26AE200B2AD68 /* Project object */;
+}
