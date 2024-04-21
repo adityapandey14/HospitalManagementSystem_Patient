@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EA92BD5898800FAD930 /* User.swift */; };
+		DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */; };
+		DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */; };
+		DF6B2EBF2BD58E5100FAD930 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EBE2BD58E5100FAD930 /* AuthViewModel.swift */; };
+		DF6B2EC12BD58F1400FAD930 /* signUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EC02BD58F1400FAD930 /* signUpView.swift */; };
+		DF6B2EC32BD58F2900FAD930 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EC22BD58F2900FAD930 /* loginView.swift */; };
+		DF6B2EC52BD5925E00FAD930 /* ProfileInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EC42BD5925E00FAD930 /* ProfileInputView.swift */; };
+		DF6B2EC72BD5946C00FAD930 /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EC62BD5946C00FAD930 /* Homepage.swift */; };
 		DFC22CA52BD26AE200B2AD68 /* Patient_HMSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */; };
 		DFC22CA72BD26AE200B2AD68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC22CA62BD26AE200B2AD68 /* ContentView.swift */; };
 		DFC22CA92BD26AE400B2AD68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFC22CA82BD26AE400B2AD68 /* Assets.xcassets */; };
@@ -20,7 +28,6 @@
 		DFC22CD82BD26BB500B2AD68 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DFC22CD72BD26BB500B2AD68 /* FirebaseDatabaseSwift */; };
 		DFC22CDA2BD26BB500B2AD68 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DFC22CD92BD26BB500B2AD68 /* FirebaseFirestore */; };
 		DFC22CDC2BD26BB500B2AD68 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DFC22CDB2BD26BB500B2AD68 /* FirebaseFirestoreSwift */; };
-		DFC22CDE2BD26BB500B2AD68 /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = DFC22CDD2BD26BB500B2AD68 /* FirebaseInAppMessagingSwift-Beta */; };
 		DFC22CE02BD26BB500B2AD68 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DFC22CDF2BD26BB500B2AD68 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +49,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF6B2EA92BD5898800FAD930 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
+		DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appFonts.swift; sourceTree = "<group>"; };
+		DF6B2EBE2BD58E5100FAD930 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		DF6B2EC02BD58F1400FAD930 /* signUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpView.swift; sourceTree = "<group>"; };
+		DF6B2EC22BD58F2900FAD930 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
+		DF6B2EC42BD5925E00FAD930 /* ProfileInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputView.swift; sourceTree = "<group>"; };
+		DF6B2EC62BD5946C00FAD930 /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
 		DFC22CA12BD26AE200B2AD68 /* Patient_HMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Patient_HMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient_HMSApp.swift; sourceTree = "<group>"; };
 		DFC22CA62BD26AE200B2AD68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,7 +81,6 @@
 				DFC22CDA2BD26BB500B2AD68 /* FirebaseFirestore in Frameworks */,
 				DFC22CD62BD26BB500B2AD68 /* FirebaseDatabase in Frameworks */,
 				DFC22CE02BD26BB500B2AD68 /* FirebaseStorage in Frameworks */,
-				DFC22CDE2BD26BB500B2AD68 /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
 				DFC22CD42BD26BB500B2AD68 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +102,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF64DF8E2BD27D4400E1F5A6 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				DF6B2EA92BD5898800FAD930 /* User.swift */,
+				DF6B2EB72BD58D9900FAD930 /* UserViewModel */,
+				DF6B2EC02BD58F1400FAD930 /* signUpView.swift */,
+				DF6B2EC42BD5925E00FAD930 /* ProfileInputView.swift */,
+				DF6B2EC22BD58F2900FAD930 /* loginView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		DF6B2EB72BD58D9900FAD930 /* UserViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DF6B2EBE2BD58E5100FAD930 /* AuthViewModel.swift */,
+				DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */,
+			);
+			path = UserViewModel;
+			sourceTree = "<group>";
+		};
 		DFC22C982BD26AE200B2AD68 = {
 			isa = PBXGroup;
 			children = (
@@ -113,8 +148,11 @@
 			isa = PBXGroup;
 			children = (
 				DFC22CCF2BD26B2700B2AD68 /* GoogleService-Info.plist */,
+				DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */,
 				DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */,
 				DFC22CA62BD26AE200B2AD68 /* ContentView.swift */,
+				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
+				DF64DF8E2BD27D4400E1F5A6 /* Authentication */,
 				DFC22CA82BD26AE400B2AD68 /* Assets.xcassets */,
 				DFC22CAA2BD26AE400B2AD68 /* Patient_HMS.entitlements */,
 				DFC22CAB2BD26AE400B2AD68 /* Preview Content */,
@@ -176,7 +214,6 @@
 				DFC22CD72BD26BB500B2AD68 /* FirebaseDatabaseSwift */,
 				DFC22CD92BD26BB500B2AD68 /* FirebaseFirestore */,
 				DFC22CDB2BD26BB500B2AD68 /* FirebaseFirestoreSwift */,
-				DFC22CDD2BD26BB500B2AD68 /* FirebaseInAppMessagingSwift-Beta */,
 				DFC22CDF2BD26BB500B2AD68 /* FirebaseStorage */,
 			);
 			productName = Patient_HMS;
@@ -297,8 +334,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF6B2EC12BD58F1400FAD930 /* signUpView.swift in Sources */,
+				DF6B2EC52BD5925E00FAD930 /* ProfileInputView.swift in Sources */,
 				DFC22CA72BD26AE200B2AD68 /* ContentView.swift in Sources */,
+				DF6B2EC72BD5946C00FAD930 /* Homepage.swift in Sources */,
+				DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */,
+				DF6B2EBF2BD58E5100FAD930 /* AuthViewModel.swift in Sources */,
+				DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */,
 				DFC22CA52BD26AE200B2AD68 /* Patient_HMSApp.swift in Sources */,
+				DF6B2EC32BD58F2900FAD930 /* loginView.swift in Sources */,
+				DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,11 +729,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DFC22CD12BD26B7300B2AD68 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
-		};
-		DFC22CDD2BD26BB500B2AD68 /* FirebaseInAppMessagingSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DFC22CD12BD26B7300B2AD68 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseInAppMessagingSwift-Beta";
 		};
 		DFC22CDF2BD26BB500B2AD68 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
