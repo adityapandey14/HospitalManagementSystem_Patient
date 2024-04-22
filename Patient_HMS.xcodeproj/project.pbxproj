@@ -15,6 +15,7 @@
 		DF6B2EC32BD58F2900FAD930 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EC22BD58F2900FAD930 /* loginView.swift */; };
 		DF6B2EC52BD5925E00FAD930 /* ProfileInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EC42BD5925E00FAD930 /* ProfileInputView.swift */; };
 		DF6B2EC72BD5946C00FAD930 /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EC62BD5946C00FAD930 /* Homepage.swift */; };
+		DF6B2EE12BD59FEB00FAD930 /* patientDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EE02BD59FEB00FAD930 /* patientDetails.swift */; };
 		DFC22CA52BD26AE200B2AD68 /* Patient_HMSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */; };
 		DFC22CA72BD26AE200B2AD68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC22CA62BD26AE200B2AD68 /* ContentView.swift */; };
 		DFC22CA92BD26AE400B2AD68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFC22CA82BD26AE400B2AD68 /* Assets.xcassets */; };
@@ -29,6 +30,8 @@
 		DFC22CDA2BD26BB500B2AD68 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DFC22CD92BD26BB500B2AD68 /* FirebaseFirestore */; };
 		DFC22CDC2BD26BB500B2AD68 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DFC22CDB2BD26BB500B2AD68 /* FirebaseFirestoreSwift */; };
 		DFC22CE02BD26BB500B2AD68 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DFC22CDF2BD26BB500B2AD68 /* FirebaseStorage */; };
+		DFF2D7B92BD630DF0087114A /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF2D7B82BD630DF0087114A /* Department.swift */; };
+		DFF2D7BB2BD632CC0087114A /* DepartmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF2D7BA2BD632CC0087114A /* DepartmentModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,7 @@
 		DF6B2EC22BD58F2900FAD930 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		DF6B2EC42BD5925E00FAD930 /* ProfileInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInputView.swift; sourceTree = "<group>"; };
 		DF6B2EC62BD5946C00FAD930 /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
+		DF6B2EE02BD59FEB00FAD930 /* patientDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = patientDetails.swift; sourceTree = "<group>"; };
 		DFC22CA12BD26AE200B2AD68 /* Patient_HMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Patient_HMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient_HMSApp.swift; sourceTree = "<group>"; };
 		DFC22CA62BD26AE200B2AD68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 		DFC22CC02BD26AE400B2AD68 /* Patient_HMSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient_HMSUITests.swift; sourceTree = "<group>"; };
 		DFC22CC22BD26AE400B2AD68 /* Patient_HMSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient_HMSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DFC22CCF2BD26B2700B2AD68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DFF2D7B82BD630DF0087114A /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
+		DFF2D7BA2BD632CC0087114A /* DepartmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,14 @@
 			path = UserViewModel;
 			sourceTree = "<group>";
 		};
+		DF6B2EDF2BD59FDE00FAD930 /* PatientDetail */ = {
+			isa = PBXGroup;
+			children = (
+				DF6B2EE02BD59FEB00FAD930 /* patientDetails.swift */,
+			);
+			path = PatientDetail;
+			sourceTree = "<group>";
+		};
 		DFC22C982BD26AE200B2AD68 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +166,8 @@
 				DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */,
 				DFC22CA62BD26AE200B2AD68 /* ContentView.swift */,
 				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
+				DFF2D7B72BD630980087114A /* Department */,
+				DF6B2EDF2BD59FDE00FAD930 /* PatientDetail */,
 				DF64DF8E2BD27D4400E1F5A6 /* Authentication */,
 				DFC22CA82BD26AE400B2AD68 /* Assets.xcassets */,
 				DFC22CAA2BD26AE400B2AD68 /* Patient_HMS.entitlements */,
@@ -190,6 +206,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DFF2D7B72BD630980087114A /* Department */ = {
+			isa = PBXGroup;
+			children = (
+				DFF2D7B82BD630DF0087114A /* Department.swift */,
+				DFF2D7BA2BD632CC0087114A /* DepartmentModel.swift */,
+			);
+			path = Department;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,9 +366,12 @@
 				DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */,
 				DF6B2EBF2BD58E5100FAD930 /* AuthViewModel.swift in Sources */,
 				DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */,
+				DF6B2EE12BD59FEB00FAD930 /* patientDetails.swift in Sources */,
 				DFC22CA52BD26AE200B2AD68 /* Patient_HMSApp.swift in Sources */,
 				DF6B2EC32BD58F2900FAD930 /* loginView.swift in Sources */,
 				DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */,
+				DFF2D7BB2BD632CC0087114A /* DepartmentModel.swift in Sources */,
+				DFF2D7B92BD630DF0087114A /* Department.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

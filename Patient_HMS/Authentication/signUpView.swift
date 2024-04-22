@@ -25,12 +25,6 @@ struct signUpView: View {
                         Text("Patient")
                             .fontWeight(.bold)
                             .font(.system(size: 50).weight(.bold))
-                            .fontDesign(.rounded)
-                        Text("To find your next tutor")
-                            .fontWeight(.bold)
-                            .font(AppFont.smallReg)
-                            .foregroundColor(.accent)
-                            .padding(.bottom,25)
                     }
                     .offset(y: 30)
                     
