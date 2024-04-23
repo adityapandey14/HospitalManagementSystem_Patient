@@ -148,12 +148,12 @@ struct DepartmentModel: View {
                         Text("Speciality : \(detail.id)")
                         VStack(alignment: .leading) {
                          Text("DoctorId: \(detail.doctorId)")
-                                                .padding()
-                                            Text("Consulatant Fees: \(detail.fees)")
-                                                .padding()
+                         .padding()
+                         Text("Consulatant Fees: \(detail.fees)")
+                          .padding()
 
-                                        }
-                                    }
+                        }
+                    }
                 } //End of the VStack
                 
             } //End of the for loop
