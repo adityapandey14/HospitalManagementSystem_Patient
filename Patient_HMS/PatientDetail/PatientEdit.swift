@@ -5,7 +5,7 @@ struct Profile_Edit: View {
     @Environment(\.presentationMode) var presentationMode
     
     @EnvironmentObject var viewModel: AuthViewModel
-    @EnvironmentObject var patientViewModel: PatientViewModel
+    @EnvironmentObject var profileViewModel: PatientViewModel
     @State private var navigationLinkIsActive = false
     @State private var isImagePickerP = false
     @State private var isImagePickerPresented = false
@@ -47,7 +47,7 @@ struct Profile_Edit: View {
                                                                 .frame(width: 100, height: 100)
                                                                 .cornerRadius(10)
                                                         } else {
-                                                            if let posterURL = patientViewModel.currentProfile.profilephoto {
+                                                            if let posterURL = profileViewModel.currentProfile.profilephoto {
                                                                 AsyncImage(url: URL(string: posterURL)) { phase in
                                                                     switch phase {
                                                                     case .success(let image):
@@ -85,7 +85,7 @@ struct Profile_Edit: View {
                     
                     HStack {
                         Text("Full Name: ")
-                        TextField("Name", text: $patientViewModel.currentProfile.fullName)
+                        TextField("Name", text: $profileViewModel.currentProfile.fullName)
                     }
                     .padding(.bottom, 15.0)
                     
@@ -93,12 +93,12 @@ struct Profile_Edit: View {
                     
                     HStack {
                                 Text("Mobile Number: ")
-                                TextField("Enter Mobile Number", text: $patientViewModel.currentProfile.mobileno)
+                                TextField("Enter Mobile Number", text: $profileViewModel.currentProfile.mobileno)
                                     .keyboardType(.numberPad)
                             }
                     .padding(.bottom, 15.0)
                     HStack{
-                        Picker("Select Gender", selection: $patientViewModel.currentProfile.gender) {
+                        Picker("Select Gender", selection: $profileViewModel.currentProfile.gender) {
                             ForEach(genders, id: \.self) {
                                 Text($0)
                             }
@@ -106,7 +106,7 @@ struct Profile_Edit: View {
                         .pickerStyle(SegmentedPickerStyle())
                     }.padding(.bottom, 15.0)
                     HStack{
-                        Picker("Select Blood Group", selection: $patientViewModel.currentProfile.bloodgroup) {
+                        Picker("Select Blood Group", selection: $profileViewModel.currentProfile.bloodgroup) {
                             ForEach(bloodGroups, id: \.self) {
                                 Text($0)
                             }
@@ -115,26 +115,26 @@ struct Profile_Edit: View {
                     }.padding(.bottom, 15.0)
                     HStack {
                                 Text("Emergency Contact: ")
-                                TextField("Enter Emergency Contact", text: $patientViewModel.currentProfile.emergencycontact)
+                                TextField("Enter Emergency Contact", text: $profileViewModel.currentProfile.emergencycontact)
                                     .keyboardType(.numberPad)
                             }
                     .padding(.bottom, 15.0)
                     
                     HStack {
-                        DatePicker("Date of Birth", selection: $patientViewModel.currentProfile.dob,
+                        DatePicker("Date of Birth", selection: $profileViewModel.currentProfile.dob,
                                    in: Date()..., displayedComponents: [.date])
                     }
                     .padding(.bottom, 15.0)
                     
                     HStack {
                         Text("Address: ")
-                        TextField("Your Address", text: $patientViewModel.currentProfile.address)
+                        TextField("Your Address", text: $profileViewModel.currentProfile.address)
                     }
                     .padding(.bottom, 15.0)
                     
                     HStack {
                                 Text("Pincode: ")
-                        TextField("Enter Pincode", text: $patientViewModel.currentProfile.pincode)
+                        TextField("Enter Pincode", text: $profileViewModel.currentProfile.pincode)
                                     .keyboardType(.numberPad)
                             }
                     .padding(.bottom, 15.0)
@@ -160,7 +160,7 @@ struct Profile_Edit: View {
             Button(action: {
                 Task {
                     
-                        patientViewModel.updateProfile(patientViewModel.currentProfile, posterImage: posterImage ?? defaultposterImage, userId: viewModel.currentUser?.id) {
+                    profileViewModel.updateProfile(profileViewModel.currentProfile, posterImage: posterImage ?? defaultposterImage, userId: viewModel.currentUser?.id) {
                         }
                     
                     

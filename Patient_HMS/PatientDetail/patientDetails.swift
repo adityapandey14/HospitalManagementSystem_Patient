@@ -3,7 +3,7 @@ import MobileCoreServices
 import UniformTypeIdentifiers
 struct Profile_Create: View {
     @EnvironmentObject var viewModel: AuthViewModel
-    @EnvironmentObject var patientViewModel: PatientViewModel
+    @EnvironmentObject var profileViewModel: PatientViewModel
     @State private var navigationLinkIsActive = false
     let email:String
     let password:String
@@ -68,7 +68,7 @@ struct Profile_Create: View {
                     
                     HStack {
                         Text("Full Name: ")
-                        TextField("Name", text: $patientViewModel.currentProfile.fullName)
+                        TextField("Name", text: $profileViewModel.currentProfile.fullName)
                     }
                     .padding(.bottom, 15.0)
                     
@@ -76,12 +76,12 @@ struct Profile_Create: View {
                     
                     HStack {
                                 Text("Mobile Number: ")
-                                TextField("Enter Mobile Number", text: $patientViewModel.currentProfile.mobileno)
+                                TextField("Enter Mobile Number", text: $profileViewModel.currentProfile.mobileno)
                                     .keyboardType(.numberPad)
                             }
                     .padding(.bottom, 15.0)
                     HStack{
-                        Picker("Select Gender", selection: $patientViewModel.currentProfile.gender) {
+                        Picker("Select Gender", selection: $profileViewModel.currentProfile.gender) {
                             ForEach(genders, id: \.self) {
                                 Text($0)
                             }
@@ -89,7 +89,7 @@ struct Profile_Create: View {
                         .pickerStyle(SegmentedPickerStyle())
                     }.padding(.bottom, 15.0)
                     HStack{
-                        Picker("Select Blood Group", selection: $patientViewModel.currentProfile.bloodgroup) {
+                        Picker("Select Blood Group", selection: $profileViewModel.currentProfile.bloodgroup) {
                             ForEach(bloodGroups, id: \.self) {
                                 Text($0)
                             }
@@ -98,26 +98,26 @@ struct Profile_Create: View {
                     }.padding(.bottom, 15.0)
                     HStack {
                                 Text("Emergency Contact: ")
-                                TextField("Enter Emergency Contact", text: $patientViewModel.currentProfile.emergencycontact)
+                                TextField("Enter Emergency Contact", text: $profileViewModel.currentProfile.emergencycontact)
                                     .keyboardType(.numberPad)
                             }
                     .padding(.bottom, 15.0)
                     
                     HStack {
-                        DatePicker("Date of Birth", selection: $patientViewModel.currentProfile.dob,
+                        DatePicker("Date of Birth", selection: $profileViewModel.currentProfile.dob,
                                    in: Date()..., displayedComponents: [.date])
                     }
                     .padding(.bottom, 15.0)
                     
                     HStack {
                         Text("Address: ")
-                        TextField("Your Address", text: $patientViewModel.currentProfile.address)
+                        TextField("Your Address", text: $profileViewModel.currentProfile.address)
                     }
                     .padding(.bottom, 15.0)
                     
                     HStack {
                                 Text("Pincode: ")
-                        TextField("Enter Pincode", text: $patientViewModel.currentProfile.pincode)
+                        TextField("Enter Pincode", text: $profileViewModel.currentProfile.pincode)
                                     .keyboardType(.numberPad)
                             }
                     .padding(.bottom, 15.0)
@@ -145,7 +145,7 @@ struct Profile_Create: View {
                     do {
                         try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
                         
-                        patientViewModel.updateProfile(patientViewModel.currentProfile, posterImage: posterImage ?? defaultposterImage, userId: viewModel.currentUser?.id) {
+                        profileViewModel.updateProfile(profileViewModel.currentProfile, posterImage: posterImage ?? defaultposterImage, userId: viewModel.currentUser?.id) {
                         }
                     } catch {
                         
