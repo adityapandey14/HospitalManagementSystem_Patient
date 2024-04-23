@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import FirebaseAuth
 import FirebaseFirestoreSwift
 import FirebaseFirestore
@@ -23,7 +24,7 @@ enum AuthError: Error {
 
 @MainActor
 class AuthViewModel: ObservableObject {
-    
+    @EnvironmentObject var profileViewModel: PatientViewModel
     // This is firebaseAuth user
     @Published var userSession : FirebaseAuth.User?
     
@@ -73,10 +74,11 @@ class AuthViewModel: ObservableObject {
     
     func signOut() {
         do {
-          
-            try Auth.auth().signOut()
             self.userSession = nil   //wipes out user session and teakes us back to login screen
             self.currentUser = nil//signOUt user on backened
+            try Auth.auth().signOut()
+                            
+          
               // wipes out current user data model
         } catch {
             print("DEBUG: Failed to sign out with error \(error.localizedDescription)")

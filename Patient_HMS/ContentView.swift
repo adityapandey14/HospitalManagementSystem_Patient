@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var viewModel : AuthViewModel
+    @EnvironmentObject var profileViewModel : PatientViewModel
     var body: some View {
         //Imageview() use this for image upload and retrival
         Group {
             if $viewModel.userSession.wrappedValue != nil{
-                Homepage()
+                MTabView()
             } else {
                 onboarding()
             }
@@ -28,3 +29,4 @@ struct ContentView_Previews: PreviewProvider {
     }
     
 }
+

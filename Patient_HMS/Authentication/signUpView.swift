@@ -1,10 +1,3 @@
-//
-//  signUpView.swift
-//  Patient_HMS
-//
-//  Created by Aditya Pandey on 21/04/24.
-//
-
 import SwiftUI
 import FirebaseAuth
 
@@ -17,161 +10,154 @@ struct signUpView: View {
    
     @EnvironmentObject var viewModel : AuthViewModel
     
+    @State private var isSignUpSuccessful = false
+    
     var body: some View {
         NavigationView{
-                VStack{
-                    //Linktutor
+            VStack{
+                //Linktutor
+                VStack(alignment: .leading){
+                    Text("Patient")
+                        .fontWeight(.bold)
+                        .font(.system(size: 50).weight(.bold))
+                }
+                .offset(y: 30)
+                
+                //login and signup option
+                HStack{
+                    VStack{
+                        NavigationLink(destination: loginView()){
+                            Text("Login")
+                                .foregroundColor(.black)
+                                .font(AppFont.mediumSemiBold)
+                        }
+                        Rectangle()
+                            .frame(width: 100, height: 3)
+                            .foregroundStyle(Color.clear)
+                    }
+                    Spacer()
+                    VStack{
+                        NavigationLink(destination: signUpView()){
+                            Text("Sign up")
+                                .foregroundColor(.black)
+                                .font(AppFont.mediumSemiBold)
+                        }
+                        Rectangle()
+                            .frame(width: 100, height: 3)
+                            .foregroundStyle(Color.accent)
+                    }
+                }
+                .padding(.horizontal, 50)
+                .offset(y: 40)
+                
+                //sign up details
+                List{
                     VStack(alignment: .leading){
-                        Text("Patient")
-                            .fontWeight(.bold)
-                            .font(.system(size: 50).weight(.bold))
+                        Text("Email address")
+                            .font(AppFont.mediumReg)
+                        TextField("Email address", text: $email)
+                            .listRowBackground(Color.background)
+                            .textFieldStyle(.plain)
+                            .cornerRadius(8)
+                            .autocapitalization(.none)
                     }
-                    .offset(y: 30)
+                    .listRowBackground(Color.clear)
                     
-                    //login and signup option
-                    HStack{
-                        VStack{
-                            NavigationLink(destination: loginView()){
-                                Text("Login")
-                                    .foregroundColor(.black)
-                                    .font(AppFont.mediumSemiBold)
-                            }
-                            Rectangle()
-                                .frame(width: 100, height: 3)
-                                .foregroundStyle(Color.clear)
-                        }
-                        Spacer()
-                        VStack{
-                            NavigationLink(destination: signUpView()){
-                                Text("Sign up")
-                                    .foregroundColor(.black)
-                                    .font(AppFont.mediumSemiBold)
-                            }
-                            Rectangle()
-                                .frame(width: 100, height: 3)
-                                .foregroundStyle(Color.accent)
-                        }
-                    }
-                    .padding(.horizontal, 50)
-                    .offset(y: 40)
-                    
-                    //sign up details
-                    
-                    
-                    List{
-                        
-                            VStack(alignment: .leading){
-                                Text("Email address")
-                                    .font(AppFont.mediumReg)
-                                TextField("Email address", text: $email)
-                                    .listRowBackground(Color.background)
-                                    .textFieldStyle(.plain)
-                                    .cornerRadius(8)
-                                    .autocapitalization(.none)
-                                    
-                            }
-                            .listRowBackground(Color.clear)
-                            
-                            
-                            VStack(alignment: .leading){
-                                Text("Full Name")
-                                    .font(AppFont.mediumReg)
-                                TextField("full name", text: $fullName)
-                                    .cornerRadius(8)
-                            }
-                            .padding(.top)
-                            .listRowBackground(Color.clear)
-                            
-                            VStack(alignment: .leading){
-                                Text("Password")
-                                    .font(AppFont.mediumReg)
-                                SecureField("Password", text: $password)
-                                    .cornerRadius(8)
-                            }
-                            .padding(.top)
-                            .listRowBackground(Color.clear)
-                            
-                            VStack(alignment: .leading){
-                                
-                                Text("Confirm Password")
-                                    .font(AppFont.mediumReg)
-                                ZStack(alignment : .trailing) {
-                                    SecureField("Password", text: $confirmPassword)
-                                        .cornerRadius(8)
-                                    
-                                    if !password.isEmpty && !confirmPassword.isEmpty {
-                                        if password == confirmPassword {
-                                            Image(systemName: "checkmark.circle.fill")
-                                                .imageScale(.large)
-                                                .fontWeight(.bold)
-                                                .foregroundColor(Color(.systemGreen))
-                                        } else {
-                                            Image(systemName: "xmark.circle.fill")
-                                                .imageScale(.large)
-                                                .fontWeight(.bold)
-                                                .foregroundColor(Color(.systemRed))
-                                        }
-                                    }
-                                }
-                            }
-                            .padding(.top)
-                            .listRowBackground(Color.clear)
-                            
-                            
-                        
+                    VStack(alignment: .leading){
+                        Text("Full Name")
+                            .font(AppFont.mediumReg)
+                        TextField("Full name", text: $fullName)
+                            .cornerRadius(8)
                     }
                     .padding(.top)
-                    .offset(y: 40)
-                    .listStyle(PlainListStyle())
+                    .listRowBackground(Color.clear)
                     
-                  
-              Spacer()
-                    
-                    
-                    //button
-                    Button {
-                        Task {
-                            try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
-                        }
-                    
-                    } label : {
-                        Text("Sign up")
-                            .font(AppFont.mediumSemiBold)
-                            .foregroundColor(.black)
+                    VStack(alignment: .leading){
+                        Text("Password")
+                            .font(AppFont.mediumReg)
+                        SecureField("Password", text: $password)
+                            .cornerRadius(8)
                     }
-                    .frame(width: 250, height: 35)
-                    .padding()
-                    .disabled(!FormIsValid)
-                    .opacity(FormIsValid ? 1.0 : 0.5)
-                    .background(Color.accent)
-                    .cornerRadius(50)
+                    .padding(.top)
+                    .listRowBackground(Color.clear)
                     
-                   
+                    VStack(alignment: .leading){
+                        Text("Confirm Password")
+                            .font(AppFont.mediumReg)
+                        ZStack(alignment : .trailing) {
+                            SecureField("Password", text: $confirmPassword)
+                                .cornerRadius(8)
+                            
+                            if !password.isEmpty && !confirmPassword.isEmpty {
+                                if password == confirmPassword {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .imageScale(.large)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color(.systemGreen))
+                                } else {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .imageScale(.large)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color(.systemRed))
+                                }
+                            }
+                        }
+                    }
+                    .padding(.top)
+                    .listRowBackground(Color.clear)
                 }
+                .padding(.top)
+                .offset(y: 40)
+                .listStyle(PlainListStyle())
+                
+                Spacer()
+                
+                //button
+                Button(action: signUp) {
+                    Text("Sign up")
+                        .font(AppFont.mediumSemiBold)
+                        .foregroundColor(.black)
+                }
+                .frame(width: 250, height: 35)
                 .padding()
-                .background(Color.background)
-//                .environment(\.colorScheme, .dark)
+                .disabled(!FormIsValid)
+                .opacity(FormIsValid ? 1.0 : 0.5)
+                .background(Color.accent)
+                .cornerRadius(50)
+                .sheet(isPresented: $isSignUpSuccessful) {
+                    Profile_Create(email:email, password:password,fullName: fullName)
+                }
+            }
+            .padding()
+            .background(Color.background)
         }
-        
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden()
     }
+    
+    private func signUp() {
+        isSignUpSuccessful = true
+    }
 }
-
-#Preview {
-    signUpView()
-}
-
-
 
 extension signUpView: AuthenticationFormProtocol {
     var FormIsValid: Bool {
         return !email.isEmpty
-        && email.contains("@")
-        && !password.isEmpty
-        && password.count > 5
-        && password == confirmPassword
-        && !fullName.isEmpty
+            && email.contains("@")
+            && !password.isEmpty
+            && password.count > 5
+            && password == confirmPassword
+            && !fullName.isEmpty
     }
 }
+
+struct signUpView_Previews: PreviewProvider {
+    static var previews: some View {
+        signUpView()
+    }
+}
+
+
+
+
