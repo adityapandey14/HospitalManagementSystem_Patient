@@ -166,6 +166,7 @@
 				DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */,
 				DFC22CA62BD26AE200B2AD68 /* ContentView.swift */,
 				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
+				DFF2D7BC2BD75DC40087114A /* ProfilePage */,
 				DFF2D7B72BD630980087114A /* Department */,
 				DF6B2EDF2BD59FDE00FAD930 /* PatientDetail */,
 				DF64DF8E2BD27D4400E1F5A6 /* Authentication */,
@@ -215,6 +216,13 @@
 				DFF2D7BA2BD632CC0087114A /* DepartmentModel.swift */,
 			);
 			path = Department;
+			sourceTree = "<group>";
+		};
+		DFF2D7BC2BD75DC40087114A /* ProfilePage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProfilePage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
