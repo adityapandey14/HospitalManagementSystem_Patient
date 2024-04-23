@@ -16,7 +16,7 @@ struct ContentView: View {
             if $viewModel.userSession.wrappedValue != nil{
                 MTabView()
             } else {
-                onboarding()
+                loginView()
             }
         }
         
