@@ -16,6 +16,7 @@
 		47394C972BD777FF00ADB1A4 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C962BD777FF00ADB1A4 /* ProfilePage.swift */; };
 		47394C992BD7789600ADB1A4 /* HealthRecordAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */; };
 		47394C9B2BD7A41E00ADB1A4 /* PatientEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C9A2BD7A41E00ADB1A4 /* PatientEdit.swift */; };
+		47394C9D2BD7D36400ADB1A4 /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C9C2BD7D36400ADB1A4 /* ReviewModel.swift */; };
 		84B3D1A02BD7CCAD00FADB4D /* onboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */; };
 		DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EA92BD5898800FAD930 /* User.swift */; };
 		DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */; };
@@ -71,6 +72,7 @@
 		47394C962BD777FF00ADB1A4 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordAdd.swift; sourceTree = "<group>"; };
 		47394C9A2BD7A41E00ADB1A4 /* PatientEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientEdit.swift; sourceTree = "<group>"; };
+		47394C9C2BD7D36400ADB1A4 /* ReviewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReviewModel.swift; path = "../../../../Downloads/Review 2/ReviewModel.swift"; sourceTree = "<group>"; };
 		84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingPage.swift; sourceTree = "<group>"; };
 		DF6B2EA92BD5898800FAD930 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */,
 				DFC22CA62BD26AE200B2AD68 /* ContentView.swift */,
 				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
+				47394C9C2BD7D36400ADB1A4 /* ReviewModel.swift */,
 				DFF2D7B72BD630980087114A /* Department */,
 				DF6B2EDF2BD59FDE00FAD930 /* PatientDetail */,
 				DF64DF8E2BD27D4400E1F5A6 /* Authentication */,
@@ -391,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF6B2EC12BD58F1400FAD930 /* signUpView.swift in Sources */,
+				47394C9D2BD7D36400ADB1A4 /* ReviewModel.swift in Sources */,
 				DF6B2EC52BD5925E00FAD930 /* ProfileInputView.swift in Sources */,
 				47394C972BD777FF00ADB1A4 /* ProfilePage.swift in Sources */,
 				DFC22CA72BD26AE200B2AD68 /* ContentView.swift in Sources */,
