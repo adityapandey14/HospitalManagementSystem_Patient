@@ -41,7 +41,6 @@
 		DFC22CE02BD26BB500B2AD68 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DFC22CDF2BD26BB500B2AD68 /* FirebaseStorage */; };
 		DFF2D7B92BD630DF0087114A /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF2D7B82BD630DF0087114A /* Department.swift */; };
 		DFF2D7BB2BD632CC0087114A /* DepartmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF2D7BA2BD632CC0087114A /* DepartmentModel.swift */; };
-		DFF2D7C12BD761000087114A /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF2D7C02BD761000087114A /* ReviewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +93,6 @@
 		DFC22CCF2BD26B2700B2AD68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DFF2D7B82BD630DF0087114A /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		DFF2D7BA2BD632CC0087114A /* DepartmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentModel.swift; sourceTree = "<group>"; };
-		DFF2D7C02BD761000087114A /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +191,6 @@
 				DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */,
 				DFC22CA62BD26AE200B2AD68 /* ContentView.swift */,
 				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
-				DFF2D7BF2BD760F10087114A /* Review */,
 				DFF2D7B72BD630980087114A /* Department */,
 				DF6B2EDF2BD59FDE00FAD930 /* PatientDetail */,
 				DF64DF8E2BD27D4400E1F5A6 /* Authentication */,
@@ -246,14 +243,6 @@
 				DFF2D7BA2BD632CC0087114A /* DepartmentModel.swift */,
 			);
 			path = Department;
-			sourceTree = "<group>";
-		};
-		DFF2D7BF2BD760F10087114A /* Review */ = {
-			isa = PBXGroup;
-			children = (
-				DFF2D7C02BD761000087114A /* ReviewModel.swift */,
-			);
-			path = Review;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,11 +395,7 @@
 				47394C912BD6ECC100ADB1A4 /* DocumentPicker.swift in Sources */,
 				DF6B2EC72BD5946C00FAD930 /* Homepage.swift in Sources */,
 				DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */,
-
 				47394C9B2BD7A41E00ADB1A4 /* PatientEdit.swift in Sources */,
-
-				DFF2D7C12BD761000087114A /* ReviewModel.swift in Sources */,
-        main
 				DF6B2EBF2BD58E5100FAD930 /* AuthViewModel.swift in Sources */,
 				DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */,
 				DF6B2EE12BD59FEB00FAD930 /* patientDetails.swift in Sources */,
