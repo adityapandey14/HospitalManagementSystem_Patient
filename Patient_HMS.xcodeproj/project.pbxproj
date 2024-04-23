@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+ pardha/onboarding
+		84B3D19E2BD7B69A00FADB4D /* onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D19D2BD7B69A00FADB4D /* onboarding.swift */; };
+
 		47394C872BD6C13D00ADB1A4 /* Patient_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C862BD6C13D00ADB1A4 /* Patient_Model.swift */; };
 		47394C8B2BD6C69C00ADB1A4 /* PatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C8A2BD6C69C00ADB1A4 /* PatientViewModel.swift */; };
 		47394C8D2BD6CEBF00ADB1A4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C8C2BD6CEBF00ADB1A4 /* ImagePicker.swift */; };
@@ -16,6 +19,7 @@
 		47394C972BD777FF00ADB1A4 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C962BD777FF00ADB1A4 /* ProfilePage.swift */; };
 		47394C992BD7789600ADB1A4 /* HealthRecordAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */; };
 		47394C9B2BD7A41E00ADB1A4 /* PatientEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C9A2BD7A41E00ADB1A4 /* PatientEdit.swift */; };
+main
 		DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EA92BD5898800FAD930 /* User.swift */; };
 		DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */; };
 		DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */; };
@@ -61,6 +65,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+ pardha/onboarding
+		84B3D19D2BD7B69A00FADB4D /* onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboarding.swift; sourceTree = "<group>"; };
+
 		47394C862BD6C13D00ADB1A4 /* Patient_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient_Model.swift; sourceTree = "<group>"; };
 		47394C8A2BD6C69C00ADB1A4 /* PatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientViewModel.swift; sourceTree = "<group>"; };
 		47394C8C2BD6CEBF00ADB1A4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -70,6 +77,7 @@
 		47394C962BD777FF00ADB1A4 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordAdd.swift; sourceTree = "<group>"; };
 		47394C9A2BD7A41E00ADB1A4 /* PatientEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientEdit.swift; sourceTree = "<group>"; };
+ main
 		DF6B2EA92BD5898800FAD930 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appFonts.swift; sourceTree = "<group>"; };
@@ -191,6 +199,11 @@
 				DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */,
 				DFC22CA62BD26AE200B2AD68 /* ContentView.swift */,
 				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
+pardha/onboarding
+				84B3D19D2BD7B69A00FADB4D /* onboarding.swift */,
+				DFF2D7BF2BD760F10087114A /* Review */,
+
+main
 				DFF2D7B72BD630980087114A /* Department */,
 				DF6B2EDF2BD59FDE00FAD930 /* PatientDetail */,
 				DF64DF8E2BD27D4400E1F5A6 /* Authentication */,
@@ -397,6 +410,7 @@
 				DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */,
 				47394C9B2BD7A41E00ADB1A4 /* PatientEdit.swift in Sources */,
 				DF6B2EBF2BD58E5100FAD930 /* AuthViewModel.swift in Sources */,
+				84B3D19E2BD7B69A00FADB4D /* onboarding.swift in Sources */,
 				DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */,
 				DF6B2EE12BD59FEB00FAD930 /* patientDetails.swift in Sources */,
 				DFC22CA52BD26AE200B2AD68 /* Patient_HMSApp.swift in Sources */,
