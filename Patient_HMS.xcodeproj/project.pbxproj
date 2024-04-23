@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84B3D19E2BD7B69A00FADB4D /* onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D19D2BD7B69A00FADB4D /* onboarding.swift */; };
 		DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EA92BD5898800FAD930 /* User.swift */; };
 		DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */; };
 		DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84B3D19D2BD7B69A00FADB4D /* onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboarding.swift; sourceTree = "<group>"; };
 		DF6B2EA92BD5898800FAD930 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appFonts.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */,
 				DFC22CA62BD26AE200B2AD68 /* ContentView.swift */,
 				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
+				84B3D19D2BD7B69A00FADB4D /* onboarding.swift */,
 				DFF2D7BF2BD760F10087114A /* Review */,
 				DFF2D7B72BD630980087114A /* Department */,
 				DF6B2EDF2BD59FDE00FAD930 /* PatientDetail */,
@@ -377,6 +380,7 @@
 				DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */,
 				DFF2D7C12BD761000087114A /* ReviewModel.swift in Sources */,
 				DF6B2EBF2BD58E5100FAD930 /* AuthViewModel.swift in Sources */,
+				84B3D19E2BD7B69A00FADB4D /* onboarding.swift in Sources */,
 				DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */,
 				DF6B2EE12BD59FEB00FAD930 /* patientDetails.swift in Sources */,
 				DFC22CA52BD26AE200B2AD68 /* Patient_HMSApp.swift in Sources */,

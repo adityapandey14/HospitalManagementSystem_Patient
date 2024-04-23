@@ -15,7 +15,7 @@ struct ContentView: View {
             if $viewModel.userSession.wrappedValue != nil{
                 Homepage()
             } else {
-                loginView()
+                onboarding()
             }
         }
         
