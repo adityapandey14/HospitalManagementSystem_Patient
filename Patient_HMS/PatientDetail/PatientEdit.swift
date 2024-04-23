@@ -1,17 +1,17 @@
 import SwiftUI
 import MobileCoreServices
 import UniformTypeIdentifiers
-struct Profile_Create: View {
+struct Profile_Edit: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var profileViewModel: PatientViewModel
     @State private var navigationLinkIsActive = false
-    let email:String
-    let password:String
-    let fullName:String
     @State private var isImagePickerP = false
     @State private var isImagePickerPresented = false
     @State private var posterImage : UIImage?
     @State private var defaultposterImage : UIImage = UIImage(named: "default_hackathon_poster")!
+  
     let genders = ["Male", "Female", "Other"]
     let bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
     @State private var healthRecordPDFs: [Data] = [] // Array to store PDF data
@@ -33,7 +33,7 @@ struct Profile_Create: View {
     var body: some View {
         VStack {
             Form {
-                Section(header: Text("Patient Profile")) {
+                Section(header: Text("Edit Profile")) {
                     // CameraButton
                     HStack {
                         Spacer()
@@ -47,15 +47,32 @@ struct Profile_Create: View {
                                                                 .frame(width: 100, height: 100)
                                                                 .cornerRadius(10)
                                                         } else {
-                                                            Circle()
-                                                                .fill(Color(hue: 1.0, saturation: 0.0, brightness: 0.867))
-                                                                .frame(width: 100, height: 100)
-                                                                .overlay(
-                                                                    Image(systemName: "camera.fill")
-                                                                        .resizable()
-                                                                        .frame(width: 50, height: 40)
-                                                                        .foregroundStyle(Color.black)
-                                                                )
+                                                            if let posterURL = profileViewModel.currentProfile.profilephoto {
+                                                                AsyncImage(url: URL(string: posterURL)) { phase in
+                                                                    switch phase {
+                                                                    case .success(let image):
+                                                                        image
+                                                                            .resizable()
+                                                                            .aspectRatio(contentMode: .fill)
+                                                                            .frame(width: 350, height: 200)
+                                                                            .cornerRadius(20.0)
+                                                                            .clipShape(Circle())
+                                                                            .padding([.leading, .bottom, .trailing])
+                                                                    default:
+                                                                        ProgressView()
+                                                                            .frame(width: 50, height: 50)
+                                                                            .padding([.leading, .bottom, .trailing])
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                Image(uiImage: UIImage(named: "default_hackathon_poster")!)
+                                                                    .resizable()
+                                                                    .aspectRatio(contentMode: .fill)
+                                                                    .frame(width: 350, height: 200)
+                                                                    .cornerRadius(20.0)
+                                                                    .clipShape(Circle())
+                                                                    .padding([.leading, .bottom, .trailing])
+                                                            }
                                                         }
                                                     }
                                                     .sheet(isPresented: $isImagePickerPresented) {
@@ -72,7 +89,7 @@ struct Profile_Create: View {
                     }
                     .padding(.bottom, 15.0)
                     
-          
+                  
                     
                     HStack {
                                 Text("Mobile Number: ")
@@ -131,7 +148,7 @@ struct Profile_Create: View {
 //                                        .sheet(isPresented: $isImagePickerPresented) {
 //                                            DocumentPicker(documentTypes: [UTType.pdf.identifier], handleResult: handlePDFSelection)
 //                                        }
-//                                        
+//
 //                                        // Display selected PDF filename
 //                                        if let selectedPDFName = selectedPDFName {
 //                                            Text("Uploaded PDF: \(selectedPDFName)")
@@ -142,32 +159,19 @@ struct Profile_Create: View {
             
             Button(action: {
                 Task {
-                    do {
-                        try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
-                        
-                        profileViewModel.updateProfile(profileViewModel.currentProfile, posterImage: posterImage ?? defaultposterImage, userId: viewModel.currentUser?.id) {
+                    
+                    profileViewModel.updateProfile(profileViewModel.currentProfile, posterImage: posterImage ?? defaultposterImage, userId: viewModel.currentUser?.id) {
                         }
-                    } catch {
-                        
-                        print("Error: \(error.localizedDescription)")
-                    }
+                    
+                    
                 }
+                presentationMode.wrappedValue.dismiss()
             }) {
-                Text("Get Started")
+                Text("Edit Profile")
                     .foregroundColor(.blue)
                     .padding()
             }
-            .background(
-                NavigationLink(
-                    destination: Homepage(),
-                    isActive: $navigationLinkIsActive,
-                    label: { EmptyView() }
-                )
-            )
-            .buttonStyle(.bordered)
-            .tint(.blue)
-            .padding()
-
+           
             
             
         }
