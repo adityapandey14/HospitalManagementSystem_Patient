@@ -16,6 +16,7 @@
 		47394C972BD777FF00ADB1A4 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C962BD777FF00ADB1A4 /* ProfilePage.swift */; };
 		47394C992BD7789600ADB1A4 /* HealthRecordAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */; };
 		47394C9B2BD7A41E00ADB1A4 /* PatientEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C9A2BD7A41E00ADB1A4 /* PatientEdit.swift */; };
+		84B3D1A02BD7CCAD00FADB4D /* onboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */; };
 		DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EA92BD5898800FAD930 /* User.swift */; };
 		DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */; };
 		DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */; };
@@ -70,6 +71,7 @@
 		47394C962BD777FF00ADB1A4 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordAdd.swift; sourceTree = "<group>"; };
 		47394C9A2BD7A41E00ADB1A4 /* PatientEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientEdit.swift; sourceTree = "<group>"; };
+		84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingPage.swift; sourceTree = "<group>"; };
 		DF6B2EA92BD5898800FAD930 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appFonts.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				DFC22CCF2BD26B2700B2AD68 /* GoogleService-Info.plist */,
+				84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */,
 				DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */,
 				DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */,
 				DFC22CA62BD26AE200B2AD68 /* ContentView.swift */,
@@ -408,6 +411,7 @@
 				DFF2D7B92BD630DF0087114A /* Department.swift in Sources */,
 				47394C8B2BD6C69C00ADB1A4 /* PatientViewModel.swift in Sources */,
 				47394C952BD770C500ADB1A4 /* TabView.swift in Sources */,
+				84B3D1A02BD7CCAD00FADB4D /* onboardingPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
