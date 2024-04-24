@@ -15,78 +15,92 @@ struct signUpView: View {
     var body: some View {
         NavigationView{
             VStack{
-                //Linktutor
-                VStack(alignment: .leading){
-                    Text("Patient")
-                        .fontWeight(.bold)
-                        .font(.system(size: 50).weight(.bold))
-                }
-                .offset(y: 30)
-                
                 //login and signup option
-                HStack{
-                    VStack{
-                        NavigationLink(destination: loginView()){
-                            Text("Login")
-                                .foregroundColor(.black)
-                                .font(AppFont.mediumSemiBold)
-                        }
-                        Rectangle()
-                            .frame(width: 100, height: 3)
-                            .foregroundStyle(Color.clear)
-                    }
-                    Spacer()
-                    VStack{
-                        NavigationLink(destination: signUpView()){
-                            Text("Sign up")
-                                .foregroundColor(.black)
-                                .font(AppFont.mediumSemiBold)
-                        }
-                        Rectangle()
-                            .frame(width: 100, height: 3)
-                            .foregroundStyle(Color.accent)
-                    }
-                }
-                .padding(.horizontal, 50)
-                .offset(y: 40)
+//                HStack{
+////                    VStack{
+////                        NavigationLink(destination: loginView()){
+////                            Text("Login")
+////                                .foregroundColor(.black)
+////                                .font(AppFont.mediumSemiBold)
+////                        }
+////                        Rectangle()
+////                            .frame(width: 100, height: 3)
+////                            .foregroundStyle(Color.clear)
+////                    }
+//                    Spacer()
+//                    VStack{
+//                        NavigationLink(destination: signUpView()){
+//                            Text("Sign up")
+//                                .foregroundColor(.black)
+//                                .font(AppFont.mediumSemiBold)
+//                        }
+//                        Rectangle()
+//                            .frame(width: 100, height: 3)
+//                            .foregroundStyle(Color.accent)
+//                    }
+//                }
                 
                 //sign up details
-                List{
+                VStack(alignment: .leading){
                     VStack(alignment: .leading){
-                        Text("Email address")
-                            .font(AppFont.mediumReg)
+                        VStack(alignment: .leading){
+                            Image("homePageLogo")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                            
+                            Text("Join MedNex")
+                                .font(.system(size: 30).weight(.light))
+                            Text("Let’s start with your basic information.")
+                                .font(.system(size: 17).weight(.light))
+                        }
+                       
+                    }
+
+                    VStack(alignment: .leading){
+//                        Text("Email address")
+//                            .font(AppFont.mediumReg)
                         TextField("Email address", text: $email)
                             .listRowBackground(Color.background)
                             .textFieldStyle(.plain)
                             .cornerRadius(8)
                             .autocapitalization(.none)
+                            .underlineTextField()
                     }
                     .listRowBackground(Color.clear)
                     
                     VStack(alignment: .leading){
-                        Text("Full Name")
-                            .font(AppFont.mediumReg)
+//                        Text("Full Name")
+//                            .font(AppFont.mediumReg)
                         TextField("Full name", text: $fullName)
                             .cornerRadius(8)
+                            .underlineTextField()
                     }
                     .padding(.top)
                     .listRowBackground(Color.clear)
                     
                     VStack(alignment: .leading){
-                        Text("Password")
-                            .font(AppFont.mediumReg)
+//                        Text("Password")
+//                            .font(AppFont.mediumReg)
                         SecureField("Password", text: $password)
                             .cornerRadius(8)
+                            .underlineTextField()
                     }
                     .padding(.top)
                     .listRowBackground(Color.clear)
                     
+                    VStack(alignment: .trailing){
+                        Text("At least 6 characters")
+                            .foregroundColor(.midNightExpress)
+                            .padding(.leading,170)
+                    }
+                    
                     VStack(alignment: .leading){
-                        Text("Confirm Password")
-                            .font(AppFont.mediumReg)
+//                        Text("Confirm Password")
+//                            .font(AppFont.mediumReg)
                         ZStack(alignment : .trailing) {
-                            SecureField("Password", text: $confirmPassword)
+                            SecureField("Confirm password", text: $confirmPassword)
                                 .cornerRadius(8)
+                                .underlineTextField()
                             
                             if !password.isEmpty && !confirmPassword.isEmpty {
                                 if password == confirmPassword {
@@ -107,29 +121,40 @@ struct signUpView: View {
                     .listRowBackground(Color.clear)
                 }
                 .padding(.top)
-                .offset(y: 40)
-                .listStyle(PlainListStyle())
                 
                 Spacer()
                 
                 //button
                 Button(action: signUp) {
-                    Text("Sign up")
-                        .font(AppFont.mediumSemiBold)
-                        .foregroundColor(.black)
+                    NavigationLink(destination: loginView() ){
+                        Text("Sign up")
+                            .foregroundColor(.white)
+                            .frame(width: 325, height: 50)
+                            .background(Color.midNightExpress)
+                            .cornerRadius(10)
+                    }
                 }
-                .frame(width: 250, height: 35)
-                .padding()
                 .disabled(!FormIsValid)
                 .opacity(FormIsValid ? 1.0 : 0.5)
-                .background(Color.accent)
-                .cornerRadius(50)
                 .sheet(isPresented: $isSignUpSuccessful) {
                     Profile_Create(email:email, password:password,fullName: fullName)
                 }
+                
+                HStack{
+                    Text("Already have an account?")
+                        .foregroundColor(.gray)
+                        .padding(.top)
+                    
+                    NavigationLink(destination: loginView()){
+                        Text("Sign in")
+                            .foregroundColor(.asparagus)
+                            .padding(.top)
+                    }
+                }
+                
             }
             .padding()
-            .background(Color.background)
+            .background(Color.solitude)
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
