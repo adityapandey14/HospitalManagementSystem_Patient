@@ -28,6 +28,7 @@ struct onboardingPage: View {
 }
 
 
+
 struct splashScreen: View {
     let imageName: String
     let duration: TimeInterval
