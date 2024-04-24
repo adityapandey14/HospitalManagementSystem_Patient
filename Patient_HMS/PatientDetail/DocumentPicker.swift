@@ -11,8 +11,10 @@ struct DocumentPicker: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-        let controller = UIDocumentPickerViewController(forOpeningContentTypes: documentTypes.compactMap { UTType(filenameExtension: $0) }, asCopy: true)
+        let types = documentTypes.map { UTType(filenameExtension: $0) }.compactMap { $0 }
+        let controller = UIDocumentPickerViewController(forOpeningContentTypes: types, asCopy: true)
         controller.delegate = context.coordinator
+        controller.allowsMultipleSelection = false // Allow only single selection
         return controller
     }
     
