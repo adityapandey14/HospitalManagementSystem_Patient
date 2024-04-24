@@ -137,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				DF6B2EA92BD5898800FAD930 /* User.swift */,
+				DF6B2EBE2BD58E5100FAD930 /* AuthViewModel.swift */,
 				DF6B2EB72BD58D9900FAD930 /* UserViewModel */,
 				DF6B2EC02BD58F1400FAD930 /* signUpView.swift */,
 				DF6B2EC42BD5925E00FAD930 /* ProfileInputView.swift */,
@@ -148,7 +149,6 @@
 		DF6B2EB72BD58D9900FAD930 /* UserViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DF6B2EBE2BD58E5100FAD930 /* AuthViewModel.swift */,
 				DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */,
 			);
 			path = UserViewModel;

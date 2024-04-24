@@ -145,4 +145,14 @@ class AuthViewModel: ObservableObject {
     
 
     
+    func sendPasswordResetEmail(to email: String) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                print("Error sending password reset email: \(error.localizedDescription)")
+            } else {
+                print("Password reset email sent successfully to \(email)")
+            }
+        }
+    }
+    
 }
