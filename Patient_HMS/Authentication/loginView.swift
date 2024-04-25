@@ -64,7 +64,7 @@ struct loginView: View {
 //                            Text("Email address")
 //                                .font(AppFont.mediumReg)
 //                                .padding(.leading, 10)
-                            TextField("Email addresss", text: $email)
+                            TextField("Email address", text: $email)
                                 .autocapitalization(.none)
                                 .textFieldStyle(.plain)
                                 .cornerRadius(8)
@@ -86,6 +86,7 @@ struct loginView: View {
                     .padding(.top, 20)
                     .listStyle(PlainListStyle())
                     
+                    
                     VStack(alignment: .trailing){
                         Text("Forgot Password?")
                             .foregroundColor(.midNightExpress)
@@ -102,11 +103,14 @@ struct loginView: View {
                     } label :{
                         
                         Text("Login")
-                            .foregroundColor(.white)
-                            .frame(width: 325, height: 40)
+                            .foregroundColor(.buttonForeground)
+                            .frame(width: 325, height: 50)
                             .background(Color.midNightExpress)
                             .cornerRadius(10)
                     }
+                    .frame(width: 325, height: 50)
+                    .background(Color.midNightExpress)
+                    .cornerRadius(10)
                     .disabled(!FormIsValid)
                     .opacity(FormIsValid ? 1.0 : 0.5)
                 }
@@ -153,6 +157,6 @@ extension View {
             .padding(.vertical, 10)
             .overlay(Rectangle().frame(height: 2).padding(.top, 35))
             .foregroundColor(.gray)
-            .padding(10)
+            .padding(5)
     }
 }

@@ -6,7 +6,7 @@ import FirebaseStorage
 class PatientViewModel: ObservableObject {
    
     @Published var currentProfile: PatientM = PatientM(
-        fullName : "\(try? AuthViewModel().currentUser?.fullName)",
+        fullName: "\(AuthViewModel().currentUser?.fullName )",
         gender: "",
         mobileno: "",
         bloodgroup: "",

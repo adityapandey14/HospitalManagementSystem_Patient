@@ -126,16 +126,18 @@ struct signUpView: View {
                 
                 //button
                 Button(action: signUp) {
-                    NavigationLink(destination: loginView() ){
-                        Text("Sign up")
-                            .foregroundColor(.white)
-                            .frame(width: 325, height: 50)
-                            .background(Color.midNightExpress)
-                            .cornerRadius(10)
-                    }
+                    Text("Sign up")
+                        .foregroundColor(.buttonForeground)
+                        .frame(width: 325, height: 50)
+                        .background(Color.midNightExpress)
+                        .cornerRadius(10)
                 }
+                .frame(width: 325, height: 35)
+                .padding()
                 .disabled(!FormIsValid)
                 .opacity(FormIsValid ? 1.0 : 0.5)
+                .background(Color.midNightExpress)
+                .cornerRadius(10)
                 .sheet(isPresented: $isSignUpSuccessful) {
                     Profile_Create(email:email, password:password,fullName: fullName)
                 }
