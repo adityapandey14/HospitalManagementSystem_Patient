@@ -200,14 +200,14 @@
 				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
 				485FDF5F2BD8367A008E620D /* ReviewModel.swift */,
 				84B3D1A12BD8DB6D00FADB4D /* NotificationHandler.swift */,
+				47394C942BD770C500ADB1A4 /* TabView.swift */,
+				47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */,
 				DFF2D7B72BD630980087114A /* Department */,
 				DF6B2EDF2BD59FDE00FAD930 /* PatientDetail */,
 				DF64DF8E2BD27D4400E1F5A6 /* Authentication */,
 				DFC22CA82BD26AE400B2AD68 /* Assets.xcassets */,
 				DFC22CAA2BD26AE400B2AD68 /* Patient_HMS.entitlements */,
 				DFC22CAB2BD26AE400B2AD68 /* Preview Content */,
-				47394C942BD770C500ADB1A4 /* TabView.swift */,
-				47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */,
 			);
 			path = Patient_HMS;
 			sourceTree = "<group>";

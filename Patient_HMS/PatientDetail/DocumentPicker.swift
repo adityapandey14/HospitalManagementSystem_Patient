@@ -1,44 +1,35 @@
 import SwiftUI
-import MobileCoreServices
-import UniformTypeIdentifiers
+import UIKit
 
 struct DocumentPicker: UIViewControllerRepresentable {
-    var documentTypes: [String]
-    var handleResult: (Result<URL, Error>) -> Void
-    
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(parent: self)
-    }
+    var onDocumentPicked: ([URL]) -> Void
     
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-        let types = documentTypes.map { UTType(filenameExtension: $0) }.compactMap { $0 }
-        let controller = UIDocumentPickerViewController(forOpeningContentTypes: types, asCopy: true)
-        controller.delegate = context.coordinator
-        controller.allowsMultipleSelection = false // Allow only single selection
-        return controller
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.data])
+        documentPicker.allowsMultipleSelection = true
+        documentPicker.delegate = context.coordinator
+        return documentPicker
     }
     
-    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {
-        // Nothing to update
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(onDocumentPicked: onDocumentPicked)
     }
     
     class Coordinator: NSObject, UIDocumentPickerDelegate {
-        var parent: DocumentPicker
+        var onDocumentPicked: ([URL]) -> Void
         
-        init(parent: DocumentPicker) {
-            self.parent = parent
+        init(onDocumentPicked: @escaping ([URL]) -> Void) {
+            self.onDocumentPicked = onDocumentPicked
         }
         
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            guard let url = urls.first else {
-                parent.handleResult(.failure(NSError(domain: "", code: 0, userInfo: nil)))
-                return
-            }
-            parent.handleResult(.success(url))
+            onDocumentPicked(urls)
         }
         
         func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-            parent.handleResult(.failure(NSError(domain: "", code: 0, userInfo: nil)))
+            // Handle cancellation if needed
         }
     }
 }
