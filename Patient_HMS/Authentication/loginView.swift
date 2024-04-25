@@ -88,10 +88,14 @@ struct loginView: View {
                     
                     
                     VStack(alignment: .trailing){
-                        Text("Forgot Password?")
-                            .foregroundColor(.midNightExpress)
-                            .padding(.leading,170)
+                        NavigationLink(destination : ForgotPassword()){
+                            Text("Forgot Password?")
+                                .foregroundColor(.midNightExpress)
+                                .padding(.leading,170)
+                        }
+                        
                     }
+                    
                     
                     //button
                     Button {
@@ -160,3 +164,42 @@ extension View {
             .padding(5)
     }
 }
+
+
+
+struct ForgotPassword: View {
+    @State private var email: String = ""
+    @State private var navigateToLogin: Bool = false
+    @EnvironmentObject var viewModel: AuthViewModel
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 20) {
+                TextField("Enter your email", text: $email)
+                    .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Button(action: {
+                    viewModel.sendPasswordResetEmail(to: email)
+                    navigateToLogin = true
+                }) {
+                    Text("Submit")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                
+                // NavigationLink to navigate to the login view when 'navigateToLogin' is set to true
+                NavigationLink(
+                    destination: loginView(),
+                    isActive: $navigateToLogin
+                ) {
+                    EmptyView() // This is used to trigger navigation without displaying additional content
+                }
+            }
+            .padding()
+        }
+    }
+}
+

@@ -126,11 +126,21 @@ struct signUpView: View {
                 
                 //button
                 Button(action: signUp) {
-                    Text("Sign up")
-                        .foregroundColor(.buttonForeground)
-                        .frame(width: 325, height: 50)
-                        .background(Color.midNightExpress)
-                        .cornerRadius(10)
+                    NavigationLink(destination: loginView() ){
+                        
+                        Button {
+                            Task {
+                               try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
+                            }
+                        } label: {
+                            Text("Sign up")
+                                .foregroundColor(.white)
+                                .frame(width: 325, height: 50)
+                                .background(Color.midNightExpress)
+                                .cornerRadius(10)
+                        }
+                      
+                    }
                 }
                 .frame(width: 325, height: 35)
                 .padding()
