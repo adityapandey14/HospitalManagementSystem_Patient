@@ -134,7 +134,7 @@ struct signUpView: View {
                             }
                         } label: {
                             Text("Sign up")
-                                .foregroundColor(.white)
+                                .foregroundColor(.buttonForeground)
                                 .frame(width: 325, height: 50)
                                 .background(Color.midNightExpress)
                                 .cornerRadius(10)
