@@ -6,6 +6,7 @@ import QuickLook
 import PDFKit
 
 struct HealthRecordAdd: View {
+    @EnvironmentObject var viewModel:AuthViewModel
     @State private var healthRecordPDFData: Data? = nil
     @State private var selectedPDFName: String? = nil
     @State private var isDocumentPickerPresented = false
@@ -43,46 +44,29 @@ struct HealthRecordAdd: View {
                 }
                 
                 Section(header: Text("Uploaded Documents")) {
-                    ForEach(uploadedDocuments, id: \.self) { documentRef in
+                    ForEach(uploadedDocuments.indices, id: \.self) { index in
                         HStack {
-                            
-                            
-                            HStack {
-                                Button(action: {
-                                    viewDocument(documentRef: documentRef)
-                                }) {
-                                    Text(documentRef.name)
-                                }
+                            Button(action: {
+                                viewDocument(documentRef: uploadedDocuments[index])
+                            }) {
+                                Text(uploadedDocuments[index].name)
                             }
                             Spacer()
-                            
-                            
-                                    Image(systemName: "square.and.arrow.down")
-                                    .frame(width : 40 , height : 40)
-                                    .foregroundColor(Color.blue)
-                                    .onTapGesture {
-                                        downloadDocument(documentRef: documentRef)
-                                    }
-                            
-                            
-                            
-                            
-                            
-                            
-                            HStack {
-                                
-                                
-                                Image(systemName: "trash")
-                                
-                                    .foregroundColor(Color.red)
-                                    .onTapGesture {
-                                        deleteDocument(documentRef: documentRef)
-                                    }
-                                
-                            }
+                            Image(systemName: "square.and.arrow.down")
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(Color.blue)
+                                .onTapGesture {
+                                    downloadDocument(documentRef: uploadedDocuments[index])
+                                }
+                            Image(systemName: "trash")
+                                .foregroundColor(Color.red)
+                                .onTapGesture {
+                                    deleteDocument(at: index)
+                                }
                         }
                     }
                 }
+
             }
             .sheet(isPresented: $isDocumentPickerPresented) {
                 DocumentPicker { urls in
@@ -113,31 +97,41 @@ struct HealthRecordAdd: View {
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let pdfRef = storageRef.child("health_records/\(UUID().uuidString).pdf")
+        let documentUUID = viewModel.currentUser?.id ?? ""
+        let pdf = selectedPDFName ?? ""
+        let pdfRef = storageRef.child("health_records/\(documentUUID)/\(pdf)")
         
         pdfRef.putData(pdfData, metadata: nil) { metadata, error in
             if let error = error {
                 print("Error uploading PDF: \(error.localizedDescription)")
             } else {
                 print("PDF uploaded successfully")
-                uploadedDocuments.append(pdfRef)
+                // Fetch the uploaded documents after successful upload
+                fetchUploadedDocuments()
             }
             isUploading = false
         }
     }
+
+
     
     func fetchUploadedDocuments() {
         let storage = Storage.storage()
-        let storageRef = storage.reference().child("health_records")
-        
+        let documentUUID = viewModel.currentUser?.id ?? ""
+        let storageRef = storage.reference().child("health_records/\(documentUUID)")
+
         storageRef.listAll { result, error in
             if let error = error {
-                print("Error fetching uploaded documents: \(error.localizedDescription)")
+                print("Error fetching uploaded documents from Storage: \(error.localizedDescription)")
             } else {
+                // Assign the list of StorageReferences to uploadedDocuments
                 uploadedDocuments = result!.items
             }
         }
     }
+
+
+
     
     func viewDocument(documentRef: StorageReference) {
         documentRef.downloadURL { url, error in
@@ -169,52 +163,50 @@ struct HealthRecordAdd: View {
 
     
     func downloadDocument(documentRef: StorageReference) {
-        documentRef.downloadURL { url, error in
-            guard let downloadURL = url, error == nil else {
-                print("Error getting document URL: \(error?.localizedDescription ?? "")")
-                return
+        // Get the documents directory URL
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        // Generate a unique file name for the downloaded file
+        let uniqueFilename = UUID().uuidString + ".pdf"
+        let destinationURL = documentsDirectory.appendingPathComponent(uniqueFilename)
+        
+        // Download the document to the destination URL
+        documentRef.write(toFile: destinationURL) { url, error in
+            if let error = error {
+                print("Error downloading document: \(error.localizedDescription)")
+            } else if let url = url {
+                print("Document downloaded successfully at: \(url)")
             }
-            
-            // Initiate the download using URLSession
-            URLSession.shared.downloadTask(with: downloadURL) { localURL, response, error in
-                guard let localURL = localURL, error == nil else {
-                    print("Error downloading document: \(error?.localizedDescription ?? "")")
-                    return
-                }
-                
-                // Get the documents directory URL
-                let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                
-                // Generate a unique file name for the downloaded file
-                let uniqueFilename = UUID().uuidString + ".pdf"
-                let destinationURL = documentsDirectory.appendingPathComponent(uniqueFilename)
-                
-                do {
-                    // Move the downloaded file to the destination URL
-                    try FileManager.default.moveItem(at: localURL, to: destinationURL)
-                    print("Document downloaded successfully at: \(destinationURL)")
-                } catch {
-                    print("Error moving downloaded document: \(error.localizedDescription)")
-                }
-            }.resume()
         }
     }
+
 
 
     
-    func deleteDocument(documentRef: StorageReference) {
+    func deleteDocument(at index: Int) {
+        guard index >= 0 && index < uploadedDocuments.count else {
+            print("Invalid index")
+            return
+        }
+        
+        let documentRef = uploadedDocuments[index]
+        
+        // Delete the document from Firebase Storage
         documentRef.delete { error in
             if let error = error {
-                print("Error deleting document: \(error.localizedDescription)")
+                print("Error deleting document from Firebase Storage: \(error.localizedDescription)")
             } else {
-                print("Document deleted successfully")
+                print("Document deleted successfully from Firebase Storage")
+                
                 // Remove the deleted document from the uploadedDocuments array
-                if let index = uploadedDocuments.firstIndex(of: documentRef) {
-                    uploadedDocuments.remove(at: index)
-                }
+                uploadedDocuments.remove(at: index)
             }
         }
     }
+
+
+
+
 }
 
 struct HealthRecordAdd_Previews: PreviewProvider {
