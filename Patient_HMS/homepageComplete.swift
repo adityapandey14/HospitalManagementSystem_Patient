@@ -27,6 +27,11 @@ struct homepageComplete: View {
                     Label("HealthRecord", systemImage: "folder.fill")
                         .padding(.top)
                 }
+            ProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.fill")
+                        .padding(.top)
+                }
             
         }
     }
