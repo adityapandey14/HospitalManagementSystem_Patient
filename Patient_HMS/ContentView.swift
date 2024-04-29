@@ -14,7 +14,7 @@ struct ContentView: View {
         //Imageview() use this for image upload and retrival
         Group {
             if $viewModel.userSession.wrappedValue != nil{
-                MTabView()
+                homepageComplete()
             } else {
                 onboardingPage()
             }
