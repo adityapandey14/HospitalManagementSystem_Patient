@@ -13,6 +13,8 @@ struct HealthRecordAdd: View {
     @State private var uploadProgress: Double = 0.0
     @State private var isUploading: Bool = false
     @State private var uploadedDocuments: [StorageReference] = []
+    @State private var searchText = ""
+    @State private var isPDFLoading = false // Added state variable for PDF loading
 
     @State private var isPreviewPresented = false
     @State private var previewURL: URL?
@@ -31,61 +33,87 @@ struct HealthRecordAdd: View {
     }
 
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Upload Health Records")) {
-                    Button("Upload PDF") {
-                        isDocumentPickerPresented.toggle()
+        ZStack{
+            Color.solitude
+                .edgesIgnoringSafeArea(.all)
+            
+            NavigationView {
+                Form {
+                    VStack{
+                        Button(action: {
+                            isDocumentPickerPresented.toggle()
+                        }) {
+                            Text("Upload PDF")
+                                .foregroundColor(.buttonForeground)
+                                .frame(width: 325, height: 50)
+                                .background(Color.midNightExpress)
+                                .cornerRadius(10)
+                        }
                     }
-                }
-                
-                if let selectedPDFName = selectedPDFName {
-                    
-                }
-                
-                Section(header: Text("Uploaded Documents")) {
-                    ForEach(uploadedDocuments.indices, id: \.self) { index in
-                        HStack {
-                            Button(action: {
-                                viewDocument(documentRef: uploadedDocuments[index])
-                            }) {
-                                Text(uploadedDocuments[index].name)
+
+                    if let selectedPDFName = selectedPDFName {
+                    }
+
+                    VStack{
+                        SearchBar(searchText: $searchText)
+
+                        ForEach(uploadedDocuments.indices, id: \.self) { index in
+                            let documentRef = uploadedDocuments[index]
+                            if searchText.isEmpty || documentRef.name.lowercased().contains(searchText.lowercased()) {
+                                HStack {
+                                    Button(action: {
+                                        viewDocument(documentRef: documentRef)
+                                    }) {
+                                        Text(documentRef.name)
+                                    }
+                                    Spacer()
+                                    Image(systemName: "square.and.arrow.down")
+                                        .frame(width: 40, height: 40)
+                                        .foregroundColor(Color.blue)
+                                        .onTapGesture {
+                                            downloadDocument(documentRef: documentRef)
+                                        }
+                                    Image(systemName: "trash")
+                                        .foregroundColor(Color.red)
+                                        .onTapGesture {
+                                            deleteDocument(at: index)
+                                        }
+                                }
                             }
-                            Spacer()
-                            Image(systemName: "square.and.arrow.down")
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(Color.blue)
-                                .onTapGesture {
-                                    downloadDocument(documentRef: uploadedDocuments[index])
-                                }
-                            Image(systemName: "trash")
-                                .foregroundColor(Color.red)
-                                .onTapGesture {
-                                    deleteDocument(at: index)
-                                }
                         }
                     }
                 }
-
+                .background(Color.clear)
+                .sheet(isPresented: $isDocumentPickerPresented) {
+                    DocumentPicker { urls in
+                        handlePDFSelection(result: .success(urls))
+                    }
+                }
+                .navigationTitle("Add Health Record")
+                .background(Color.solitude)
             }
-            .sheet(isPresented: $isDocumentPickerPresented) {
-                DocumentPicker { urls in
-                    handlePDFSelection(result: .success(urls))
+            .background(Color.solitude)
+            .onAppear {
+                fetchUploadedDocuments()
+            }
+            .sheet(isPresented: $isPreviewPresented) {
+                if let previewURL = previewURL, let pdfDocument = PDFDocument(url: previewURL) {
+                    PDFPreviewView(pdfDocument: pdfDocument)
+                } else {
+                    Text("Error displaying PDF")
                 }
             }
-            .navigationTitle("Add Health Record")
-        }
-        .onAppear {
-            fetchUploadedDocuments()
-        }
-        .sheet(isPresented: $isPreviewPresented) {
-            if let previewURL = previewURL, let pdfDocument = PDFDocument(url: previewURL) {
-                PDFPreviewView(pdfDocument: pdfDocument)
-            } else {
-                Text("Error displaying PDF")
+
+            if isPDFLoading { // Show loading animation if PDF is loading
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .scaleEffect(2)
+                    .foregroundColor(.blue)
             }
         }
+        .background(Color.solitude)
     }
+
 
     func uploadPDFToFirebase() {
         guard let pdfData = healthRecordPDFData else {
@@ -114,7 +142,7 @@ struct HealthRecordAdd: View {
     }
 
 
-    
+
     func fetchUploadedDocuments() {
         let storage = Storage.storage()
         let documentUUID = viewModel.currentUser?.id ?? ""
@@ -132,7 +160,7 @@ struct HealthRecordAdd: View {
 
 
 
-    
+
     func viewDocument(documentRef: StorageReference) {
         documentRef.downloadURL { url, error in
             guard let downloadURL = url, error == nil else {
@@ -140,8 +168,17 @@ struct HealthRecordAdd: View {
                 return
             }
             
+            // Set isPDFLoading to true when starting to load PDF
+            isPDFLoading = true
+
             // Perform asynchronous download using URLSession
             URLSession.shared.dataTask(with: downloadURL) { data, response, error in
+                defer {
+                    // Set isPDFLoading to false when PDF loading completes (whether successfully or with an error)
+                    DispatchQueue.main.async {
+                        isPDFLoading = false
+                    }
+                }
                 guard let data = data, error == nil else {
                     print("Error downloading document: \(error?.localizedDescription ?? "")")
                     return
@@ -161,7 +198,9 @@ struct HealthRecordAdd: View {
         }
     }
 
-    
+
+
+
     func downloadDocument(documentRef: StorageReference) {
         // Get the documents directory URL
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -182,7 +221,7 @@ struct HealthRecordAdd: View {
 
 
 
-    
+
     func deleteDocument(at index: Int) {
         guard index >= 0 && index < uploadedDocuments.count else {
             print("Invalid index")
@@ -203,9 +242,6 @@ struct HealthRecordAdd: View {
             }
         }
     }
-
-
-
 
 }
 
@@ -241,5 +277,31 @@ struct PDFKitRepresentedView: UIViewRepresentable {
     }
 }
 
+struct SearchBar: View {
+    @Binding var searchText: String
 
+    var body: some View {
+        HStack {
+            TextField("Search", text: $searchText)
+                .underlineTextField()
+                
+            
+            Button(action: {
+                searchText = ""
+            }) {
+//                Image(systemName: "xmark.circle.fill")
+//                    .foregroundColor(.gray)
+//                    .padding(.trailing, 10)
+                Text("Clear")
+            }
+        }
+        .background(Color.solitude)
+    }
+}
 
+struct HealthRecordAdd_Preview: PreviewProvider {
+    static var previews: some View {
+        HealthRecordAdd()
+            .environmentObject(AuthViewModel()) // Assuming you need to provide AuthViewModel
+    }
+}
