@@ -34,27 +34,22 @@ struct HealthRecordAdd: View {
 
     var body: some View {
         ZStack{
-            Color.solitude
-                .edgesIgnoringSafeArea(.all)
-            
             NavigationView {
                 Form {
-                    VStack{
+                    Section{
                         Button(action: {
                             isDocumentPickerPresented.toggle()
                         }) {
                             Text("Upload PDF")
                                 .foregroundColor(.buttonForeground)
-                                .frame(width: 325, height: 50)
+                                .frame(width: 325, height: 20)
                                 .background(Color.midNightExpress)
                                 .cornerRadius(10)
                         }
                     }
+                    .listRowBackground(Color.midNightExpress)
 
-                    if let selectedPDFName = selectedPDFName {
-                    }
-
-                    VStack{
+                    Section{
                         SearchBar(searchText: $searchText)
 
                         ForEach(uploadedDocuments.indices, id: \.self) { index in
@@ -82,7 +77,9 @@ struct HealthRecordAdd: View {
                             }
                         }
                     }
+                    .listRowBackground(Color.white)
                 }
+                
                 .background(Color.clear)
                 .sheet(isPresented: $isDocumentPickerPresented) {
                     DocumentPicker { urls in
@@ -93,6 +90,7 @@ struct HealthRecordAdd: View {
                 .background(Color.solitude)
             }
             .background(Color.solitude)
+            .scrollContentBackground(.hidden)
             .onAppear {
                 fetchUploadedDocuments()
             }
@@ -282,10 +280,9 @@ struct SearchBar: View {
 
     var body: some View {
         HStack {
-            TextField("Search", text: $searchText)
-                .underlineTextField()
-                
             
+            Image(systemName: "magnifyingglass")
+            TextField("Search", text: $searchText)
             Button(action: {
                 searchText = ""
             }) {
@@ -295,7 +292,6 @@ struct SearchBar: View {
                 Text("Clear")
             }
         }
-        .background(Color.solitude)
     }
 }
 
