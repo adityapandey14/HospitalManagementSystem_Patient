@@ -135,6 +135,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4890D41F2BDF814A00EF8750 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				485FDF5F2BD8367A008E620D /* ReviewModel.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
 		DF64DF8E2BD27D4400E1F5A6 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,7 +210,7 @@
 				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
 				2DBAF23E2BDF6AA300F71240 /* homepageComplete.swift */,
 				2DBAF23C2BDF66FF00F71240 /* HealthDataView.swift */,
-				485FDF5F2BD8367A008E620D /* ReviewModel.swift */,
+				4890D41F2BDF814A00EF8750 /* Review */,
 				84B3D1A12BD8DB6D00FADB4D /* NotificationHandler.swift */,
 				47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */,
 				DFF2D7B72BD630980087114A /* Department */,
@@ -586,6 +594,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "You need to give permission to share you health kit data";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -623,6 +632,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "You need to give permission to share you health kit data";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
