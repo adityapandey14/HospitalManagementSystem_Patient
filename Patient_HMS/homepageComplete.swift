@@ -15,10 +15,16 @@ struct homepageComplete: View {
                     Label("Home", systemImage: "house")
                         .padding(.top)
                 }
+            
+            Appointment()
+                .tabItem {
+                    Label("Appointment", systemImage: "person.crop.rectangle.fill")
+                        .padding(.top)
+                }
         
             HealthRecordAdd()
                 .tabItem {
-                    Label("HealthRecord", systemImage: "house")
+                    Label("HealthRecord", systemImage: "folder.fill")
                         .padding(.top)
                 }
             
