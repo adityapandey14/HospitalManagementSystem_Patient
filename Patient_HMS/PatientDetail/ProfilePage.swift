@@ -300,6 +300,7 @@ struct ProfileView: View {
                                     .resizable()
                                     .frame(width: 13, height: 20)
 //                                    .padding(.trailing, 250)
+                                
                                 Text("Change Password")
                                     .padding(.leading, 20)
                                     .bold()
