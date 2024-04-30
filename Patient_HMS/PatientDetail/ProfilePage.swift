@@ -146,6 +146,9 @@
 import SwiftUI
 
 struct ProfileView: View {
+        @EnvironmentObject var profileViewModel:PatientViewModel
+        @EnvironmentObject var viewModel:AuthViewModel
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -170,16 +173,16 @@ struct ProfileView: View {
                         
                         // Profile details
                         VStack(alignment: .leading) {
-                            Text("Shiv Tiwari")
+                            Text(profileViewModel.currentProfile.fullName)
                                 .font(.system(size: 17))
                                 .foregroundColor(.black)
                                 .bold()
-                            Text("shivrandom@gmail.com")
+                            Text(viewModel.currentUser?.email ?? "email")
                                 .font(.system(size: 13))
                                 .foregroundColor(.white)
                                 .padding(.bottom, 1)
                                 .italic()
-                            Text("+91 76234 34562")
+                            Text(profileViewModel.currentProfile.mobileno)
                                 .font(.system(size: 13))
                                 .foregroundColor(.black)
                         }
@@ -191,6 +194,7 @@ struct ProfileView: View {
                             .frame(width: 20, height: 20)
                             .foregroundColor(.black)
                             .padding(.leading)
+                          
                     }
                     .padding(.top, 15)
                     
@@ -282,7 +286,7 @@ struct ProfileView: View {
                             
                             
                             Button {
-                                
+                                    viewModel.signOut()
                             } label : {
                                 Image(systemName: "rectangle.portrait.and.arrow.right")
 //                                    .resizable()
@@ -306,6 +310,9 @@ struct ProfileView: View {
                 .padding(.top, 110)
             }
         }
+                    .onAppear{
+                        print(viewModel.currentUser?.id ?? "")
+                        profileViewModel.fetchProfile(userId: viewModel.currentUser?.id)}
     }
 }
 
@@ -328,3 +335,5 @@ struct ProfileView_Previews: PreviewProvider {
 //        )
 //    }
 //}
+
+
