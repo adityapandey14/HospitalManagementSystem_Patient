@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2DBAF23D2BDF66FF00F71240 /* HealthDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBAF23C2BDF66FF00F71240 /* HealthDataView.swift */; };
 		2DBAF23F2BDF6AA400F71240 /* homepageComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBAF23E2BDF6AA300F71240 /* homepageComplete.swift */; };
+		4721C95F2BE159FA00310CED /* SlotBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721C95E2BE159FA00310CED /* SlotBooking.swift */; };
+		4721C9612BE15A3100310CED /* DoctorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721C9602BE15A3100310CED /* DoctorModel.swift */; };
 		47394C872BD6C13D00ADB1A4 /* Patient_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C862BD6C13D00ADB1A4 /* Patient_Model.swift */; };
 		47394C8B2BD6C69C00ADB1A4 /* PatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C8A2BD6C69C00ADB1A4 /* PatientViewModel.swift */; };
 		47394C8D2BD6CEBF00ADB1A4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C8C2BD6CEBF00ADB1A4 /* ImagePicker.swift */; };
@@ -70,6 +72,8 @@
 /* Begin PBXFileReference section */
 		2DBAF23C2BDF66FF00F71240 /* HealthDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataView.swift; sourceTree = "<group>"; };
 		2DBAF23E2BDF6AA300F71240 /* homepageComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homepageComplete.swift; sourceTree = "<group>"; };
+		4721C95E2BE159FA00310CED /* SlotBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SlotBooking.swift; path = Patient_HMS/SlotBooking.swift; sourceTree = SOURCE_ROOT; };
+		4721C9602BE15A3100310CED /* DoctorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DoctorModel.swift; path = Patient_HMS/DoctorModel.swift; sourceTree = SOURCE_ROOT; };
 		47394C862BD6C13D00ADB1A4 /* Patient_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient_Model.swift; sourceTree = "<group>"; };
 		47394C8A2BD6C69C00ADB1A4 /* PatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientViewModel.swift; sourceTree = "<group>"; };
 		47394C8C2BD6CEBF00ADB1A4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -141,6 +145,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4721C95B2BE1588300310CED /* SlotBokking */ = {
+			isa = PBXGroup;
+			children = (
+				4721C95E2BE159FA00310CED /* SlotBooking.swift */,
+				4721C9602BE15A3100310CED /* DoctorModel.swift */,
+			);
+			path = SlotBokking;
+			sourceTree = "<group>";
+		};
 		4890D41F2BDF814A00EF8750 /* Review */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +222,7 @@
 		DFC22CA32BD26AE200B2AD68 /* Patient_HMS */ = {
 			isa = PBXGroup;
 			children = (
+				4721C95B2BE1588300310CED /* SlotBokking */,
 				DFC22CCF2BD26B2700B2AD68 /* GoogleService-Info.plist */,
 				84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */,
 				DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */,
@@ -438,9 +452,11 @@
 				DFC22CA52BD26AE200B2AD68 /* Patient_HMSApp.swift in Sources */,
 				DF6B2EC32BD58F2900FAD930 /* loginView.swift in Sources */,
 				DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */,
+				4721C95F2BE159FA00310CED /* SlotBooking.swift in Sources */,
 				DFF2D7BB2BD632CC0087114A /* DepartmentModel.swift in Sources */,
 				47394C992BD7789600ADB1A4 /* HealthRecordAdd.swift in Sources */,
 				47394C8D2BD6CEBF00ADB1A4 /* ImagePicker.swift in Sources */,
+				4721C9612BE15A3100310CED /* DoctorModel.swift in Sources */,
 				DFF2D7B92BD630DF0087114A /* Department.swift in Sources */,
 				47394C8B2BD6C69C00ADB1A4 /* PatientViewModel.swift in Sources */,
 				84B3D1A02BD7CCAD00FADB4D /* onboardingPage.swift in Sources */,
