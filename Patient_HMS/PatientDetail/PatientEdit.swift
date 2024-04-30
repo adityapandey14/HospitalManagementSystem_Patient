@@ -33,7 +33,7 @@ struct Profile_Edit: View {
     var body: some View {
         VStack {
             Form {
-                Section(header: Text("Edit Profile")) {
+                Section{
                     // CameraButton
                     HStack {
                         Spacer()
@@ -86,6 +86,7 @@ struct Profile_Edit: View {
                     HStack {
                         Text("Full Name: ")
                         TextField("Name", text: $profileViewModel.currentProfile.fullName)
+                            .listRowBackground(Color.solitude)
                     }
                     .padding(.bottom, 15.0)
                     
@@ -95,6 +96,8 @@ struct Profile_Edit: View {
                                 Text("Mobile Number: ")
                                 TextField("Enter Mobile Number", text: $profileViewModel.currentProfile.mobileno)
                                     .keyboardType(.numberPad)
+                                    .listRowBackground(Color.solitude)
+
                             }
                     .padding(.bottom, 15.0)
                     HStack{
@@ -117,6 +120,8 @@ struct Profile_Edit: View {
                                 Text("Emergency Contact: ")
                                 TextField("Enter Emergency Contact", text: $profileViewModel.currentProfile.emergencycontact)
                                     .keyboardType(.numberPad)
+                                    .listRowBackground(Color.solitude)
+
                             }
                     .padding(.bottom, 15.0)
                     
@@ -129,14 +134,17 @@ struct Profile_Edit: View {
                     HStack {
                         Text("Address: ")
                         TextField("Your Address", text: $profileViewModel.currentProfile.address)
+                            .listRowBackground(Color.solitude)
+
                     }
                     .padding(.bottom, 15.0)
                     
                     HStack {
-                                Text("Pincode: ")
+                        Text("Pincode: ")
                         TextField("Enter Pincode", text: $profileViewModel.currentProfile.pincode)
-                                    .keyboardType(.numberPad)
-                            }
+                            .keyboardType(.numberPad)
+                            .underlineTextField()
+                    }
                     .padding(.bottom, 15.0)
                     
                 
@@ -154,7 +162,9 @@ struct Profile_Edit: View {
 //                                            Text("Uploaded PDF: \(selectedPDFName)")
 //                                        }
 //                                    }
-                                }
+                }
+                .listRowBackground(Color.solitude)
+
             }
             
             Button(action: {
@@ -168,8 +178,11 @@ struct Profile_Edit: View {
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Edit Profile")
-                    .foregroundColor(.blue)
+                    .foregroundColor(.buttonForeground)
+                    .frame(width: 300, height: 30)
                     .padding()
+                    .background(Color.midNightExpress)
+                    .cornerRadius(10)
             }
            
             
@@ -178,7 +191,24 @@ struct Profile_Edit: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Create Your Profile")
         .padding(.horizontal, 7)
+        .background(Color.solitude)
+        .scrollContentBackground(.hidden)
+    }
+}
+
+struct Profile_Edit_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = AuthViewModel()
+        let profileViewModel = PatientViewModel()
+        
+        return Profile_Edit()
+            .environmentObject(viewModel)
+            .environmentObject(profileViewModel)
     }
 }
 
 
+
+//.listRowBackground(Color.solitude)
+//            .background(Color.yellow)
+//            .scrollContentBackground(.hidden)
