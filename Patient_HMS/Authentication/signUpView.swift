@@ -125,16 +125,7 @@ struct signUpView: View {
                 Spacer()
                 
                 //button
-                Button(action: {
-                    Task {
-                        do {
-                            try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
-                            isSignUpSuccessful = true
-                        } catch {
-                            print("Error: \(error)")
-                        }
-                    }
-                }) {
+                Button(action: signUp) {
                     Text("Sign up")
                         .foregroundColor(.buttonForeground)
                         .frame(width: 325, height: 50)
