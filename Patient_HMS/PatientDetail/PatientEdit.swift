@@ -84,22 +84,22 @@ struct Profile_Edit: View {
                     .padding(.bottom, 20)
                     
                     HStack {
-                        Text("Full Name: ")
+                        Text("Full Name : ")
                         TextField("Name", text: $profileViewModel.currentProfile.fullName)
-                            .listRowBackground(Color.solitude)
+                            .underlineTextField()
                     }
                     .padding(.bottom, 15.0)
                     
                   
                     
                     HStack {
-                                Text("Mobile Number: ")
-                                TextField("Enter Mobile Number", text: $profileViewModel.currentProfile.mobileno)
-                                    .keyboardType(.numberPad)
-                                    .listRowBackground(Color.solitude)
-
-                            }
+                        Text("Phone Number : ")
+                        TextField("Enter Mobile Number", text: $profileViewModel.currentProfile.mobileno)
+                            .keyboardType(.numberPad)
+                            .underlineTextField()
+                    }
                     .padding(.bottom, 15.0)
+                    
                     HStack{
                         Picker("Select Gender", selection: $profileViewModel.currentProfile.gender) {
                             ForEach(genders, id: \.self) {
@@ -108,6 +108,7 @@ struct Profile_Edit: View {
                         }
                         .pickerStyle(SegmentedPickerStyle())
                     }.padding(.bottom, 15.0)
+                    
                     HStack{
                         Picker("Select Blood Group", selection: $profileViewModel.currentProfile.bloodgroup) {
                             ForEach(bloodGroups, id: \.self) {
@@ -116,13 +117,13 @@ struct Profile_Edit: View {
                         }
                         .pickerStyle(MenuPickerStyle())
                     }.padding(.bottom, 15.0)
+                    
                     HStack {
-                                Text("Emergency Contact: ")
-                                TextField("Enter Emergency Contact", text: $profileViewModel.currentProfile.emergencycontact)
-                                    .keyboardType(.numberPad)
-                                    .listRowBackground(Color.solitude)
-
-                            }
+                        Text("Emergency Contact : ")
+                        TextField("Enter Emergency Contact", text: $profileViewModel.currentProfile.emergencycontact)
+                            .keyboardType(.numberPad)
+                            .underlineTextField()
+                    }
                     .padding(.bottom, 15.0)
                     
                     HStack {
@@ -134,8 +135,7 @@ struct Profile_Edit: View {
                     HStack {
                         Text("Address: ")
                         TextField("Your Address", text: $profileViewModel.currentProfile.address)
-                            .listRowBackground(Color.solitude)
-
+                            .underlineTextField()
                     }
                     .padding(.bottom, 15.0)
                     
