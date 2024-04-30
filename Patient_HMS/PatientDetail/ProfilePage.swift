@@ -149,6 +149,7 @@ struct ProfileView: View {
         @EnvironmentObject var profileViewModel:PatientViewModel
         @EnvironmentObject var viewModel:AuthViewModel
         @State private var isEditSuccessful = false
+    @State private var navigateToNewPassword = false
     var body: some View {
         NavigationView {
             ZStack {
@@ -294,6 +295,7 @@ struct ProfileView: View {
                         VStack {
                             
                             Button {
+                                navigateToNewPassword = true
                                 
                             } label :{
                                 Image(systemName: "key")
@@ -311,6 +313,14 @@ struct ProfileView: View {
                             }
                             .padding(.top, 60)
                             .offset(y: -5)
+                            
+                            
+                            NavigationLink(
+                                             destination: newPassword(),
+                                             isActive: $navigateToNewPassword // Binding to trigger navigation
+                                         ) {
+                                             EmptyView() // Invisible NavigationLink
+                                         }
                             
                             
                             Button {
