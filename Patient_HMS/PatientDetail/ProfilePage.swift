@@ -252,6 +252,9 @@ struct ProfileView: View {
                             }
                             .padding(.top, 60)
                             .offset(y: -5)
+                            .foregroundColor(.midNightExpress)
+
+                            
                             Button {
                                 
                             } label :{
@@ -266,6 +269,8 @@ struct ProfileView: View {
                                     .offset(x: 32)
                             }
                             .offset(y: 2)
+                            .foregroundColor(.midNightExpress)
+
                             
                             
                             
@@ -283,6 +288,8 @@ struct ProfileView: View {
                                     .offset(x: 52)
                             }
                             .offset(y: 10)
+                            .foregroundColor(.midNightExpress)
+
                         }
                     }
                     ZStack {
@@ -313,6 +320,8 @@ struct ProfileView: View {
                             }
                             .padding(.top, 60)
                             .offset(y: -5)
+                            .foregroundColor(.midNightExpress)
+
                             
                             
                             NavigationLink(
@@ -359,7 +368,12 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        let profileViewModel = PatientViewModel()
+        let viewModel = AuthViewModel()
+        
+        return ProfileView()
+            .environmentObject(profileViewModel)
+            .environmentObject(viewModel)
     }
 }
 
