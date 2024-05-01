@@ -8,221 +8,201 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 struct TimeButton: View {
     var time: String
-    var bookedSlots: [String]
-    @Binding var selectedSlot: String?
-   
+    var isBooked: Bool
+    var isSelected: Bool
+    var isSelectable: Bool
+    var action: () -> Void
+    
     var body: some View {
-        let isBooked = bookedSlots.contains(time)
-        let isSelected = selectedSlot == time
-        let isSelectable = !isBooked
-        
         Button(action: {
-            // Update selected time slot if it is selectable
             if isSelectable {
-                selectedSlot = time
+                action()  // Perform action if selectable
             }
         }) {
             RoundedRectangle(cornerRadius: 15)
-                .fill(isBooked ? Color.white : (isSelected ? Color.blue : Color.white)) // Fill color based on booking and selection status
+                .fill(isBooked ? Color.gray.opacity(0.5) : (isSelected ? Color.blue : Color.white))
                 .overlay(
                     Text(time)
                         .font(.headline)
-                        .foregroundColor(isBooked ? .gray : (isSelected ? .white : .blue)) // Set text color based on selection and availability
+                        .foregroundColor(isBooked ? .gray : (isSelected ? .white : .blue))
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
-                        .stroke(isBooked ? Color.gray : Color.blue, lineWidth: 1) // Set border color based on booking status
+                        .stroke(isBooked ? Color.gray : Color.blue, lineWidth: 2)
                 )
-                .opacity(isBooked ? 0.5 : 1.0) // Reduce opacity if booked
-                .disabled(isBooked) // Disable button if booked
+                .opacity(isBooked ? 0.5 : 1.0)
+                .disabled(isBooked)  // Disable if booked
         }
-        .frame(width: 90, height: 50)
+        .frame(width: 90, height: 50)  // Set the size of the button
     }
 }
 
-
 struct SlotBookView: View {
-    @EnvironmentObject var profileViewModel: PatientViewModel
-    
     let doctor: DoctorModel
-    let gridItems = Array(repeating: GridItem(.flexible()), count: 3)
     let times = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
     
-    
-    @State private var selectedSlotIndex: Int? = nil // Track selected slot index
-    
-    @State private var bookedSlots: [String] = [] // Initialize as empty
-    @State private var selectedSlot: String? = nil
     @State private var selectedDate = Date()
+    @State private var bookedSlots: [String] = []
+    @State private var selectedSlot: String? = nil
     
     var body: some View {
         VStack {
-            ZStack {
-                RoundedRectangle(cornerRadius: 28)
-                    .fill(LinearGradient(
-                        gradient: Gradient(colors: [Color.blue.opacity(1), Color.blue.opacity(0.5)]),
-                        startPoint: .leading,
-                        endPoint: .trailing))
-                    .frame(width: 361, height: 180)
-                    .shadow(color: Color.black.opacity(0.15), radius: 20)
-                
-                HStack {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(doctor.name)
-                            .font(.title.bold())
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                            .frame(alignment: .top)
-                        
-                        Text(doctor.specialisation)
-                            .font(.callout)
-                            .foregroundColor(.white)
-                        
-                        Text(doctor.degree)
-                            .font(.body)
-                            .foregroundColor(.white)
-                        Text("Experience: \(doctor.experience) years")
-                            .font(.body)
-                            .foregroundColor(.white)
-                    }
-                    Image(systemName: "person.circle.fill")
-                        .foregroundColor(.white)
-                        .font(.system(size: 60))
-                        .padding(.trailing, 10)
+            DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
+                .padding()
+                .onChange(of: selectedDate) { _ in
+                    fetchBookedSlots()  // Fetch slots when date changes
                 }
-                .padding(.leading, 30)
-                Spacer()
-            }
-            .frame(width: 380, height: 200)
-            Text("Appointment Date")
+            
+            Text("Available Slots")
                 .font(.headline)
             
-            ZStack {
-                RoundedRectangle(cornerRadius: 11)
-                    .fill(Color(hex: "f5f5f5"))
-                    .frame(width: 360, height: 70)
-                
-                DatePicker("Select a date", selection: $selectedDate, displayedComponents: .date)
-                    .datePickerStyle(CompactDatePickerStyle())
-                    .padding()
-                
-                
-            }
-            
-            Text("Select a Slot")
-                .font(.headline)
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: 11)
-                    .fill(Color(hex: "f5f5f5"))
-                    .frame(width: 360, height: 200)
-                
-                LazyVGrid(columns: gridItems, spacing: 10) {
-                    ForEach(times, id: \.self) { time in
-                        TimeButton(time: time, bookedSlots: bookedSlots, selectedSlot: $selectedSlot)
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                ForEach(times, id: \.self) { time in
+                    let isBooked = bookedSlots.contains(time)
+                    let isSelected = selectedSlot == time
+                    
+                    TimeButton(
+                        time: time,
+                        isBooked: isBooked,
+                        isSelected: isSelected,
+                        isSelectable: !isBooked
+                    ) {
+                        selectedSlot = time  // Set the selected slot
                     }
-                }                .padding()
+                }
             }
-            Button(action: {
-                // Action to perform when the button is tapped
-                print(selectedDate.formatted(date: .numeric, time: .omitted) , selectedSlot!)
-                
-                guard let slot = selectedSlot else { return }
-                
-                createBooking(for: doctor, on: selectedDate, at: slot)
-                
-            }) {
-                // Button label
-                Text("Book Slot")
-                    .font(.title3.bold())
-                    .padding() // Add padding around the text
-                    .foregroundColor(.white) // Set text color
-                    .background(Color.blue) // Set background color
-                    .cornerRadius(20) // Apply corner radius to create rounded corners
-                    .frame(width: 200,height: 100)
+            
+            Button("Select Appointment") {
+                if let selectedSlot = selectedSlot {
+                    createBooking(doctor: doctor, date: selectedDate, slot: selectedSlot)
+                }
             }
-            .disabled(selectedSlot == nil)
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .disabled(selectedSlot == nil)  // Disable if no slot is selected
         }
         .onAppear {
-            fetchAppointments()
-        }
-        .onChange(of: selectedDate) { _ in
-            fetchAppointments()
+            fetchBookedSlots()  // Fetch initial data
         }
     }
     
-    
-    func fetchAppointments() {
+    func fetchBookedSlots() {
         let db = Firestore.firestore()
-        let appointmentsRef = db.collection("appointments")
         let formattedDate = selectedDate.formatted(date: .numeric, time: .omitted)
         
-        appointmentsRef
-            .whereField("DocID", isEqualTo: doctor.employeeID)
+        db.collection("appointments")
+            .whereField("DoctorID", isEqualTo: doctor.id)
             .whereField("Date", isEqualTo: formattedDate)
-            .getDocuments {(querySnapshot, error) in
+            .getDocuments { querySnapshot, error in
                 if let error = error {
-                    print("Error getting appointments: \(error.localizedDescription)")
-                } else if let querySnapshot = querySnapshot {
-                    // Clear out the old booked slots
-                    bookedSlots.removeAll()
-                    let slots = querySnapshot.documents.compactMap { $0.data()["TimeSlot"] as? String }
-                    
-                    DispatchQueue.main.async {
-                        bookedSlots = slots
-                    }
+                    print("Error fetching booked slots: \(error.localizedDescription)")
+                } else {
+                    let slots = querySnapshot?.documents.compactMap {
+                        $0.data()["TimeSlot"] as? String
+                    } ?? []
+                    bookedSlots = slots  // Update booked slots
                 }
             }
     }
     
-    func createBooking(for doctor: DoctorModel, on date: Date, at slot: String) {
-            let db = Firestore.firestore()
-            let appointmentsRef = db.collection("appointments")
-
-            let appointmentData: [String: Any] = [
-                "Bill": 1000,
-                "Date": date.formatted(date: .numeric, time: .omitted),
-                "DocID": doctor.employeeID,
-                "PatName": profileViewModel.currentProfile.fullName,
-                "TimeSlot": slot,
-                "isComplete": false,
-                "reason": "Fever"
-            ]
-
-            appointmentsRef.addDocument(data: appointmentData) { error in
-                if let error = error {
-                    print("Error creating booking: \(error.localizedDescription)")
-                } else {
-                    print("Booking created successfully")
-                }
+    func createBooking(doctor: DoctorModel, date: Date, slot: String) {
+        let db = Firestore.firestore()
+        
+        let appointmentData: [String: Any] = [
+            "Date": date.formatted(date: .numeric, time: .omitted),
+            "DoctorID": doctor.id,
+            "PatientID": Auth.auth().currentUser?.uid ?? "",
+            "TimeSlot": slot,
+            "isComplete": false,
+            "reason": "Consultation"
+        ]
+        
+        db.collection("appointments").addDocument(data: appointmentData) { error in
+            if let error = error {
+                print("Error creating booking: \(error.localizedDescription)")
+            } else {
+                fetchBookedSlots()  // Re-fetch the booked slots after booking
             }
         }
-    
+    }
 }
 
+
 struct SlotBookView_Previews: PreviewProvider {
-    static var previews: some View {
+    static var previews: SlotBookView {
         let dummyDoctor = DoctorModel(
             id: "1",
-            name: "Dr. Jane Doe",
+            fullName: "Dr. Jane Doe",
+            descript: "Expert in cardiology",
+            gender: "Female",
+            mobileno: "1234567890",
+            experience: "10 years",
+            qualification: "MD, Cardiology",
+            dob: Date(timeIntervalSince1970: 0),
+            address: "123 Main St, Springfield",
+            pincode: "123456",
             department: "Cardiology",
-            email: "jane.doe@example.com",
-            contact: "1234567890",
-            experience: "10",
-            employeeID: "D0001",
-            image: nil,
-            specialisation: "Cardiologist",
-            degree: "MD",
-            cabinNumber: "101"
+            speciality: "Cardiologist",
+            cabinNo: "101",
+            profilephoto: nil
         )
         
-        SlotBookView(doctor: dummyDoctor)
+        return SlotBookView(doctor: dummyDoctor)
     }
 }
 
 
 
+
+
+
+
+
+
+
+
+
+//            ZStack {
+//                RoundedRectangle(cornerRadius: 28)
+//                    .fill(LinearGradient(
+//                        gradient: Gradient(colors: [Color.blue.opacity(1), Color.blue.opacity(0.5)]),
+//                        startPoint: .leading,
+//                        endPoint: .trailing))
+//                    .frame(width: 361, height: 180)
+//                    .shadow(color: Color.black.opacity(0.15), radius: 20)
+//
+//                HStack {
+//                    VStack(alignment: .leading, spacing: 10) {
+//                        Text(doctor.name)
+//                            .font(.title.bold())
+//                            .foregroundColor(.white)
+//                            .frame(maxWidth: .infinity, alignment: .leading)
+//                            .padding()
+//                            .frame(alignment: .top)
+//
+//                        Text(doctor.specialisation)
+//                            .font(.callout)
+//                            .foregroundColor(.white)
+//
+//                        Text(doctor.degree)
+//                            .font(.body)
+//                            .foregroundColor(.white)
+//                        Text("Experience: \(doctor.experience) years")
+//                            .font(.body)
+//                            .foregroundColor(.white)
+//                    }
+//                    Image(systemName: "person.circle.fill")
+//                        .foregroundColor(.white)
+//                        .font(.system(size: 60))
+//                        .padding(.trailing, 10)
+//                }
+//                .padding(.leading, 30)
+//                Spacer()
+//            }
+//            .frame(width: 380, height: 200)

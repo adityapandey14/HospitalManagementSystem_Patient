@@ -150,6 +150,7 @@
 			children = (
 				4721C95E2BE159FA00310CED /* SlotBooking.swift */,
 				4721C9602BE15A3100310CED /* DoctorModel.swift */,
+				4890D4222BE00C0300EF8750 /* DoctorProfile.swift */,
 			);
 			path = SlotBokking;
 			sourceTree = "<group>";
@@ -222,17 +223,16 @@
 		DFC22CA32BD26AE200B2AD68 /* Patient_HMS */ = {
 			isa = PBXGroup;
 			children = (
-				4721C95B2BE1588300310CED /* SlotBokking */,
-				DFC22CCF2BD26B2700B2AD68 /* GoogleService-Info.plist */,
-				84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */,
 				DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */,
 				DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */,
 				DFC22CA62BD26AE200B2AD68 /* ContentView.swift */,
-				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
+				DFC22CCF2BD26B2700B2AD68 /* GoogleService-Info.plist */,
 				2DBAF23E2BDF6AA300F71240 /* homepageComplete.swift */,
+				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
+				4721C95B2BE1588300310CED /* SlotBokking */,
+				84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */,
 				2DBAF23C2BDF66FF00F71240 /* HealthDataView.swift */,
 				4890D4202BDFA32400EF8750 /* Appointment.swift */,
-				4890D4222BE00C0300EF8750 /* DoctorProfile.swift */,
 				4890D41F2BDF814A00EF8750 /* Review */,
 				84B3D1A12BD8DB6D00FADB4D /* NotificationHandler.swift */,
 				47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */,
