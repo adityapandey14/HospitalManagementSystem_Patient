@@ -26,6 +26,8 @@
 		48967FF72BE3883D00C38184 /* CurrentDepartDoctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48967FF62BE3883D00C38184 /* CurrentDepartDoctor.swift */; };
 		84B3D1A02BD7CCAD00FADB4D /* onboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */; };
 		84B3D1A22BD8DB6D00FADB4D /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D1A12BD8DB6D00FADB4D /* NotificationHandler.swift */; };
+		84D040A32BE3565E002DD2D4 /* TodayMeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D040A22BE3565E002DD2D4 /* TodayMeds.swift */; };
+		84D040A52BE36399002DD2D4 /* MedicineDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D040A42BE36399002DD2D4 /* MedicineDetail.swift */; };
 		DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EA92BD5898800FAD930 /* User.swift */; };
 		DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */; };
 		DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */; };
@@ -89,6 +91,8 @@
 		48967FF62BE3883D00C38184 /* CurrentDepartDoctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDepartDoctor.swift; sourceTree = "<group>"; };
 		84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingPage.swift; sourceTree = "<group>"; };
 		84B3D1A12BD8DB6D00FADB4D /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
+		84D040A22BE3565E002DD2D4 /* TodayMeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMeds.swift; sourceTree = "<group>"; };
+		84D040A42BE36399002DD2D4 /* MedicineDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineDetail.swift; sourceTree = "<group>"; };
 		DF6B2EA92BD5898800FAD930 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appFonts.swift; sourceTree = "<group>"; };
@@ -162,21 +166,13 @@
 			path = Review;
 			sourceTree = "<group>";
 		};
-		48967FF22BE3447A00C38184 /* DoctorDetail */ = {
+		84D040A12BE355EF002DD2D4 /* Medicine */ = {
 			isa = PBXGroup;
 			children = (
-				4721C9602BE15A3100310CED /* DoctorModel.swift */,
+				84D040A22BE3565E002DD2D4 /* TodayMeds.swift */,
+				84D040A42BE36399002DD2D4 /* MedicineDetail.swift */,
 			);
-			path = DoctorDetail;
-			sourceTree = "<group>";
-		};
-		48967FF52BE3851B00C38184 /* Appointment */ = {
-			isa = PBXGroup;
-			children = (
-				4890D4202BDFA32400EF8750 /* Appointment.swift */,
-				48967FF62BE3883D00C38184 /* CurrentDepartDoctor.swift */,
-			);
-			path = Appointment;
+			path = Medicine;
 			sourceTree = "<group>";
 		};
 		DF64DF8E2BD27D4400E1F5A6 /* Authentication */ = {
@@ -218,6 +214,7 @@
 		DFC22C982BD26AE200B2AD68 = {
 			isa = PBXGroup;
 			children = (
+				84D040A12BE355EF002DD2D4 /* Medicine */,
 				DFC22CA32BD26AE200B2AD68 /* Patient_HMS */,
 				DFC22CB52BD26AE400B2AD68 /* Patient_HMSTests */,
 				DFC22CBF2BD26AE400B2AD68 /* Patient_HMSUITests */,
@@ -446,6 +443,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D040A52BE36399002DD2D4 /* MedicineDetail.swift in Sources */,
+				84D040A32BE3565E002DD2D4 /* TodayMeds.swift in Sources */,
 				DF6B2EC12BD58F1400FAD930 /* signUpView.swift in Sources */,
 				84B3D1A22BD8DB6D00FADB4D /* NotificationHandler.swift in Sources */,
 				485FDF602BD8367A008E620D /* ReviewModel.swift in Sources */,
