@@ -28,6 +28,12 @@ struct homepageComplete: View {
                     Label("HealthRecord", systemImage: "folder.fill")
                         .padding(.top)
                 }
+            
+            Appointment()
+                .tabItem {
+                    Label("Appointment", systemImage: "person.fill")
+                        .padding(.top)
+                }
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")

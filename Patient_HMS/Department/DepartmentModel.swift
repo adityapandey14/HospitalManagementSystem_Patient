@@ -8,165 +8,138 @@
 import SwiftUI
 import Firebase
 import FirebaseFirestore
+import Combine
 
+
+// DepartmentDetail struct with a list of SpecialityDetail objects
 struct DepartmentDetail: Identifiable, Equatable, Hashable {
     var id: String
+    var departmentType: String
     var specialityDetails: [SpecialityDetail] = []
-    var isAscendingOrder: Bool = true
-    
     static func == (lhs: DepartmentDetail, rhs: DepartmentDetail) -> Bool {
         return lhs.id == rhs.id
     }
+    
+    
 }
 
+
+// SpecialityDetail struct
 struct SpecialityDetail: Identifiable, Codable, Hashable {
     var id: String
     var doctorId: String
-    var fees: Int
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
+    var cabinNo: String
+    var department: String
 }
 
-class DepartmentViewModel: NSObject, ObservableObject {
+
+
+// ViewModel for fetching department and specialisation data
+class DepartmentViewModel: ObservableObject {
+    @EnvironmentObject var viewModel: AuthViewModel
     @Published var departmentTypes: [DepartmentDetail] = []
-    static let shared = DepartmentViewModel()
-    private let db = Firestore.firestore()
+    private var cancellables = Set<AnyCancellable>()
     
-    override init() {
-        super.init()
-     fetchDepartmentTypes()
+    init() {
+        fetchDepartmentTypes()
     }
-    
 
     func fetchDepartmentTypes() {
         Task {
             do {
-                let querySnapshot = try await db.collection("department").getDocuments()
+                let querySnapshot = try await Firestore.firestore()
+                    .collection("department")
+                    .getDocuments()
+
+                let departments = querySnapshot.documents.map { document in
+                    let data = document.data()
+                    return DepartmentDetail(
+                        id: document.documentID,
+                        departmentType: data["departmentTypes"] as? String ?? ""
+                    )
+                }
+                
                 DispatchQueue.main.async {
-                    self.departmentTypes = querySnapshot.documents.map { document in
-                        DepartmentDetail(id: document.documentID)
-                    }
+                    self.departmentTypes = departments
                 }
             } catch {
                 print("Error fetching Department types: \(error.localizedDescription)")
             }
         }
-    }  //End of the function
-    
-    func fetchSpecialityOwnerDetails(for departmentType: DepartmentDetail) {
+    }
+
+    func fetchSpecialityOwnerDetails(for departmentId: String) {
         Task {
             do {
-                // Fetch documents from Firestore
-                let querySnapshot = try await db
+                let querySnapshot = try await Firestore.firestore()
                     .collection("department")
-                    .document(departmentType.id)
-                    .collection("speciality")
+                    .document(departmentId)
+                    .collection("allSpecialisation")
                     .getDocuments()
 
-                // Convert documents to SpecialityDetail
-                let details = querySnapshot.documents.compactMap { document in
+                let specialityDetails = querySnapshot.documents.map { document in
                     let data = document.data()
                     return SpecialityDetail(
                         id: document.documentID,
                         doctorId: data["doctorId"] as? String ?? "",
-                        fees: data["fees"] as? Int ?? 0
+                        cabinNo: data["cabinNo"] as? String ?? "",
+                        department: data["department"] as? String ?? ""
                     )
                 }
 
-                // Find the matching department and update its speciality details
                 DispatchQueue.main.async {
-                    if let index = self.departmentTypes.firstIndex(where: { $0.id == departmentType.id }) {
-                        self.departmentTypes[index].specialityDetails = details
+                    if let index = self.departmentTypes.firstIndex(where: { $0.id == departmentId }) {
+                        self.departmentTypes[index].specialityDetails = specialityDetails
                     }
                 }
             } catch {
                 print("Error fetching speciality owner details: \(error.localizedDescription)")
             }
         }
-    }// end of the function
-    
-    
-    func sortDetailsAscending(for departmentType: DepartmentDetail) {
-           if let index = departmentTypes.firstIndex(where: { $0.id == departmentType.id }) {
-               // Sort the specialityDetails by fees in ascending order
-               departmentTypes[index].specialityDetails.sort { $0.fees < $1.fees }
-               departmentTypes[index].isAscendingOrder = true
-           }
-       }
-
-       // Method to sort speciality details in descending order by fees
-       func sortDetailsDescending(for departmentType: DepartmentDetail) {
-           if let index = departmentTypes.firstIndex(where: { $0.id == departmentType.id }) {
-               // Sort the specialityDetails by fees in descending order
-               departmentTypes[index].specialityDetails.sort { $0.fees > $1.fees }
-               departmentTypes[index].isAscendingOrder = false
-           }
-       }
-}
-
-
-
-struct DepartmentModel: View {
-    @ObservedObject var viewModel = DepartmentViewModel()
-    @State private var selectedDepartmentType: DepartmentDetail?
-    var body: some View {
-        ScrollView {
-            
-            ForEach(viewModel.departmentTypes) { deptTypes in
-                VStack(alignment: .leading) {
-                    Text("Department Type: \(deptTypes.id)")
-                        .font(.headline)
-                        .foregroundStyle(.black)
-                        .onTapGesture {
-                            selectedDepartmentType = deptTypes
-                            viewModel.fetchSpecialityOwnerDetails(for: deptTypes)
-                        }
-                        
-                    HStack {
-                        Button("Sort Ascending") {
-                            viewModel.sortDetailsAscending(for: deptTypes)
-                        }
-                        .frame(width: 150, height: 30)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(8)
-                    
-                        Button("Sort Descending") {
-                            viewModel.sortDetailsDescending(for: deptTypes)
-                        }
-                        .frame(width: 150, height: 30)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(8)
-                    }
-                
-                    ForEach(deptTypes.specialityDetails) { detail in
-                        Text("Speciality : \(detail.id)")
-                        VStack(alignment: .leading) {
-                         Text("DoctorId: \(detail.doctorId)")
-                                                .padding()
-                                            Text("Consulatant Fees: \(detail.fees)")
-                                                .padding()
-
-                                        }
-                                    }
-                } //End of the VStack
-                
-            } //End of the for loop
-            
-        }// End of the ScrollView
-      
     }
 }
 
-#Preview {
-    DepartmentModel()
+// SwiftUI View
+struct DepartmentModel: View {
+    @ObservedObject var viewModel = DepartmentViewModel()
+    @State private var selectedSkillType: DepartmentDetail?
+    let userId = Auth.auth().currentUser?.uid
+    
+    var body: some View {
+        ScrollView {
+            ForEach(viewModel.departmentTypes) { departmentType in
+                VStack(alignment: .leading) {
+                    Text("department Type: \(departmentType.departmentType)")
+                        .font(.headline)
+                        .onTapGesture {
+                            selectedSkillType = departmentType
+                            viewModel.fetchSpecialityOwnerDetails(for: departmentType.id)
+                        }
+                        .padding()
+                    
+                    ForEach(departmentType.specialityDetails) { detail in
+                        VStack(alignment: .leading) {
+                            Text("Doctor ID: \(detail.doctorId)")
+                                .padding()
+                            Text("Cabin No: \(detail.cabinNo)")
+                                .padding()
+                            Text("Department: \(detail.department)")
+                                .padding()
+                        }
+                    }
+                }
+                .padding()
+            }
+        }
+    }
 }
 
 
 
+// New View for displaying Specializations
 
+
+// SwiftUI Preview
+#Preview {
+    DepartmentModel()
+}
