@@ -6,3 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct MedicineDetail: View {
+    var body: some View {
+        Text("Hello World")
+    }
+}
+
+#Preview {
+    MedicineDetail()
+}

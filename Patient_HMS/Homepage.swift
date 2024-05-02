@@ -15,7 +15,7 @@ struct Homepage: View {
     let commonConcerns = ["Concern 1", "Concern 2", "Concern 3", "Concern 4", "Concern 5"]
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(alignment: .leading) {
                 HStack {
                     Image("mednex_logo")
@@ -66,10 +66,18 @@ struct Homepage: View {
                         .padding()
                         .frame(maxWidth: .infinity) // Ensure maximum width
                         
-                        Text("Today's Medicines")
-                            .font(.title)
-                            .padding(.horizontal)
-                            .padding(.bottom, 0.5)
+                        HStack {
+                            Text("Today's Medicines")
+                                .font(.title)
+                                .padding(.horizontal)
+                                .padding(.bottom, 0.5)
+                            
+                            NavigationLink(destination: TodayMeds()) {
+                                Image(systemName: "chevron.right")
+                                    .padding(.leading, 80)
+                                
+                            }
+                        }
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 12) {
