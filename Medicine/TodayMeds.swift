@@ -28,7 +28,7 @@ struct TodayMeds: View {
                             HStack {
                                 Image(systemName: "magnifyingglass")
                                     .padding(.leading, 7)
-                                TextField("Search doctor", text: $searchText)
+                                TextField("Search Medicine", text: $searchText)
                                     .cornerRadius(10)
                                     .padding(10)
                                     .padding(.leading)
