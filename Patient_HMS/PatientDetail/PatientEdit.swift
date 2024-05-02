@@ -33,7 +33,7 @@ struct Profile_Edit: View {
     var body: some View {
         VStack {
             Form {
-                Section(header: Text("Edit Profile")) {
+                Section{
                     // CameraButton
                     HStack {
                         Spacer()
@@ -84,19 +84,22 @@ struct Profile_Edit: View {
                     .padding(.bottom, 20)
                     
                     HStack {
-                        Text("Full Name: ")
+                        Text("Full Name : ")
                         TextField("Name", text: $profileViewModel.currentProfile.fullName)
+                            .underlineTextField()
                     }
                     .padding(.bottom, 15.0)
                     
                   
                     
                     HStack {
-                                Text("Mobile Number: ")
-                                TextField("Enter Mobile Number", text: $profileViewModel.currentProfile.mobileno)
-                                    .keyboardType(.numberPad)
-                            }
+                        Text("Phone Number : ")
+                        TextField("Enter Mobile Number", text: $profileViewModel.currentProfile.mobileno)
+                            .keyboardType(.numberPad)
+                            .underlineTextField()
+                    }
                     .padding(.bottom, 15.0)
+                    
                     HStack{
                         Picker("Select Gender", selection: $profileViewModel.currentProfile.gender) {
                             ForEach(genders, id: \.self) {
@@ -105,6 +108,7 @@ struct Profile_Edit: View {
                         }
                         .pickerStyle(SegmentedPickerStyle())
                     }.padding(.bottom, 15.0)
+                    
                     HStack{
                         Picker("Select Blood Group", selection: $profileViewModel.currentProfile.bloodgroup) {
                             ForEach(bloodGroups, id: \.self) {
@@ -113,11 +117,13 @@ struct Profile_Edit: View {
                         }
                         .pickerStyle(MenuPickerStyle())
                     }.padding(.bottom, 15.0)
+                    
                     HStack {
-                                Text("Emergency Contact: ")
-                                TextField("Enter Emergency Contact", text: $profileViewModel.currentProfile.emergencycontact)
-                                    .keyboardType(.numberPad)
-                            }
+                        Text("Emergency Contact : ")
+                        TextField("Enter Emergency Contact", text: $profileViewModel.currentProfile.emergencycontact)
+                            .keyboardType(.numberPad)
+                            .underlineTextField()
+                    }
                     .padding(.bottom, 15.0)
                     
                     HStack {
@@ -129,14 +135,16 @@ struct Profile_Edit: View {
                     HStack {
                         Text("Address: ")
                         TextField("Your Address", text: $profileViewModel.currentProfile.address)
+                            .underlineTextField()
                     }
                     .padding(.bottom, 15.0)
                     
                     HStack {
-                                Text("Pincode: ")
+                        Text("Pincode: ")
                         TextField("Enter Pincode", text: $profileViewModel.currentProfile.pincode)
-                                    .keyboardType(.numberPad)
-                            }
+                            .keyboardType(.numberPad)
+                            .underlineTextField()
+                    }
                     .padding(.bottom, 15.0)
                     
                 
@@ -154,7 +162,9 @@ struct Profile_Edit: View {
 //                                            Text("Uploaded PDF: \(selectedPDFName)")
 //                                        }
 //                                    }
-                                }
+                }
+                .listRowBackground(Color.solitude)
+
             }
             
             Button(action: {
@@ -168,8 +178,11 @@ struct Profile_Edit: View {
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Text("Edit Profile")
-                    .foregroundColor(.blue)
+                    .foregroundColor(.buttonForeground)
+                    .frame(width: 300, height: 30)
                     .padding()
+                    .background(Color.midNightExpress)
+                    .cornerRadius(10)
             }
            
             
@@ -178,7 +191,24 @@ struct Profile_Edit: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Create Your Profile")
         .padding(.horizontal, 7)
+        .background(Color.solitude)
+        .scrollContentBackground(.hidden)
+    }
+}
+
+struct Profile_Edit_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = AuthViewModel()
+        let profileViewModel = PatientViewModel()
+        
+        return Profile_Edit()
+            .environmentObject(viewModel)
+            .environmentObject(profileViewModel)
     }
 }
 
 
+
+//.listRowBackground(Color.solitude)
+//            .background(Color.yellow)
+//            .scrollContentBackground(.hidden)

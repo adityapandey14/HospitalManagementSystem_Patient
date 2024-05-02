@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct homepageComplete: View {
+   
     var body: some View {
         TabView {
             Homepage()
@@ -16,7 +17,7 @@ struct homepageComplete: View {
                         .padding(.top)
                 }
             
-            Appointment()
+            DoctorProfile(imageUrl: "www.google.com", fullName: "fullName", specialist: "specialist", doctor: dummyDoctor)
                 .tabItem {
                     Label("Appointment", systemImage: "person.crop.rectangle.fill")
                         .padding(.top)
@@ -37,6 +38,4 @@ struct homepageComplete: View {
     }
 }
 
-#Preview {
-    homepageComplete()
-}
+

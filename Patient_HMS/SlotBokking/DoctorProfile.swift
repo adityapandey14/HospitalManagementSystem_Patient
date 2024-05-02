@@ -11,6 +11,8 @@ struct DoctorProfile: View {
     var imageUrl : String
     var fullName : String
     var specialist : String
+    let doctor: DoctorModel
+
     
     var body: some View {
         NavigationStack {
@@ -113,23 +115,8 @@ struct DoctorProfile: View {
                         } //End of HStack
                         Divider()
                             .padding()
-                        
-                        HStack(alignment : .center){
-                            
-                            Spacer()
-                            
-                            Button {
-                                
-                            } label : {
-                                Text("Book Appointment")
-                                    .frame(width : 340 , height: 70)
-                                    .background(Color.blue)
-                                    .cornerRadius(10)
-                                    .foregroundColor(.white)
-                                    .padding()
-                            }
-                            Spacer()
-                        } // End of HStack
+                        SlotBookView( doctor: doctor)
+                   
                         
                         
                     }  //End of VStack
@@ -148,6 +135,25 @@ struct DoctorProfile: View {
     }
 }
 
-#Preview {
-    DoctorProfile(imageUrl: "www.google.com" , fullName: "Aditya" , specialist: "specialist")
+struct DoctorProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        
+        let dummyDoctor = DoctorModel(
+            id: "1",
+            fullName: "Dr. Jane Doe",
+            descript: "Expert in cardiology",
+            gender: "Female",
+            mobileno: "1234567890",
+            experience: "10 years",
+            qualification: "MD, Cardiology",
+            dob: Date(timeIntervalSince1970: 0),  // January 1, 1970
+            address: "123 Main St, Springfield",
+            pincode: "123456",
+            department: "Cardiology",
+            speciality: "Cardiologist",
+            cabinNo: "101",
+            profilephoto: nil  // Can use an actual URL if desired
+        )
+        DoctorProfile(imageUrl: "www.google.com" , fullName: "Aditya" , specialist: "specialist", doctor: dummyDoctor)
+    }
 }

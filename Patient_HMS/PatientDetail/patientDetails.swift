@@ -49,13 +49,13 @@ struct Profile_Create: View {
                                     .cornerRadius(10)
                             } else {
                                 Circle()
-                                    .fill(Color.solitude)
+                                    .fill(Color.gray)
                                     .frame(width: 100, height: 100)
                                     .overlay(
                                         Image(systemName: "camera.fill")
                                             .resizable()
                                             .frame(width: 50, height: 40)
-                                            .foregroundStyle(Color.gray)
+                                            .foregroundStyle(Color.solitude)
                                     )
                             }
                         }
@@ -69,10 +69,9 @@ struct Profile_Create: View {
                     .background(Color.solitude)
                 }
                 .padding()
+                .listRowBackground(Color.solitude)
+
                 VStack{
-                    
-                        
-                        
                     HStack {
                         TextField("Enter Mobile Number", text: $profileViewModel.currentProfile.mobileno)
                             .keyboardType(.numberPad)
@@ -128,40 +127,45 @@ struct Profile_Create: View {
                     }
                     .padding(.bottom, 15.0)
                     
-                }
-                HStack{
-                    Button(action: {
-                        Task {
-                            do {
-                                try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
-                            
-                                profileViewModel.updateProfile(profileViewModel.currentProfile, posterImage: posterImage ?? defaultposterImage, userId: viewModel.currentUser?.id) {
+
+
+                    HStack{
+                        Button(action: {
+                            Task {
+                                do {
+                                    try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
+                                    
+                                    profileViewModel.updateProfile(profileViewModel.currentProfile, posterImage: posterImage ?? defaultposterImage, userId: viewModel.currentUser?.id) {
+                                    }
+                                } catch {
+                                    
+                                    print("Error: \(error.localizedDescription)")
                                 }
-                            } catch {
-                                
-                                print("Error: \(error.localizedDescription)")
                             }
+                        }) {
+                            Text("Get Started")
+                                .foregroundColor(.buttonForeground)
+                                .frame(width: 300, height: 30)
+                                .padding()
+                                .background(Color.midNightExpress)
+                                .cornerRadius(10)
                         }
-                    }) {
-                        Text("Get Started")
-                            .foregroundColor(.buttonForeground)
-                            .frame(width: 300, height: 30)
-                            .padding()
-                            .background(Color.midNightExpress)
-                            .cornerRadius(10)
-                    }
-                    .background(
-                    NavigationLink(
-                            destination: Homepage(),
-                            isActive: $navigationLinkIsActive,
-                            label: { EmptyView() }
+                        .background(
+                            NavigationLink(
+                                destination: Homepage(),
+                                isActive: $navigationLinkIsActive,
+                                label: { EmptyView() }
+                            )
                         )
-                    )
+                    }
                 }
+                .listRowBackground(Color.solitude)
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Create Your Profile")
         }
+        .background(Color.solitude)
+        .scrollContentBackground(.hidden)
         .padding(10)
     }
 }

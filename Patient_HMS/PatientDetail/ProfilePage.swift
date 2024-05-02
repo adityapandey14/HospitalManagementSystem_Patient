@@ -148,7 +148,8 @@ import SwiftUI
 struct ProfileView: View {
         @EnvironmentObject var profileViewModel:PatientViewModel
         @EnvironmentObject var viewModel:AuthViewModel
-    
+        @State private var isEditSuccessful = false
+    @State private var navigateToNewPassword = false
     var body: some View {
         NavigationView {
             ZStack {
@@ -165,11 +166,35 @@ struct ProfileView: View {
                     // Profile content
                     HStack {
                         // Profile image
-                        Image("default_hackathon_poster")
-                            .resizable()
-                            .frame(width: 80, height: 80)
-                            .clipShape(Circle())
-                            .padding(.trailing)
+                        HStack{
+                                                if let posterURL = profileViewModel.currentProfile.profilephoto {
+                                                    AsyncImage(url: URL(string: posterURL)) { phase in
+                                                        switch phase {
+                                                        case .success(let image):
+                                                            image
+                                                                .resizable()
+                                                                .aspectRatio(contentMode: .fill)
+                                                                .frame(width: 100, height: 100)
+                                                                .cornerRadius(10.0)
+                                                                .clipShape(Circle())
+                                                                .padding([.leading, .bottom, .trailing])
+                                                        default:
+                                                            ProgressView()
+                                                                .frame(width: 50, height: 50)
+                                                                .padding([.leading, .bottom, .trailing])
+                                                        }
+                                                    }
+                                                } else {
+                                                    Image(uiImage: UIImage(named: "default_hackathon_poster")!)
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fill)
+                                                        .frame(width: 100, height: 100)
+                                                        .cornerRadius(10.0)
+                                                        .clipShape(Circle())
+                                                        .padding([.leading, .bottom, .trailing])
+                                                }
+                                            }
+                                            
                         
                         // Profile details
                         VStack(alignment: .leading) {
@@ -188,12 +213,15 @@ struct ProfileView: View {
                         }
                         .padding(.trailing, 38)
                         
-                        // Icon
-                        Image(systemName: "square.and.pencil")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(.black)
-                            .padding(.leading)
+                        Button(action: edit){
+                            Image(systemName: "square.and.pencil")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.black)
+                            .padding(.leading)}
+                            .sheet(isPresented: $isEditSuccessful) {
+                                             Profile_Edit()
+                                           }
                           
                     }
                     .padding(.top, 15)
@@ -224,6 +252,9 @@ struct ProfileView: View {
                             }
                             .padding(.top, 60)
                             .offset(y: -5)
+                            .foregroundColor(.midNightExpress)
+
+                            
                             Button {
                                 
                             } label :{
@@ -238,6 +269,8 @@ struct ProfileView: View {
                                     .offset(x: 32)
                             }
                             .offset(y: 2)
+                            .foregroundColor(.midNightExpress)
+
                             
                             
                             
@@ -255,6 +288,8 @@ struct ProfileView: View {
                                     .offset(x: 52)
                             }
                             .offset(y: 10)
+                            .foregroundColor(.midNightExpress)
+
                         }
                     }
                     ZStack {
@@ -267,12 +302,14 @@ struct ProfileView: View {
                         VStack {
                             
                             Button {
+                                navigateToNewPassword = true
                                 
                             } label :{
                                 Image(systemName: "key")
                                     .resizable()
                                     .frame(width: 13, height: 20)
 //                                    .padding(.trailing, 250)
+                                
                                 Text("Change Password")
                                     .padding(.leading, 20)
                                     .bold()
@@ -283,6 +320,16 @@ struct ProfileView: View {
                             }
                             .padding(.top, 60)
                             .offset(y: -5)
+                            .foregroundColor(.midNightExpress)
+
+                            
+                            
+                            NavigationLink(
+                                             destination: newPassword(),
+                                             isActive: $navigateToNewPassword // Binding to trigger navigation
+                                         ) {
+                                             EmptyView() // Invisible NavigationLink
+                                         }
                             
                             
                             Button {
@@ -314,11 +361,19 @@ struct ProfileView: View {
                         print(viewModel.currentUser?.id ?? "")
                         profileViewModel.fetchProfile(userId: viewModel.currentUser?.id)}
     }
+    private func edit() {
+          isEditSuccessful = true
+      }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        let profileViewModel = PatientViewModel()
+        let viewModel = AuthViewModel()
+        
+        return ProfileView()
+            .environmentObject(profileViewModel)
+            .environmentObject(viewModel)
     }
 }
 

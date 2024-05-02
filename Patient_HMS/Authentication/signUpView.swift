@@ -126,31 +126,22 @@ struct signUpView: View {
                 
                 //button
                 Button(action: signUp) {
-                    NavigationLink(destination: loginView() ){
-                        
-                        Button {
-                            Task {
-                               try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
-                            }
-                        } label: {
-                            Text("Sign up")
-                                .foregroundColor(.buttonForeground)
-                                .frame(width: 325, height: 50)
-                                .background(Color.midNightExpress)
-                                .cornerRadius(10)
-                        }
-                      
-                    }
+                    Text("Sign up")
+                        .foregroundColor(.buttonForeground)
+                        .frame(width: 325, height: 50)
+                        .background(Color.midNightExpress)
+                        .cornerRadius(10)
+                }
+                .disabled(!FormIsValid)
+                .opacity(FormIsValid ? 1.0 : 0.5)
+                .sheet(isPresented: $isSignUpSuccessful) {
+                    Profile_Create(email: email, password: password, fullName: fullName)
                 }
                 .frame(width: 325, height: 35)
                 .padding()
-                .disabled(!FormIsValid)
-                .opacity(FormIsValid ? 1.0 : 0.5)
                 .background(Color.midNightExpress)
                 .cornerRadius(10)
-                .sheet(isPresented: $isSignUpSuccessful) {
-                    Profile_Create(email:email, password:password,fullName: fullName)
-                }
+
                 
                 HStack{
                     Text("Already have an account?")
