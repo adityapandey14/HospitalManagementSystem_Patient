@@ -20,6 +20,7 @@
 		47394C992BD7789600ADB1A4 /* HealthRecordAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */; };
 		47394C9B2BD7A41E00ADB1A4 /* PatientEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C9A2BD7A41E00ADB1A4 /* PatientEdit.swift */; };
 		485FDF602BD8367A008E620D /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485FDF5F2BD8367A008E620D /* ReviewModel.swift */; };
+		48806FF92BE3B180006CF917 /* PatientBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48806FF82BE3B180006CF917 /* PatientBookingView.swift */; };
 		4890D4212BDFA32400EF8750 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4890D4202BDFA32400EF8750 /* Appointment.swift */; };
 		4890D4232BE00C0300EF8750 /* DoctorProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4890D4222BE00C0300EF8750 /* DoctorProfile.swift */; };
 		4890D4252BE0D2B600EF8750 /* newPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4890D4242BE0D2B600EF8750 /* newPassword.swift */; };
@@ -83,6 +84,7 @@
 		47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordAdd.swift; sourceTree = "<group>"; };
 		47394C9A2BD7A41E00ADB1A4 /* PatientEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientEdit.swift; sourceTree = "<group>"; };
 		485FDF5F2BD8367A008E620D /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
+		48806FF82BE3B180006CF917 /* PatientBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientBookingView.swift; sourceTree = "<group>"; };
 		4890D4202BDFA32400EF8750 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		4890D4222BE00C0300EF8750 /* DoctorProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorProfile.swift; sourceTree = "<group>"; };
 		4890D4242BE0D2B600EF8750 /* newPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newPassword.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				4890D4202BDFA32400EF8750 /* Appointment.swift */,
 				48967FF62BE3883D00C38184 /* CurrentDepartDoctor.swift */,
+				48806FF82BE3B180006CF917 /* PatientBookingView.swift */,
 			);
 			path = Appointment;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				48967FF72BE3883D00C38184 /* CurrentDepartDoctor.swift in Sources */,
 				47394C912BD6ECC100ADB1A4 /* DocumentPicker.swift in Sources */,
 				DF6B2EC72BD5946C00FAD930 /* Homepage.swift in Sources */,
+				48806FF92BE3B180006CF917 /* PatientBookingView.swift in Sources */,
 				DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */,
 				47394C9B2BD7A41E00ADB1A4 /* PatientEdit.swift in Sources */,
 				2DBAF23D2BDF66FF00F71240 /* HealthDataView.swift in Sources */,
