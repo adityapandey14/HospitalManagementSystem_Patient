@@ -15,123 +15,112 @@ struct Homepage: View {
     let commonConcerns = ["Concern 1", "Concern 2", "Concern 3", "Concern 4", "Concern 5"]
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack(alignment: .leading) {
-                    HStack {
-                        Image("mednex_logo")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                        Text(greeting())
-                            .font(.headline)
-                        Spacer()
-                        
-                        Button(action: {
-                            withAnimation {
-                                isVitalsExpanded.toggle()
-                            }
-                        }) {
-                            Image(systemName: "waveform.path.ecg")
-                                .font(.system(size: 20))
-                                .foregroundColor(isVitalsExpanded ? .red : .blue)
-                        }
-                        .padding(.trailing)
-                    }
-                    .padding(.horizontal)
+                HStack {
+                    Image("mednex_logo")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                    Text(greeting())
+                        .font(.headline)
+                    Spacer()
                     
-                    if isVitalsExpanded {
-                        VStack {
-                            Vital()
-                                .padding()
-                            
-                            // Add your vital details here
-                            
-                            Spacer()
+                    Button(action: {
+                        withAnimation {
+                            isVitalsExpanded.toggle()
                         }
-                        .transition(.move(edge: .top))
-                        .animation(.easeInOut)
-                    } else {
-                        VStack(alignment: .leading) {
-                            Text("Your Appointments")
-                                .font(.title)
-                                .padding(.top)
-                                .padding(.horizontal)
-                            
-                            VStack {
-                                AppointmentView(doctorName: "Dr. John Doe", time: "10:00 AM - 10:30 AM", venue: "Hospital A")
-                                // Add more appointments here if needed
+                    }) {
+                        Image(systemName: "waveform.path.ecg")
+                            .font(.system(size: 20))
+                            .foregroundColor(isVitalsExpanded ? .red : .blue)
+                    }
+                    .padding(.trailing)
+                }
+                .padding(.horizontal)
+                
+                if isVitalsExpanded {
+                    VStack {
+                      Vital()
+                            .padding()
+                        
+                        // Add your vital details here
+                        
+                        Spacer()
+                    }
+                    .transition(.move(edge: .top))
+                    .animation(.easeInOut)
+                } else {
+                    VStack(alignment: .leading) {
+                        Text("Your Appointments")
+                            .font(.title)
+                            .padding(.top)
+                            .padding(.horizontal)
+                        
+                        VStack {
+                            AppointmentView(doctorName: "Dr. John Doe", time: "10:00 AM - 10:30 AM", venue: "Hospital A")
+                            // Add more appointments here if needed
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .padding()
+                        .frame(maxWidth: .infinity) // Ensure maximum width
+                        
+                        Text("Today's Medicines")
+                            .font(.title)
+                            .padding(.horizontal)
+                            .padding(.bottom, 0.5)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 12) {
+                                ForEach(1..<4) { index in
+                                    MedicationView(symbolName: "pills", name: "Medication \(index)")
+                                        .cornerRadius(10)
+                                }
                             }
                             .padding()
-                            .background(Color.white)
+                            .background(Color.clear)
                             .cornerRadius(10)
                             .padding()
-                            .frame(maxWidth: .infinity) // Ensure maximum width
-                            
-                            HStack {
-                                Text("Today's Medicines")
-                                    .font(.title)
-                                    .padding(.horizontal)
-                                    .padding(.bottom, 0.5)
-                                
-                                NavigationLink(destination: TodayMeds()) {
-                                    Image(systemName: "chevron.right")
-                                        .padding(.leading, 80)
-                                    
-                                }
-                            }
-                            
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 12) {
-                                    ForEach(1..<4) { index in
-                                        MedicationView(symbolName: "pills", name: "Medication \(index)")
-                                            .cornerRadius(10)
-                                    }
-                                }
-                                .padding()
-                                .background(Color.clear)
-                                .cornerRadius(10)
-                                .padding()
-                            }
-                            
-                            Text("Common Concerns")
-                                .font(.title)
-                                .padding(.horizontal)
-                                .padding(.bottom, 0.5)
-                            
-                            GeometryReader { geometry in
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(spacing: 20) {
-                                        ForEach(0..<commonConcerns.count) { index in
-                                            Circle()
-                                                .frame(width: 50, height: 50)
-                                                .foregroundColor(index == selectedConcernIndex ? .blue : .gray)
-                                                .onTapGesture {
-                                                    withAnimation {
-                                                        selectedConcernIndex = index
-                                                    }
-                                                }
-                                        }
-                                    }
-                                    .padding()
-                                }
-                                .frame(width: geometry.size.width, height: 50) // Adjust height as needed
-                            }
-                            
-                            Spacer()
                         }
-                        .transition(.move(edge: .bottom))
-                        .animation(.easeInOut)
+                        
+                        Text("Common Concerns")
+                            .font(.title)
+                            .padding(.horizontal)
+                            .padding(.bottom, 0.5)
+                        
+                        GeometryReader { geometry in
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 20) {
+                                    ForEach(0..<commonConcerns.count) { index in
+                                        Circle()
+                                            .frame(width: 50, height: 50)
+                                            .foregroundColor(index == selectedConcernIndex ? .blue : .gray)
+                                            .onTapGesture {
+                                                withAnimation {
+                                                    selectedConcernIndex = index
+                                                }
+                                            }
+                                    }
+                                }
+                                .padding()
+                            }
+                            .frame(width: geometry.size.width, height: 50) // Adjust height as needed
+                        }
+                        
+                        Spacer()
                     }
+                    .transition(.move(edge: .bottom))
+                    .animation(.easeInOut)
                 }
-                .navigationTitle("Home")
-                .background(
-                    LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
-                        .edgesIgnoringSafeArea(.all)
-                )
             }
+            .navigationTitle("Home")
+            .background(
+                LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(.all)
+            )
         }
-    
-    
-    
+    }
     
     private func greeting() -> String {
         let calendar = Calendar.current
