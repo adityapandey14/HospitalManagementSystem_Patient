@@ -55,6 +55,41 @@ class AppointmentViewModel: ObservableObject {
             }
         }
     }
+    
+    
+    func deleteAppointment(appointmentId: String) {
+        // Ensure currentUserId is not nil before proceeding
+        guard let currentUserId = Auth.auth().currentUser?.uid else {
+            errorMessage = "Unable to identify current user. Please log in again."
+            return
+        }
+
+        db.collection("appointments").document(appointmentId).getDocument { [weak self] (document, error) in
+            if let error = error {
+                self?.errorMessage = "Error fetching appointment: \(error.localizedDescription)"
+                return
+            }
+
+            // Check if the document exists and if the current user is the owner
+            if let data = document?.data(),
+               let patientId = data["PatientID"] as? String,
+               patientId == currentUserId {
+                // If the current user is the owner of the appointment, delete it
+                self?.db.collection("appointments").document(appointmentId).delete { error in
+                    if let error = error {
+                        self?.errorMessage = "Error deleting appointment: \(error.localizedDescription)"
+                    } else {
+                        // Remove the appointment from the local list
+                        self?.appointments.removeAll { $0.id == appointmentId }
+                    }
+                }
+            } else {
+                // If the user doesn't own the appointment, set an error message
+                self?.errorMessage = "You do not have permission to delete this appointment"
+            }
+        }
+    } //End of the function
+
 }
 
 
@@ -81,6 +116,12 @@ struct AppointmentListView: View {
                         } else {
                             Text("Status: Incomplete")
                                 .foregroundColor(.red)
+                        }
+                        
+                        Button{
+                            viewModel.deleteAppointment(appointmentId: appointment.id)
+                        } label : {
+                            Text("Delete")
                         }
                     }
                 }

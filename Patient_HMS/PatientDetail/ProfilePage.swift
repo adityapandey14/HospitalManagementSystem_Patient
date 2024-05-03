@@ -234,25 +234,25 @@ struct ProfileView: View {
                             .padding(.top, 70)
                         
                         VStack {
-                            
-                            Button {
+                            NavigationLink(destination : appointView()){
                                 
-                            } label : {
-                                Image(systemName: "calendar")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-//                                    .padding(.trailing, 250)
-                                Text("My Appointments")
-                                    .padding(.leading, 20)
-                                    .bold()
-//                                    .offset(x: 30)
-                                Image(systemName: "chevron.right")
-                                    .padding(.leading, 50)
-//                                    .padding(.trailing, 5)
+                                HStack {
+                                    Image(systemName: "calendar")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                    //                                    .padding(.trailing, 250)
+                                    Text("My Appointments")
+                                        .padding(.leading, 20)
+                                        .bold()
+                                    //                                    .offset(x: 30)
+                                    Image(systemName: "chevron.right")
+                                        .padding(.leading, 50)
+                                    //                                    .padding(.trailing, 5)
+                                }
+                                .padding(.top, 60)
+                                .offset(y: -5)
+                                .foregroundColor(.midNightExpress)
                             }
-                            .padding(.top, 60)
-                            .offset(y: -5)
-                            .foregroundColor(.midNightExpress)
 
                             
                             Button {
