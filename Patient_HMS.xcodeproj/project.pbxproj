@@ -19,6 +19,9 @@
 		47394C972BD777FF00ADB1A4 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C962BD777FF00ADB1A4 /* ProfilePage.swift */; };
 		47394C992BD7789600ADB1A4 /* HealthRecordAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */; };
 		47394C9B2BD7A41E00ADB1A4 /* PatientEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47394C9A2BD7A41E00ADB1A4 /* PatientEdit.swift */; };
+		4762BFC72BE8A83700845B96 /* PrescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFC62BE8A83700845B96 /* PrescriptionView.swift */; };
+		4762BFC92BE8A8AE00845B96 /* PrescriptionViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFC82BE8A8AE00845B96 /* PrescriptionViewmodel.swift */; };
+		4762BFCB2BE8A93200845B96 /* PresModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFCA2BE8A93200845B96 /* PresModel.swift */; };
 		485FDF602BD8367A008E620D /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485FDF5F2BD8367A008E620D /* ReviewModel.swift */; };
 		48806FF92BE3B180006CF917 /* PatientBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48806FF82BE3B180006CF917 /* PatientBookingView.swift */; };
 		4890D4212BDFA32400EF8750 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4890D4202BDFA32400EF8750 /* Appointment.swift */; };
@@ -83,6 +86,9 @@
 		47394C962BD777FF00ADB1A4 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		47394C982BD7789600ADB1A4 /* HealthRecordAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRecordAdd.swift; sourceTree = "<group>"; };
 		47394C9A2BD7A41E00ADB1A4 /* PatientEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientEdit.swift; sourceTree = "<group>"; };
+		4762BFC62BE8A83700845B96 /* PrescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionView.swift; sourceTree = "<group>"; };
+		4762BFC82BE8A8AE00845B96 /* PrescriptionViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionViewmodel.swift; sourceTree = "<group>"; };
+		4762BFCA2BE8A93200845B96 /* PresModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresModel.swift; sourceTree = "<group>"; };
 		485FDF5F2BD8367A008E620D /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
 		48806FF82BE3B180006CF917 /* PatientBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientBookingView.swift; sourceTree = "<group>"; };
 		4890D4202BDFA32400EF8750 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
@@ -154,6 +160,16 @@
 				4890D4222BE00C0300EF8750 /* DoctorProfile.swift */,
 			);
 			path = SlotBokking;
+			sourceTree = "<group>";
+		};
+		4762BFC52BE8A82000845B96 /* Prescription */ = {
+			isa = PBXGroup;
+			children = (
+				4762BFC62BE8A83700845B96 /* PrescriptionView.swift */,
+				4762BFC82BE8A8AE00845B96 /* PrescriptionViewmodel.swift */,
+				4762BFCA2BE8A93200845B96 /* PresModel.swift */,
+			);
+			path = Prescription;
 			sourceTree = "<group>";
 		};
 		4890D41F2BDF814A00EF8750 /* Review */ = {
@@ -242,6 +258,7 @@
 		DFC22CA32BD26AE200B2AD68 /* Patient_HMS */ = {
 			isa = PBXGroup;
 			children = (
+				4762BFC52BE8A82000845B96 /* Prescription */,
 				DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */,
 				DFC22CA42BD26AE200B2AD68 /* Patient_HMSApp.swift */,
 				DFC22CA62BD26AE200B2AD68 /* ContentView.swift */,
@@ -458,11 +475,14 @@
 				DFC22CA72BD26AE200B2AD68 /* ContentView.swift in Sources */,
 				47394C872BD6C13D00ADB1A4 /* Patient_Model.swift in Sources */,
 				48967FF72BE3883D00C38184 /* CurrentDepartDoctor.swift in Sources */,
+				4762BFCB2BE8A93200845B96 /* PresModel.swift in Sources */,
 				47394C912BD6ECC100ADB1A4 /* DocumentPicker.swift in Sources */,
 				DF6B2EC72BD5946C00FAD930 /* Homepage.swift in Sources */,
 				48806FF92BE3B180006CF917 /* PatientBookingView.swift in Sources */,
+				4762BFC92BE8A8AE00845B96 /* PrescriptionViewmodel.swift in Sources */,
 				DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */,
 				47394C9B2BD7A41E00ADB1A4 /* PatientEdit.swift in Sources */,
+				4762BFC72BE8A83700845B96 /* PrescriptionView.swift in Sources */,
 				2DBAF23D2BDF66FF00F71240 /* HealthDataView.swift in Sources */,
 				2DBAF23F2BDF6AA400F71240 /* homepageComplete.swift in Sources */,
 				4890D4212BDFA32400EF8750 /* Appointment.swift in Sources */,
