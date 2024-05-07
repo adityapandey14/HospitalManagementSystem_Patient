@@ -7,6 +7,7 @@
 
 
 import SwiftUI
+import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Combine
@@ -19,6 +20,8 @@ struct ReviewData :  Identifiable, Codable ,  Equatable {
     var patientId : String
     var doctorId : String
     var ratingStar : Int
+    var isCompleted : String
+    var appointmentId : String
 }
 
 
@@ -45,12 +48,16 @@ class ReviewViewModel : ObservableObject {
                         let patientId = data["patientId"] as? String ?? ""
                         let doctorId = data["doctorId"] as? String ?? ""
                         let ratingStar = data["ratingCount"] as? Int ?? 0
+                        let isCompleted = data["isCompleted"] as? String ?? ""
+                        let appointmentId = data["appointmentId"] as? String ?? ""
                         
                         let reviewDetail = ReviewData(id: id,
                                                       comment: comment,
                                                       patientId: patientId,
                                                       doctorId: doctorId,
-                                                      ratingStar: ratingStar
+                                                      ratingStar: ratingStar,
+                                                      isCompleted: isCompleted, 
+                                                      appointmentId: appointmentId
                                                      )
                         details.append(reviewDetail)
                     }
@@ -60,7 +67,37 @@ class ReviewViewModel : ObservableObject {
                 print("Error fetching review details: \(error.localizedDescription)")
             }
         }
+    } //function
+    
+    func addReview(appointmentId : String , comment: String, ratingStar: Int, doctorId: String) async throws {
+        let db = Firestore.firestore()
+        guard let userId = Auth.auth().currentUser?.uid else {
+            throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Current user not found"])
+        }
+
+        // Create a dictionary representing the review data
+        let data: [String: Any] = [
+            "appointmentId" : appointmentId,
+            "comment": comment,
+            "ratingStar": ratingStar,
+            "doctorId": doctorId,
+            "time": Date(),
+            "userId": userId,
+            "isCompleted" : true
+            
+        ]
+
+        do {
+            // Add the document to the "review" collection
+            try await db.collection("review").addDocument(data: data)
+            print("Review added successfully to \(doctorId) collection")
+        } catch {
+            print("Error adding document: \(error.localizedDescription)")
+            throw error
+        }
     }
+    
+    
 }
 
 struct ReviewModel: View {

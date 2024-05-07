@@ -11,7 +11,7 @@ import Firebase
 import FirebaseFirestore
 
 // Appointment model to represent the data from Firebase
-struct AppointmentModel: Identifiable {
+struct AppointmentModel: Identifiable, Codable ,Equatable {
     var id: String
     var date: String
     var doctorID: String
@@ -124,6 +124,7 @@ struct AppointmentListView: View {
                             viewModel.deleteAppointment(appointmentId: appointment.id)
                         } label : {
                             Text("Delete")
+                            
                         }
                     }
                 }

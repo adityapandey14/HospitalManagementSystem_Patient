@@ -19,18 +19,32 @@ struct Appointment: View {
         NavigationStack {
             
                 VStack(alignment : .leading){
+//                    VStack {
+//                        NavigationLink(destination: SearchView()){
+//                            HStack{
+//                                Image(systemName: "magnifyingglass")
+//                                    .foregroundStyle(Color.myGray)
+//                                Text("Skills, tutors, centers...")
+//                                
+//                                Spacer()
+//                            }
+//                            .foregroundStyle(Color.gray)
+//                            .padding(3)
+//                            .padding(.leading, 10)
+//                            .frame(width: 370, height: 35)
+//                            .background(Color.gray.opacity(0.1))
+//                            .cornerRadius(8)
+//                            
+//                        }
+//                        .onAppear() {
+//                            viewModel.fetchDepartmentTypes()
+//                        }
+//                        .padding()
+                    SearchView()
                     
-                    HStack{
-                        TextField("Search doctor", text: $searchText)
-                            .padding(10)
-                            .padding(.leading)
-                            .background(Color.elavated)
-                            .textFieldStyle(PlainTextFieldStyle())
-                            .cornerRadius(8)
-                            .frame(maxWidth: .infinity)
-                           
-                    }
-                    .padding()
+  //                  }
+                    
+                
                   
                         Text("Select Departments")
                         .foregroundStyle(Color.myGray)

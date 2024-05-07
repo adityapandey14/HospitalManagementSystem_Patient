@@ -30,6 +30,12 @@ class DoctorViewModel: ObservableObject {
     @Published var doctorDetails: [DoctorModel] = []
     private let db = Firestore.firestore()
     static let shared = DoctorViewModel()
+    
+    init(){
+        Task {
+            await fetchDoctorDetails()
+        }
+    }
 
     func fetchDoctorDetails() async {
         do {
