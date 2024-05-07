@@ -115,6 +115,18 @@ struct MedicineView: View {
 }
 
 
-#Preview {
-    MedicineView()
+//#Preview {
+//    MedicineView()
+//}
+
+struct MedicineView_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = Medicine_ViewModel() // Creating a dummy view model for preview
+        let authViewModel = AuthViewModel() // Creating a dummy auth view model for preview
+        
+        return MedicineView()
+            .environmentObject(viewModel)
+            .environmentObject(authViewModel)
+    }
 }
+

@@ -152,7 +152,7 @@ struct ChiduHomepage: View {
                         .foregroundStyle(Color(uiColor: .secondaryLabel))
                     Spacer()
                     NavigationLink {
-                        MedicineView()
+                        ChiduMedicineView()
                     } label: {
                         Text("View All")
                             .font(.system(size: 15))
