@@ -38,7 +38,6 @@ struct PatientPrescriptionView: View {
             }
         }
         .onAppear {
-            print( xviewModel.currentUser?.id)
             viewModel.fetchPrescriptions(for: xviewModel.currentUser?.id ?? "") { prescriptions in
                 self.prescriptions = prescriptions
             }
