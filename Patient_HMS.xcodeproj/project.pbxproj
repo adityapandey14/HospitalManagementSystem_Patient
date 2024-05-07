@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13164F082BE9E400005F1BB8 /* ChiduHomepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13164F072BE9E400005F1BB8 /* ChiduHomepage.swift */; };
 		2DBAF23D2BDF66FF00F71240 /* HealthDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBAF23C2BDF66FF00F71240 /* HealthDataView.swift */; };
 		2DBAF23F2BDF6AA400F71240 /* homepageComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBAF23E2BDF6AA300F71240 /* homepageComplete.swift */; };
 		4721C95F2BE159FA00310CED /* SlotBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721C95E2BE159FA00310CED /* SlotBooking.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13164F072BE9E400005F1BB8 /* ChiduHomepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChiduHomepage.swift; sourceTree = "<group>"; };
 		2DBAF23C2BDF66FF00F71240 /* HealthDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataView.swift; sourceTree = "<group>"; };
 		2DBAF23E2BDF6AA300F71240 /* homepageComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homepageComplete.swift; sourceTree = "<group>"; };
 		4721C95E2BE159FA00310CED /* SlotBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SlotBooking.swift; path = Patient_HMS/SlotBooking.swift; sourceTree = SOURCE_ROOT; };
@@ -265,6 +267,7 @@
 				DFC22CCF2BD26B2700B2AD68 /* GoogleService-Info.plist */,
 				2DBAF23E2BDF6AA300F71240 /* homepageComplete.swift */,
 				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
+				13164F072BE9E400005F1BB8 /* ChiduHomepage.swift */,
 				4721C95B2BE1588300310CED /* SlotBokking */,
 				84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */,
 				2DBAF23C2BDF66FF00F71240 /* HealthDataView.swift */,
@@ -491,6 +494,7 @@
 				DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */,
 				DF6B2EE12BD59FEB00FAD930 /* patientDetails.swift in Sources */,
 				DFC22CA52BD26AE200B2AD68 /* Patient_HMSApp.swift in Sources */,
+				13164F082BE9E400005F1BB8 /* ChiduHomepage.swift in Sources */,
 				DF6B2EC32BD58F2900FAD930 /* loginView.swift in Sources */,
 				DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */,
 				4721C95F2BE159FA00310CED /* SlotBooking.swift in Sources */,
