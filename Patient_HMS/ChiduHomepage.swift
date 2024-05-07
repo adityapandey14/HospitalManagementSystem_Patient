@@ -9,6 +9,10 @@ import SwiftUI
 import HealthKit
 struct ChiduHomepage: View {
     @State private var isVitalsExpanded = false
+    
+    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var profileViewModel:PatientViewModel
+    
     var body: some View {
         
         
@@ -19,7 +23,6 @@ struct ChiduHomepage: View {
                 //logo, (goodmorning, name), vitals button.
                 HStack(spacing: 10){
                     Image( colorScheme == .dark ? "homePageLogoBlue" : "mednexLogoSmall")
-                    Image("mednexLogoSmall")
                     VStack(alignment: .leading) {
                         Text("Good Morning")
                             .font(.system(size: 19))
@@ -29,11 +32,9 @@ struct ChiduHomepage: View {
                     }
                     Spacer()
                     Button(action: {
-                        
                             withAnimation {
                                 isVitalsExpanded.toggle()
                             }
-                        
                     }, label: {
                         Image(systemName: "doc.text.below.ecg")
                             .font(.title)
@@ -46,30 +47,9 @@ struct ChiduHomepage: View {
                     VStack {
                       Vital()
                             .padding()
-                        
-                        // Add your vital details here
-                        
-                        Spacer()
                     }
-                    .transition(.move(edge: .top))
+//                    .transition(.move(edge: .top))
                     .animation(.easeInOut)
-                }
-                
-                
-                else {
-                    //upcoming Appointments
-                    HStack {
-                        Text("Upcoming Appointments")
-                            .font(.system(size: 17))
-                            .foregroundStyle(Color(uiColor: .secondaryLabel))
-                        Spacer()
-                        NavigationLink(destination: appointView()) {
-                            Image(systemName: "chevron.right")
-                        }
-                    }
-                    .padding(.top, 30)
-                    .padding(.horizontal)
-                    .padding(.bottom, 10)
                 }
                 
                 //upcoming Appointments
@@ -79,7 +59,7 @@ struct ChiduHomepage: View {
                         .foregroundStyle(Color(uiColor: .secondaryLabel))
                     Spacer()
                 }
-                .padding(.top, 30)
+                .padding(.top, isVitalsExpanded ? 0 : 30)
                 .padding(.horizontal)
                 .padding(.bottom, 10)
                 ScrollView(.horizontal, showsIndicators: false){
@@ -331,7 +311,7 @@ struct Vital: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading) {
          //       headerView
                 
 //                if isVitalsExpanded {
@@ -342,7 +322,7 @@ struct Vital: View {
 //                    emptyView
 //                }
                 
-                Spacer()
+//                Spacer()
             }
 //            .background(
 ////                LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
@@ -384,42 +364,40 @@ struct Vital: View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Your vitals")
 //                .font(.title)
-                .fontWeight(.bold)
 //                .padding()
                 .font(.system(size: 20))
             HStack {
                 HealthDataView(imageName: "heart.fill", value: heartRate ?? 0, unit: "bpm", imageColor: .red)
-                //            .background(Color.white)
                 HealthDataView(imageName: "waveform.path.ecg", value: bloodOxygen ?? 0, unit: "%", imageColor: .blue)
                 HealthDataView(imageName: "powersleep", value: steps ?? 0, unit: "", imageColor: .purple)
                 HealthDataView(imageName: "figure.walk", value: sleepHours ?? 0, unit: "hrs", imageColor: .green)
             }
             
-            Spacer()
+//            Spacer()
         }
     }
-    
-    private var emptyView: some View {
-        VStack {
-            Text("Expand to view vitals")
-                .font(.headline)
-                .foregroundColor(.gray)
-            
-            Spacer()
-        }
-    }
-    
-//    private func greeting() -> String {
-//        let calendar = Calendar.current
-//        let hour = calendar.component(.hour, from: currentTime)
-//        if hour < 12 {
-//            return "Good Morning"
-//        } else if hour < 17 {
-//            return "Good Afternoon"
-//        } else {
-//            return "Good Evening"
+
+//    private var emptyView: some View {
+//        VStack {
+//            Text("Expand to view vitals")
+//                .font(.headline)
+//                .foregroundColor(.gray)
+//            
+//            Spacer()
 //        }
 //    }
+    
+    private func greeting() -> String {
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: currentTime)
+        if hour < 12 {
+            return "Good Morning"
+        } else if hour < 17 {
+            return "Good Afternoon"
+        } else {
+            return "Good Evening"
+        }
+    }
     
     private func requestAuthorization() {
         let typesToRead: Set<HKObjectType> = [

@@ -7,16 +7,16 @@ struct HealthDataView: View {
     var imageColor: Color
     
     var body: some View {
-            VStack {
+        VStack(spacing: 15) {
                 Image(systemName: imageName) // Using SF Symbols, you can replace it with Image(imageName) if using custom images
-                    .font(.headline)
+                    .font(.title)
                     .foregroundStyle(imageColor)
                 Text("\(value, specifier: "%.2f") \(unit)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
             .padding()
-            .background(Color.white)
+//            .background(Color.primary)
 //            .cornerRadius(10)
 //            .padding()
             //Spacer()
