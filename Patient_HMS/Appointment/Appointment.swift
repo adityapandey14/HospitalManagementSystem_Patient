@@ -19,27 +19,32 @@ struct Appointment: View {
         NavigationStack {
             
                 VStack(alignment : .leading){
+//                    VStack {
+//                        NavigationLink(destination: SearchView()){
+//                            HStack{
+//                                Image(systemName: "magnifyingglass")
+//                                    .foregroundStyle(Color.myGray)
+//                                Text("Skills, tutors, centers...")
+//                                
+//                                Spacer()
+//                            }
+//                            .foregroundStyle(Color.gray)
+//                            .padding(3)
+//                            .padding(.leading, 10)
+//                            .frame(width: 370, height: 35)
+//                            .background(Color.gray.opacity(0.1))
+//                            .cornerRadius(8)
+//                            
+//                        }
+//                        .onAppear() {
+//                            viewModel.fetchDepartmentTypes()
+//                        }
+//                        .padding()
+                    SearchView()
                     
-                    NavigationLink(destination: SearchView()){
-                        HStack{
-                            Image(systemName: "magnifyingglass")
-                                .foregroundStyle(Color.myGray)
-                            Text("Skills, tutors, centers...")
-                            
-                            Spacer()
-                        }
-                        .foregroundStyle(Color.gray)
-                        .padding(3)
-                        .padding(.leading, 10)
-                        .frame(width: 370, height: 35)
-                        .background(Color.gray.opacity(0.1))
-                        .cornerRadius(8)
-                       
-                    }
-                    .padding()
-                    .onAppear() {
-                        viewModel.fetchDepartmentTypes()
-                    }
+  //                  }
+                    
+                
                   
                         Text("Select Departments")
                         .padding()
