@@ -72,7 +72,7 @@ struct Homepage: View {
                                 .padding(.horizontal)
                                 .padding(.bottom, 0.5)
 //                            Spacer()
-                            NavigationLink(destination: TodayMeds()) {
+                            NavigationLink(destination: Homepage()) {
                                 Image(systemName: "chevron.right")
                                 //                                .padding(.leading, 200)
                                 
