@@ -112,3 +112,8 @@ struct MedicineView: View {
         }
     }
 }
+
+
+#Preview {
+    MedicineView()
+}
