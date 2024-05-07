@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ChiduHomepage: View {
+    @EnvironmentObject var profileViewModel:PatientViewModel
     var body: some View {
         
         
@@ -19,7 +20,7 @@ struct ChiduHomepage: View {
                 VStack(alignment: .leading) {
                     Text("Good Morning")
                         .font(.system(size: 19))
-                    Text("Sanika")
+                    Text(profileViewModel.currentProfile.fullName )
                         .foregroundStyle(Color("accentBlue"))
                         .font(.system(size: 19))
                 }
