@@ -16,7 +16,7 @@ struct homepageComplete: View {
                     Label("Home", systemImage: "house")
                         .padding(.top)
                 }
-            MedicineView()
+                MedicineView()
                 .tabItem {
                     Label("Home", systemImage: "house")
                         .padding(.top)

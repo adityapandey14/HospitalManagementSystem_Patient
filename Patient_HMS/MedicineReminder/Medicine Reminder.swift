@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 
-
 struct AddMedicineView: View {
     @EnvironmentObject var viewModel: Medicine_ViewModel
     @EnvironmentObject var authviewModel: AuthViewModel
@@ -27,44 +26,83 @@ struct AddMedicineView: View {
     let daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
     var body: some View {
-        VStack {
-            TextField("Medicine Name", text: $medicineName)
-            TextField("Dosage", text: $dosage)
-            Form {
-                Section(header: Text("Times")) {
-                    ForEach(times, id: \.self) { time in
-                        Toggle(time, isOn: self.binding(for: time, in: selectedTimes))
+        NavigationStack {
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(.all)
+                
+                ScrollView {
+                    VStack {
+                        Text("Add Medicine")
+                            .bold()
+                            .font(.system(size: 30))
+                            .padding(.bottom, 20)
+                        
+                        TextField("Medicine Name", text: $medicineName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                        
+                        TextField("Dosage", text: $dosage)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                        
+                        Text("Select days for medicine reminder:")
+                            .font(.headline)
+                            .padding()
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 20) {
+                                ForEach(daysOfWeek, id: \.self) { day in
+                                    DayButton(title: day, isSelected: self.selectedDaysOfWeek.contains(day)) {
+                                        if self.selectedDaysOfWeek.contains(day) {
+                                            self.selectedDaysOfWeek.removeAll { $0 == day }
+                                        } else {
+                                            self.selectedDaysOfWeek.append(day)
+                                        }
+                                    }
+                                }
+                            }
+                            .padding()
+                        }
+                        
+                        Text("Selected Days: \(selectedDaysOfWeek.joined(separator: ", "))")
+                            .padding()
+                        
+                        DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
+                            .padding()
+                        
+                        DatePicker("End Date", selection: $endDate, displayedComponents: .date)
+                            .padding()
+                        
+                        Text("Select times for medicine reminder:")
+                            .font(.headline)
+                            .padding()
+                        
+                        VStack {
+                            ForEach(times, id: \.self) { time in
+                                Toggle(time, isOn: self.binding(for: time, in: selectedTimes))
+                                    .padding()
+                            }
+                        }
+                        
+                        Button("Save") {
+                            let medicine = Medicines(name: medicineName, dosage: dosage, times: selectedTimes, daysOfWeek: selectedDaysOfWeek, startDate: startDate, endDate: endDate)
+                            viewModel.addMedicine(medicine: medicine, userid: authviewModel.currentUser?.id ?? "")
+                            
+                            // Show success alert
+                            showAlert = true
+                            alertMessage = "Medicine added successfully"
+                            
+                            scheduleReminderNotification(for: medicine)
+                            clearFields()
+                        }
+                        .padding(.top)
+                        .alert(isPresented: $showAlert) {
+                            Alert(title: Text("Success"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                        }
                     }
+                    .padding(.horizontal)
                 }
-
-                Section(header: Text("Days of the Week")) {
-                    ForEach(daysOfWeek, id: \.self) { day in
-                        Toggle(day, isOn: self.binding(for: day, in: selectedDaysOfWeek))
-                    }
-                }
-
-                Section(header: Text("Start Date")) {
-                    DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
-                }
-
-                Section(header: Text("End Date")) {
-                    DatePicker("End Date", selection: $endDate, displayedComponents: .date)
-                }
-            }
-            Button("Save") {
-                let medicine = Medicines(name: medicineName, dosage: dosage, times: selectedTimes, daysOfWeek: selectedDaysOfWeek, startDate: startDate, endDate: endDate)
-                viewModel.addMedicine(medicine: medicine, userid: authviewModel.currentUser?.id ?? "")
-                
-                // Show success alert
-                showAlert = true
-                alertMessage = "Medicine added successfully"
-                
-                scheduleReminderNotification(for: medicine)
-                clearFields()
-                
-            }
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("Success"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }
         }
     }
@@ -98,25 +136,6 @@ struct AddMedicineView: View {
         startDate = Date()
         endDate = Date()
     }
-//    private func scheduleReminderNotification(for medicine: Medicines) {
-//        let content = UNMutableNotificationContent()
-//        content.title = "Medicine Reminder"
-//        content.body = "Don't forget to take \(medicine.name) - \(medicine.dosage)"
-//        content.sound = UNNotificationSound.default
-//        
-//        // Create a trigger to show the notification after 10 seconds
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
-//
-//        // Create a unique identifier for the notification
-//        let identifier = UUID().uuidString
-//        
-//        // Create the notification request
-//        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-//        
-//        // Add the notification request to the notification center
-//        UNUserNotificationCenter.current().add(request)
-//    }
-
     
     private func scheduleReminderNotification(for medicine: Medicines) {
         let notificationHandler = NotificationHandler() // Initialize NotificationHandler
@@ -157,15 +176,53 @@ struct AddMedicineView: View {
                 let identifier = "\(medicine.id ?? "")_\(dayOfWeek)_\(time)"
                 
                 // Create the notification request
-                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                _ = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
                 
                 // Schedule the notification using NotificationHandler
                 notificationHandler.sendNotification(date: nil, timeInterval: trigger.nextTriggerDate()!.timeIntervalSince(currentDate), title: content.title, subtitle: "", body: content.body)
             }
         }
     }
-
 }
+
+struct DayButton: View {
+    var title: String
+    var isSelected: Bool
+    var action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .foregroundColor(isSelected ? .white : .black)
+                .padding()
+                .background(isSelected ? Color.black : Color.white)
+                .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.black, lineWidth: isSelected ? 0 : 1)
+                )
+        }
+    }
+}
+
+//    private func scheduleReminderNotification(for medicine: Medicines) {
+//        let content = UNMutableNotificationContent()
+//        content.title = "Medicine Reminder"
+//        content.body = "Don't forget to take \(medicine.name) - \(medicine.dosage)"
+//        content.sound = UNNotificationSound.default
+//        
+//        // Create a trigger to show the notification after 10 seconds
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
+//
+//        // Create a unique identifier for the notification
+//        let identifier = UUID().uuidString
+//        
+//        // Create the notification request
+//        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+//        
+//        // Add the notification request to the notification center
+//        UNUserNotificationCenter.current().add(request)
+//    }
 
 
 

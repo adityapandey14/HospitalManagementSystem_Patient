@@ -23,10 +23,24 @@ class Medicine_ViewModel: ObservableObject {
         }
     }
 
-    func updateMedicine(medicineID: String, userid: String, withData data: [String: Any]) {
-
+    func updateMedicine(medicine: Medicines, userid: String) {
+        guard let medicineID = medicine.id else {
+            // Handle the case where medicineID or userid is nil
+            return
+        }
+        // Convert Medicine object to dictionary
+        let data: [String: Any] = [
+            "name": medicine.name,
+            "dosage": medicine.dosage,
+            "times": medicine.times,
+            "daysOfWeek": medicine.daysOfWeek,
+            "startDate": medicine.startDate,
+            "endDate": medicine.endDate
+        ]
+        // Update the medicine document in Firestore
         db.collection("medicines/\(userid)/userMedicines").document(medicineID).setData(data, merge: true)
     }
+
 
     func deleteMedicine(medicineID: String, userid: String) {
 

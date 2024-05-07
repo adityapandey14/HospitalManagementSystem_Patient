@@ -27,7 +27,6 @@
 		4762BFD22BE9DCC900845B96 /* Medicine_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFD12BE9DCC900845B96 /* Medicine_ViewModel.swift */; };
 		4762BFD42BE9DD3100845B96 /* Medicine Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFD32BE9DD3100845B96 /* Medicine Reminder.swift */; };
 		4762BFD62BE9FC3F00845B96 /* MedicineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFD52BE9FC3F00845B96 /* MedicineView.swift */; };
-		4762BFDC2BEA040D00845B96 /* TodayMeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFDB2BEA040D00845B96 /* TodayMeds.swift */; };
 		4762BFDE2BEA041900845B96 /* MedicineDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFDD2BEA041900845B96 /* MedicineDetail.swift */; };
 		485FDF602BD8367A008E620D /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485FDF5F2BD8367A008E620D /* ReviewModel.swift */; };
 		48806FF92BE3B180006CF917 /* PatientBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48806FF82BE3B180006CF917 /* PatientBookingView.swift */; };
@@ -101,7 +100,6 @@
 		4762BFD12BE9DCC900845B96 /* Medicine_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medicine_ViewModel.swift; sourceTree = "<group>"; };
 		4762BFD32BE9DD3100845B96 /* Medicine Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Medicine Reminder.swift"; sourceTree = "<group>"; };
 		4762BFD52BE9FC3F00845B96 /* MedicineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineView.swift; sourceTree = "<group>"; };
-		4762BFDB2BEA040D00845B96 /* TodayMeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayMeds.swift; sourceTree = "<group>"; };
 		4762BFDD2BEA041900845B96 /* MedicineDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicineDetail.swift; sourceTree = "<group>"; };
 		485FDF5F2BD8367A008E620D /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
 		48806FF82BE3B180006CF917 /* PatientBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientBookingView.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 				4762BFD12BE9DCC900845B96 /* Medicine_ViewModel.swift */,
 				4762BFDD2BEA041900845B96 /* MedicineDetail.swift */,
 				4762BFD32BE9DD3100845B96 /* Medicine Reminder.swift */,
-				4762BFDB2BEA040D00845B96 /* TodayMeds.swift */,
 				4762BFD52BE9FC3F00845B96 /* MedicineView.swift */,
 			);
 			path = MedicineReminder;
@@ -507,7 +504,6 @@
 				48967FF72BE3883D00C38184 /* CurrentDepartDoctor.swift in Sources */,
 				4762BFCB2BE8A93200845B96 /* PresModel.swift in Sources */,
 				47394C912BD6ECC100ADB1A4 /* DocumentPicker.swift in Sources */,
-				4762BFDC2BEA040D00845B96 /* TodayMeds.swift in Sources */,
 				DF6B2EC72BD5946C00FAD930 /* Homepage.swift in Sources */,
 				48806FF92BE3B180006CF917 /* PatientBookingView.swift in Sources */,
 				4762BFC92BE8A8AE00845B96 /* PrescriptionViewmodel.swift in Sources */,
