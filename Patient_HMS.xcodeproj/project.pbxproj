@@ -30,6 +30,8 @@
 		48967FF72BE3883D00C38184 /* CurrentDepartDoctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48967FF62BE3883D00C38184 /* CurrentDepartDoctor.swift */; };
 		84B3D1A02BD7CCAD00FADB4D /* onboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */; };
 		84B3D1A22BD8DB6D00FADB4D /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D1A12BD8DB6D00FADB4D /* NotificationHandler.swift */; };
+		84E46C852BE9F5FD008265BA /* TodayMeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E46C842BE9F5FD008265BA /* TodayMeds.swift */; };
+		84E46C892BE9F6F5008265BA /* MedicineDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E46C882BE9F6F5008265BA /* MedicineDetail.swift */; };
 		DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EA92BD5898800FAD930 /* User.swift */; };
 		DF6B2EAC2BD58BA600FAD930 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */; };
 		DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */; };
@@ -97,6 +99,8 @@
 		48967FF62BE3883D00C38184 /* CurrentDepartDoctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDepartDoctor.swift; sourceTree = "<group>"; };
 		84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingPage.swift; sourceTree = "<group>"; };
 		84B3D1A12BD8DB6D00FADB4D /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
+		84E46C842BE9F5FD008265BA /* TodayMeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMeds.swift; sourceTree = "<group>"; };
+		84E46C882BE9F6F5008265BA /* MedicineDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MedicineDetail.swift; path = Medicine/MedicineDetail.swift; sourceTree = SOURCE_ROOT; };
 		DF6B2EA92BD5898800FAD930 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DF6B2EAB2BD58BA600FAD930 /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appFonts.swift; sourceTree = "<group>"; };
@@ -198,6 +202,15 @@
 			path = Appointment;
 			sourceTree = "<group>";
 		};
+		84E46C832BE9F4C5008265BA /* Medicine */ = {
+			isa = PBXGroup;
+			children = (
+				84E46C842BE9F5FD008265BA /* TodayMeds.swift */,
+				84E46C882BE9F6F5008265BA /* MedicineDetail.swift */,
+			);
+			path = Medicine;
+			sourceTree = "<group>";
+		};
 		DF64DF8E2BD27D4400E1F5A6 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +250,7 @@
 		DFC22C982BD26AE200B2AD68 = {
 			isa = PBXGroup;
 			children = (
+				84E46C832BE9F4C5008265BA /* Medicine */,
 				DFC22CA32BD26AE200B2AD68 /* Patient_HMS */,
 				DFC22CB52BD26AE400B2AD68 /* Patient_HMSTests */,
 				DFC22CBF2BD26AE400B2AD68 /* Patient_HMSUITests */,
@@ -466,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E46C892BE9F6F5008265BA /* MedicineDetail.swift in Sources */,
 				DF6B2EC12BD58F1400FAD930 /* signUpView.swift in Sources */,
 				84B3D1A22BD8DB6D00FADB4D /* NotificationHandler.swift in Sources */,
 				485FDF602BD8367A008E620D /* ReviewModel.swift in Sources */,
@@ -493,6 +508,7 @@
 				DFC22CA52BD26AE200B2AD68 /* Patient_HMSApp.swift in Sources */,
 				DF6B2EC32BD58F2900FAD930 /* loginView.swift in Sources */,
 				DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */,
+				84E46C852BE9F5FD008265BA /* TodayMeds.swift in Sources */,
 				4721C95F2BE159FA00310CED /* SlotBooking.swift in Sources */,
 				DFF2D7BB2BD632CC0087114A /* DepartmentModel.swift in Sources */,
 				47394C992BD7789600ADB1A4 /* HealthRecordAdd.swift in Sources */,
