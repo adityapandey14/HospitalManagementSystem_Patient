@@ -17,7 +17,9 @@ struct TimeButton: View {
     var isSelectable: Bool
     var action: () -> Void
     
+    
     var body: some View {
+        
         Button(action: {
             if isSelectable {
                 action()  // Perform action if selectable
@@ -43,11 +45,14 @@ struct TimeButton: View {
 
 struct SlotBookView: View {
     let doctor: DoctorModel
-    let times = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
+    let times = ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 AM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"]
     
     @State private var selectedDate = Date()
     @State private var bookedSlots: [String] = []
     @State private var selectedSlot: String? = nil
+    @State private var text: String = ""
+    
+    let placeholder: String = "Write your reason for consultation"
     
     var body: some View {
         VStack {
@@ -59,6 +64,10 @@ struct SlotBookView: View {
             
             Text("Available Slots")
                 .font(.headline)
+                .padding(.bottom, 30)
+            
+//            Divider()
+//                .padding(.bottom, 30)
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 ForEach(times, id: \.self) { time in
@@ -74,9 +83,24 @@ struct SlotBookView: View {
                         selectedSlot = time  // Set the selected slot
                     }
                 }
+                .foregroundStyle(Color.black)
             }
+            .padding(.bottom)
             
-            Button("Select Appointment") {
+            ZStack {
+                
+                if text.isEmpty {
+                    Text(placeholder)
+                        .foregroundStyle(Color.black)
+                        .padding(.horizontal)
+                        .padding(.vertical)
+                }
+                TextEditor(text : $text)
+                    .frame(minWidth: 0, maxWidth: 360, minHeight: 0, maxHeight: 120)
+                    .border(Color.myGray, width: 1)
+                    .padding()
+            }
+            Button("Book Appointment") {
                 if let selectedSlot = selectedSlot {
                     createBooking(doctor: doctor, date: selectedDate, slot: selectedSlot)
                 }

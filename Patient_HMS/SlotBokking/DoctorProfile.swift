@@ -63,39 +63,54 @@ struct DoctorProfile: View {
                         
                         HStack {
                             VStack {
-                                Image(systemName: "person.2.fill")
-                                    .resizable()
-                                    .clipped()
-                                    .frame(width: 35, height: 35)
-                                    .cornerRadius(50)
-                                    .padding(.trailing, 5)
-                                    .foregroundColor(.gray)
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 30)
+                                        .foregroundStyle(Color("solitude"))
+                                        .frame(width: 55, height: 55)
+                                    Image(systemName: "person.2.fill")
+                                        .resizable()
+                                        .clipped()
+                                        .frame(width: 35, height: 30)
+                                        .cornerRadius(50)
+//                                        .padding(.trailing, 5)
+                                        .foregroundStyle(Color.myGray)
+                                }
                                 Text("+ 100")
                                 Text("Patients")
                             }
                             
                             Spacer()
                             VStack {
-                                Image(systemName: "star.fill")
-                                    .resizable()
-                                    .clipped()
-                                    .frame(width: 35, height: 35)
-                                    .cornerRadius(50)
-                                    .padding(.trailing, 5)
-                                    .foregroundColor(.gray)
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 30)
+                                        .foregroundStyle(Color("solitude"))
+                                        .frame(width: 55, height: 55)
+                                    Image(systemName: "star.fill")
+                                        .resizable()
+                                        .clipped()
+                                        .frame(width: 30, height: 30)
+                                        .cornerRadius(50)
+//                                        .padding(.trailing, 5)
+                                        .foregroundStyle(Color("myGray"))
+                                }
                                 Text("4.5")
                                 Text("Rating")
                             }
                             
                             Spacer()
                             VStack {
-                                Image(systemName: "arrow.up.right.bottomleft.rectangle.fill")
-                                    .resizable()
-                                    .clipped()
-                                    .frame(width: 35, height: 35)
-                                    .cornerRadius(50)
-                                    .padding(.trailing, 5)
-                                    .foregroundColor(.myGray)
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 30)
+                                        .foregroundStyle(Color("solitude"))
+                                        .frame(width: 55, height: 55)
+                                    Image(systemName: "arrow.up.right.bottomleft.rectangle.fill")
+                                        .resizable()
+                                        .clipped()
+                                        .frame(width: 30, height: 30)
+                                        .cornerRadius(50)
+//                                        .padding(.trailing, 5)
+                                        .foregroundColor(.myGray)
+                                }
                                 Text("16 years")
                                 Text("Experience")
                             }
@@ -105,8 +120,8 @@ struct DoctorProfile: View {
                         .padding()
                         
                         
-                        Text("Select Schedule")
-                            .padding()
+//                        Text("Select Schedule")
+//                            .padding()
                         
                         HStack{
                            
