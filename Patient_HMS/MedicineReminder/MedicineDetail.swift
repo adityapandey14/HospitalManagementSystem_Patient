@@ -108,3 +108,8 @@ struct EditMedicineView: View {
 //        MedicineDetail()
 //    }
 //}
+
+//#Preview {
+//    EditMedicineView(medicine: <#Medicines#>)
+//        .environmentObject(Medicine_ViewModel())
+//}

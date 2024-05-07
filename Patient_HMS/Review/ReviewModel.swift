@@ -67,7 +67,7 @@ struct ReviewModel: View {
     @ObservedObject var reviewViewModel = ReviewViewModel()
     @State private var isFetching = false
     var body: some View {
-        NavigationView{
+        NavigationStack{
           
             
             HStack{

@@ -386,186 +386,186 @@ struct HomepageView_Previews: PreviewProvider {
 
 
 
-import SwiftUI
-import HealthKit
-
-struct Vital: View {
-    @State private var currentTime = Date()
-    @State private var isVitalsExpanded = true
-    
-    @State private var heartRate: Double?
-    @State private var bloodOxygen: Double?
-    @State private var steps: Double?
-    @State private var sleepHours: Double?
-    
-    let healthStore = HKHealthStore()
-    
-    var body: some View {
-        NavigationView {
-            VStack(alignment: .leading, spacing: 20) {
-         //       headerView
-                
-//                if isVitalsExpanded {
-                 vitalsView
-//                        .transition(.slide)
-//                } else {
-//                    // Content to display when vitals are not expanded
-//                    emptyView
-//                }
-                
-                Spacer()
-            }
-            .background(
-                LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
-                    .edgesIgnoringSafeArea(.all)
-            )
-        }
-        .onAppear {
-            requestAuthorization()
-        }
-    }
-    
-//    private var headerView: some View {
-////        HStack {
-////            Image(systemName: "heart.text.square")
-////                .font(.title)
-////                .foregroundColor(.red)
-////            
-//////            Text(greeting())
-//////                .font(.title2)
-//////                .fontWeight(.bold)
-////            
-////            Spacer()
-//////            
-//////            Button(action: {
-//////                withAnimation {
-//////                    isVitalsExpanded.toggle()
-//////                }
-//////                fetchHealthData()
-//////            }) {
-//////                Image(systemName: "waveform.path.ecg")
-//////                    .font(.title)
-//////                    .foregroundColor(isVitalsExpanded ? .red : .blue)
-//////            }
-////        }
-//    }
-    
-    private var vitalsView: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Vitals")
-                .font(.title)
-                .fontWeight(.bold)
-            
-            HealthDataView(title: "Heart Rate", value: heartRate ?? 0, unit: "bpm")
-            HealthDataView(title: "Blood Oxygen", value: bloodOxygen ?? 0, unit: "%")
-            HealthDataView(title: "Steps", value: steps ?? 0, unit: "")
-            HealthDataView(title: "Sleep Hours", value: sleepHours ?? 0, unit: "hours")
-            
-            Spacer()
-        }
-    }
-    
-    private var emptyView: some View {
-        VStack {
-            Text("Expand to view vitals")
-                .font(.headline)
-                .foregroundColor(.gray)
-            
-            Spacer()
-        }
-    }
-    
-//    private func greeting() -> String {
-//        let calendar = Calendar.current
-//        let hour = calendar.component(.hour, from: currentTime)
-//        if hour < 12 {
-//            return "Good Morning"
-//        } else if hour < 17 {
-//            return "Good Afternoon"
-//        } else {
-//            return "Good Evening"
+//import SwiftUI
+//import HealthKit
+//
+//struct Vital: View {
+//    @State private var currentTime = Date()
+//    @State private var isVitalsExpanded = true
+//    
+//    @State private var heartRate: Double?
+//    @State private var bloodOxygen: Double?
+//    @State private var steps: Double?
+//    @State private var sleepHours: Double?
+//    
+//    let healthStore = HKHealthStore()
+//    
+//    var body: some View {
+//        NavigationView {
+//            VStack(alignment: .leading, spacing: 20) {
+//         //       headerView
+//                
+////                if isVitalsExpanded {
+//                 vitalsView
+////                        .transition(.slide)
+////                } else {
+////                    // Content to display when vitals are not expanded
+////                    emptyView
+////                }
+//                
+//                Spacer()
+//            }
+//            .background(
+//                LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
+//                    .edgesIgnoringSafeArea(.all)
+//            )
+//        }
+//        .onAppear {
+//            requestAuthorization()
 //        }
 //    }
-    
-    private func requestAuthorization() {
-        let typesToRead: Set<HKObjectType> = [
-            HKObjectType.quantityType(forIdentifier: .heartRate)!,
-            HKObjectType.quantityType(forIdentifier: .oxygenSaturation)!,
-            HKObjectType.quantityType(forIdentifier: .stepCount)!,
-            HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
-        ]
-        
-        healthStore.requestAuthorization(toShare: nil, read: typesToRead) { (success, error) in
-            if !success {
-                print("Error requesting HealthKit authorization: \(error?.localizedDescription ?? "Unknown error")")
-            }
-        }
-    }
-    
-    private func fetchHealthData() {
-        fetchHeartRate()
-        fetchBloodOxygen()
-        fetchSteps()
-        fetchSleepHours()
-    }
-    
-    private func fetchHeartRate() {
-        let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate)!
-        let query = HKStatisticsQuery(quantityType: heartRateType, quantitySamplePredicate: nil, options: .discreteAverage) { (_, result, error) in
-            guard let result = result, let average = result.averageQuantity() else {
-                print("Error fetching heart rate: \(error?.localizedDescription ?? "")")
-                return
-            }
-            DispatchQueue.main.async {
-                self.heartRate = average.doubleValue(for: HKUnit.count().unitDivided(by: .minute()))
-            }
-        }
-        healthStore.execute(query)
-    }
-    
-    private func fetchBloodOxygen() {
-        let bloodOxygenType = HKObjectType.quantityType(forIdentifier: .oxygenSaturation)!
-        let query = HKStatisticsQuery(quantityType: bloodOxygenType, quantitySamplePredicate: nil, options: .discreteAverage) { (_, result, error) in
-            guard let result = result, let average = result.averageQuantity() else {
-                print("Error fetching blood oxygen: \(error?.localizedDescription ?? "")")
-                return
-            }
-            DispatchQueue.main.async {
-                self.bloodOxygen = average.doubleValue(for: HKUnit.percent())
-            }
-        }
-        healthStore.execute(query)
-    }
-    
-    private func fetchSteps() {
-        let stepsType = HKObjectType.quantityType(forIdentifier: .stepCount)!
-        let query = HKStatisticsQuery(quantityType: stepsType, quantitySamplePredicate: nil, options: .cumulativeSum) { (_, result, error) in
-            guard let result = result, let sum = result.sumQuantity() else {
-                print("Error fetching steps count: \(error?.localizedDescription ?? "")")
-                return
-            }
-            DispatchQueue.main.async {
-                self.steps = sum.doubleValue(for: HKUnit.count())
-            }
-        }
-        healthStore.execute(query)
-    }
-    
-    private func fetchSleepHours() {
-        let sleepType = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
-        let query = HKSampleQuery(sampleType: sleepType, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (_, samples, error) in
-            guard let samples = samples as? [HKCategorySample] else {
-                print("Error fetching sleep data: \(error?.localizedDescription ?? "")")
-                return
-            }
-            let totalSleepHours = samples.reduce(0) { $0 + $1.endDate.timeIntervalSince($1.startDate) }
-            DispatchQueue.main.async {
-                self.sleepHours = totalSleepHours / 3600 // Convert seconds to hours
-            }
-        }
-        healthStore.execute(query)
-    }
-}
+//    
+////    private var headerView: some View {
+//////        HStack {
+//////            Image(systemName: "heart.text.square")
+//////                .font(.title)
+//////                .foregroundColor(.red)
+//////            
+////////            Text(greeting())
+////////                .font(.title2)
+////////                .fontWeight(.bold)
+//////            
+//////            Spacer()
+////////            
+////////            Button(action: {
+////////                withAnimation {
+////////                    isVitalsExpanded.toggle()
+////////                }
+////////                fetchHealthData()
+////////            }) {
+////////                Image(systemName: "waveform.path.ecg")
+////////                    .font(.title)
+////////                    .foregroundColor(isVitalsExpanded ? .red : .blue)
+////////            }
+//////        }
+////    }
+//    
+//    private var vitalsView: some View {
+//        VStack(alignment: .leading, spacing: 10) {
+//            Text("Vitals")
+//                .font(.title)
+//                .fontWeight(.bold)
+//            
+//            HealthDataView(title: "Heart Rate", value: heartRate ?? 0, unit: "bpm")
+//            HealthDataView(title: "Blood Oxygen", value: bloodOxygen ?? 0, unit: "%")
+//            HealthDataView(title: "Steps", value: steps ?? 0, unit: "")
+//            HealthDataView(title: "Sleep Hours", value: sleepHours ?? 0, unit: "hours")
+//            
+//            Spacer()
+//        }
+//    }
+//    
+//    private var emptyView: some View {
+//        VStack {
+//            Text("Expand to view vitals")
+//                .font(.headline)
+//                .foregroundColor(.gray)
+//            
+//            Spacer()
+//        }
+//    }
+//    
+////    private func greeting() -> String {
+////        let calendar = Calendar.current
+////        let hour = calendar.component(.hour, from: currentTime)
+////        if hour < 12 {
+////            return "Good Morning"
+////        } else if hour < 17 {
+////            return "Good Afternoon"
+////        } else {
+////            return "Good Evening"
+////        }
+////    }
+//    
+//    private func requestAuthorization() {
+//        let typesToRead: Set<HKObjectType> = [
+//            HKObjectType.quantityType(forIdentifier: .heartRate)!,
+//            HKObjectType.quantityType(forIdentifier: .oxygenSaturation)!,
+//            HKObjectType.quantityType(forIdentifier: .stepCount)!,
+//            HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
+//        ]
+//        
+//        healthStore.requestAuthorization(toShare: nil, read: typesToRead) { (success, error) in
+//            if !success {
+//                print("Error requesting HealthKit authorization: \(error?.localizedDescription ?? "Unknown error")")
+//            }
+//        }
+//    }
+//    
+//    private func fetchHealthData() {
+//        fetchHeartRate()
+//        fetchBloodOxygen()
+//        fetchSteps()
+//        fetchSleepHours()
+//    }
+//    
+//    private func fetchHeartRate() {
+//        let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate)!
+//        let query = HKStatisticsQuery(quantityType: heartRateType, quantitySamplePredicate: nil, options: .discreteAverage) { (_, result, error) in
+//            guard let result = result, let average = result.averageQuantity() else {
+//                print("Error fetching heart rate: \(error?.localizedDescription ?? "")")
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                self.heartRate = average.doubleValue(for: HKUnit.count().unitDivided(by: .minute()))
+//            }
+//        }
+//        healthStore.execute(query)
+//    }
+//    
+//    private func fetchBloodOxygen() {
+//        let bloodOxygenType = HKObjectType.quantityType(forIdentifier: .oxygenSaturation)!
+//        let query = HKStatisticsQuery(quantityType: bloodOxygenType, quantitySamplePredicate: nil, options: .discreteAverage) { (_, result, error) in
+//            guard let result = result, let average = result.averageQuantity() else {
+//                print("Error fetching blood oxygen: \(error?.localizedDescription ?? "")")
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                self.bloodOxygen = average.doubleValue(for: HKUnit.percent())
+//            }
+//        }
+//        healthStore.execute(query)
+//    }
+//    
+//    private func fetchSteps() {
+//        let stepsType = HKObjectType.quantityType(forIdentifier: .stepCount)!
+//        let query = HKStatisticsQuery(quantityType: stepsType, quantitySamplePredicate: nil, options: .cumulativeSum) { (_, result, error) in
+//            guard let result = result, let sum = result.sumQuantity() else {
+//                print("Error fetching steps count: \(error?.localizedDescription ?? "")")
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                self.steps = sum.doubleValue(for: HKUnit.count())
+//            }
+//        }
+//        healthStore.execute(query)
+//    }
+//    
+//    private func fetchSleepHours() {
+//        let sleepType = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
+//        let query = HKSampleQuery(sampleType: sleepType, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (_, samples, error) in
+//            guard let samples = samples as? [HKCategorySample] else {
+//                print("Error fetching sleep data: \(error?.localizedDescription ?? "")")
+//                return
+//            }
+//            let totalSleepHours = samples.reduce(0) { $0 + $1.endDate.timeIntervalSince($1.startDate) }
+//            DispatchQueue.main.async {
+//                self.sleepHours = totalSleepHours / 3600 // Convert seconds to hours
+//            }
+//        }
+//        healthStore.execute(query)
+//    }
+//}
 
 
 

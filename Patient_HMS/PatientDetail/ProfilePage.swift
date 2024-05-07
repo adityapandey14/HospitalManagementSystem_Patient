@@ -151,7 +151,7 @@ struct ProfileView: View {
         @State private var isEditSuccessful = false
     @State private var navigateToNewPassword = false
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.all)

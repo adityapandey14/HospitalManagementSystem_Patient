@@ -16,31 +16,31 @@ struct homepageComplete: View {
                     Label("Home", systemImage: "house")
                         .padding(.top)
                 }
-                MedicineView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                        .padding(.top)
-                }
-            appointView()
-                .tabItem {
-                    Label("appointView", systemImage: "folder.fill")
-                        .padding(.top)
-                }
+//                MedicineView()
+//                .tabItem {
+//                    Label("Home", systemImage: "pill.fill")
+//                        .padding(.top)
+//                }
+//            appointView()
+//                .tabItem {
+//                    Label("Appointments", systemImage: "folder.fill")
+//                        .padding(.top)
+//                }
         
             HealthRecordAdd()
                 .tabItem {
-                    Label("HealthRecord", systemImage: "folder.fill")
+                    Label("Records", systemImage: "doc.fill")
                         .padding(.top)
                 }
             
             Appointment()
                 .tabItem {
-                    Label("Appointment", systemImage: "person.fill")
+                    Label("Appointment", systemImage: "stethoscope")
                         .padding(.top)
                 }
             ProfileView()
                 .tabItem {
-                    Label("Profile", systemImage: "person.fill")
+                   Label("Profile", systemImage: "person.fill")
                         .padding(.top)
                 }
             

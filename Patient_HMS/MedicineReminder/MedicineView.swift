@@ -28,7 +28,7 @@ struct MedicineView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.all)
@@ -110,5 +110,15 @@ struct MedicineView: View {
             }
             .navigationBarTitle("Medicine Reminder")
         }
+//        .padding(.bottom, 350)
     }
+}
+
+
+struct MedicineView_Previews: PreviewProvider {
+    static var previews: some View {
+        MedicineView()
+            .environmentObject(Medicine_ViewModel())
+            .environmentObject(AuthViewModel())
+            }
 }

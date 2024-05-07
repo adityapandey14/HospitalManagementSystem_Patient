@@ -45,4 +45,10 @@ struct PatientPrescriptionView: View {
     }
 }
 
+#Preview {
+    PatientPrescriptionView()
+        .environmentObject(PrescriptionViewModel())
+        .environmentObject(AuthViewModel())
+}
+
 

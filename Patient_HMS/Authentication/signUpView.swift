@@ -13,7 +13,7 @@ struct signUpView: View {
     @State private var isSignUpSuccessful = false
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack{
                 //login and signup option
 //                HStack{

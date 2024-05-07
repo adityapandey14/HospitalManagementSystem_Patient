@@ -89,16 +89,21 @@ struct SlotBookView: View {
             
             ZStack {
                 
-                if text.isEmpty {
-                    Text(placeholder)
-                        .foregroundStyle(Color.black)
-                        .padding(.horizontal)
-                        .padding(.vertical)
-                }
-                TextEditor(text : $text)
-                    .frame(minWidth: 0, maxWidth: 360, minHeight: 0, maxHeight: 120)
-                    .border(Color.myGray, width: 1)
+//                if text.isEmpty {
+//                    Text(placeholder)
+//                        .foregroundStyle(Color.black)
+//                        .padding(.horizontal)
+//                        .padding(.vertical)
+//                }
+//                TextField(text : $text)
+//                    .frame(minWidth: 0, maxWidth: 360, minHeight: 0, maxHeight: 120)
+//                    .border(Color.myGray, width: 1)
+//                    .padding()
+                
+                TextField("Consultation reason", text: $text)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
+                    .frame(width: 390)
             }
             Button("Book Appointment") {
                 if let selectedSlot = selectedSlot {
