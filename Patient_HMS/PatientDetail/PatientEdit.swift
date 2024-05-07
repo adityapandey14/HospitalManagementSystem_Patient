@@ -128,7 +128,7 @@ struct Profile_Edit: View {
                     
                     HStack {
                         DatePicker("Date of Birth", selection: $profileViewModel.currentProfile.dob,
-                                   in: Date()..., displayedComponents: [.date])
+                                   in: ...Date(), displayedComponents: [.date])
                     }
                     .padding(.bottom, 15.0)
                     
