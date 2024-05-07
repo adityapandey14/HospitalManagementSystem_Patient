@@ -17,42 +17,90 @@ struct MedicineView: View {
     @State private var isAddingMedicine = false // New state variable for navigation
     @State private var selectedMedicine: Medicines? // State variable to store the selected medicine for editing
     let notificationHandler = NotificationHandler()
+    @State private var searchText = ""
+    
+    var filteredMedicines: [Medicines] {
+        if searchText.isEmpty {
+            return medicines
+        } else {
+            return medicines.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
     
     var body: some View {
         NavigationView {
-            VStack {
-                if medicines.isEmpty {
-                    Text("No Medicines")
-                } else {
-                    List {
-                        ForEach(medicines, id: \.id) { medicine in
-                            VStack(alignment: .leading) {
-                                Text("Name: \(medicine.name)")
-                                    .font(.headline)
-                                Text("Dosage: \(medicine.dosage)")
-                                Text("Times: \(medicine.times.joined(separator: ", "))")
-                                Text("Days of Week: \(medicine.daysOfWeek.joined(separator: ", "))") // Display days of week
-                                Text("Start Date: \(medicine.startDate)") // Display start date
-                                Text("End Date: \(medicine.endDate)") // Display end date
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    
+                    HStack {
+                        HStack {
+                            HStack {
+                                Image(systemName: "magnifyingglass")
+                                    .padding(.leading, 7)
+                                TextField("Search Medicine", text: $searchText)
+                                    .cornerRadius(10)
+                                    .padding(10)
+                                    .padding(.leading)
+                                    .background(Color.elavated)
+                                    .textFieldStyle(PlainTextFieldStyle())
+                                    .frame(maxWidth: .infinity)
+                                
+                                Button(action: {
+                                    searchText = ""
+                                }) {
+                                    Text("Clear")
+                                }
+                                .padding(.trailing, 9)
                             }
-                            .contextMenu {
-                                Button("Edit") {
+                            .frame(height: 50)
+                            .background(Color.white)
+                            .foregroundColor(Color.gray)
+                            .padding(20)
+                            .frame(width: 340)
+                        }
+                        NavigationLink(destination: AddMedicineView(), isActive: $isAddingMedicine) {
+                            Button {
+                                isAddingMedicine = true
+                            } label : {
+                                Image(systemName: "plus.circle")
+                                    .foregroundColor(Color.black)
+                            }
+                            .padding(.trailing)
+                        }
+                    }
+                    
+                    if filteredMedicines.isEmpty {
+                        Text("No Medicines")
+                    } else {
+                        List {
+                            ForEach(filteredMedicines, id: \.id) { medicine in
+                                VStack(alignment: .leading) {
+                                    Text("\(medicine.name) ")
+                                        .font(.headline)
+                                    Text("\(medicine.dosage) \(medicine.times.joined(separator: ", "))")
+                                }
+                                .onTapGesture {
                                     self.selectedMedicine = medicine
                                 }
-                                Button("Delete") {
-                                    
-                                    viewModel.deleteMedicine(medicineID: medicine.id ?? "", userid: authviewModel.currentUser?.id ?? "")
-                                    viewModel.getAllMedicines(userid: authviewModel.currentUser?.id ?? "") { medicines in
-                                        self.medicines = medicines
+                                .contextMenu {
+                                    Button("Delete") {
+                                        viewModel.deleteMedicine(medicineID: medicine.id ?? "", userid: authviewModel.currentUser?.id ?? "")
+                                        viewModel.getAllMedicines(userid: authviewModel.currentUser?.id ?? "") { medicines in
+                                            self.medicines = medicines
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-                NavigationLink(destination: AddMedicineView(), isActive: $isAddingMedicine) {
-                    Text("Add Medicine")
-                }
+                .padding(.horizontal)
+            }
+            .sheet(item: $selectedMedicine) { medicine in
+                EditMedicineView(medicine: medicine)
             }
             .onAppear {
                 notificationHandler.askPermission()

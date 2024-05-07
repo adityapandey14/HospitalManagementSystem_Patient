@@ -7,162 +7,104 @@
 
 import Foundation
 import SwiftUI
+struct EditMedicineView: View {
+    @EnvironmentObject var viewModel: Medicine_ViewModel
+    @EnvironmentObject var authviewModel: AuthViewModel
+    @State private var medicineName: String
+    @State private var dosage: String
+    @State private var selectedTimes: [String]
+    @State private var selectedDaysOfWeek: [String]
+    @State private var startDate: Date
+    @State private var endDate: Date
 
+    let times = ["Morning", "Afternoon", "Night"]
+    let daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
+    init(medicine: Medicines) {
+        self._medicineName = State(initialValue: medicine.name)
+        self._dosage = State(initialValue: medicine.dosage)
+        self._selectedTimes = State(initialValue: medicine.times)
+        self._selectedDaysOfWeek = State(initialValue: medicine.daysOfWeek)
+        self._startDate = State(initialValue: medicine.startDate)
+        self._endDate = State(initialValue: medicine.endDate)
+    }
 
-struct MedicineDetail: View {
-    @State private var selectedDays: Set<String> = []
-    @State private var selectedDate = Date()
-    @State private var selectedDate1 = Date()
-    @State private var isToggled = false
-    @State private var isToggled1 = false
-    @State private var isToggled2 = false
-
-
-      let daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     var body: some View {
-        
-        NavigationStack {
-                ZStack {
-                    LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
-                        .edgesIgnoringSafeArea(.all)
-                    
-                ScrollView {
-                    VStack {
-                        Text("Zincovit CL")
-                            .bold()
-                        //                        .padding(.bottom, 570)
-                            .font(.system(size: 30))
-                            .padding(.bottom, 50)
-                        
-                        HStack {
-                            ZStack {
-                                Rectangle()
-                                    .fill(Color.white)
-                                    .cornerRadius(10)
-                                    .frame(width: 80, height: 80)
-                                Image(systemName: "pill.fill")
-                                    .resizable()
-                                    .frame(width:30, height: 30)
-                            }
-                            VStack {
-                                Text("Zincovit CL")
-                                    .bold()
-                                    .font(.system(size: 19))
-                                Text("After meal")
-                                    .font(.system(size: 13))
-                                    .italic()
-                                    .padding(.trailing, 35)
-                            }
-                        }
-                        .padding(.trailing, 130)
-                        
-                        
-                        VStack {
-                            Text("Select days for medicine reminder:")
-                                .font(.headline)
-                                .padding()
-                            
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 20) {
-                                    ForEach(daysOfWeek, id: \.self) { day in
-                                        DayButton(title: day, isSelected: self.selectedDays.contains(day)) {
-                                            if self.selectedDays.contains(day) {
-                                                self.selectedDays.remove(day)
-                                            } else {
-                                                self.selectedDays.insert(day)
-                                            }
-                                        }
-                                    }
-                                }
-                                .padding()
-                            }
-                            
-                            Text("Selected Days: \(Array(selectedDays).joined(separator: ", "))")
-                                .padding()
-                            
-                            Spacer()
-                        }
-                        
-                        DatePicker("Start Date", selection: $selectedDate, displayedComponents: .date)
-                            .padding()
-                        //                        .padding(.bottom)
-                        DatePicker("End Date", selection: $selectedDate1, displayedComponents: .date)
-                            .padding()
-                        //                        .padding(.bottom, 60)
-                        
-                        ScrollView {
-                            VStack {
-                                ZStack {
-                                    Rectangle()
-                                        .fill(Color.white)
-                                        .cornerRadius(10)
-                                        .frame(width: 360, height: 50)
-                                    HStack {
-                                        Text("08:00")
-                                            .padding(.leading, 40)
-                                        Toggle("", isOn: $isToggled)
-                                            .padding(.trailing, 30)
-                                    }
-                                }
-                                ZStack {
-                                    Rectangle()
-                                        .fill(Color.white)
-                                        .cornerRadius(10)
-                                        .frame(width: 360, height: 50)
-                                    HStack {
-                                        Text("12:00")
-                                            .padding(.leading, 40)
-                                        Toggle("", isOn: $isToggled1)
-                                            .padding(.trailing, 30)
-                                    }
-                                }
-                                ZStack {
-                                    Rectangle()
-                                        .fill(Color.white)
-                                        .cornerRadius(10)
-                                        .frame(width: 360, height: 50)
-                                    HStack {
-                                        Text("10:00")
-                                            .padding(.leading, 40)
-                                        Toggle("", isOn: $isToggled2)
-                                            .padding(.trailing, 30)
-                                    }
-                                }
-                                
-                            }
-                            .padding(.top)
-                        }
+        NavigationView {
+            Form {
+                Section(header: Text("Medicine Details")) {
+                    TextField("Medicine Name", text: $medicineName)
+                    TextField("Dosage", text: $dosage)
+                }
+
+                Section(header: Text("Times")) {
+                    ForEach(times, id: \.self) { time in
+                        Toggle(time, isOn: self.binding(for: time, in: selectedTimes))
                     }
-                    .padding(.bottom, 200)
+                }
+
+                Section(header: Text("Days of the Week")) {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            ForEach(daysOfWeek, id: \.self) { day in
+                                DayButton(title: day, isSelected: self.selectedDaysOfWeek.contains(day)) {
+                                    if self.selectedDaysOfWeek.contains(day) {
+                                        self.selectedDaysOfWeek.removeAll { $0 == day }
+                                    } else {
+                                        self.selectedDaysOfWeek.append(day)
+                                    }
+                                }
+                            }
+                        }
+                        .padding()
+                    }
+                }
+
+                Section(header: Text("Start Date")) {
+                    DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
+                }
+
+                Section(header: Text("End Date")) {
+                    DatePicker("End Date", selection: $endDate, displayedComponents: .date)
+                }
+
+                Button("Save Changes") {
+                    let editedMedicine = Medicines(name: medicineName, dosage: dosage, times: selectedTimes, daysOfWeek: selectedDaysOfWeek, startDate: startDate, endDate: endDate)
+                    // Update medicine in the view model
+                    viewModel.updateMedicine(medicine: editedMedicine, userid: authviewModel.currentUser?.id ?? "")
+                    // Go back to the previous view
+                    // You may need to implement a way to navigate back to the previous view
                 }
             }
+            .navigationBarTitle("Edit Medicine")
         }
+    }
+
+    private func binding(for selection: String, in array: [String]) -> Binding<Bool> {
+        Binding(
+            get: { array.contains(selection) },
+            set: { newValue in
+                if newValue {
+                    if self.times.contains(selection) {
+                        self.selectedTimes.append(selection)
+                    } else {
+                        self.selectedDaysOfWeek.append(selection)
+                    }
+                } else {
+                    if self.times.contains(selection) {
+                        self.selectedTimes.removeAll { $0 == selection }
+                    } else {
+                        self.selectedDaysOfWeek.removeAll { $0 == selection }
+                    }
+                }
+            }
+        )
     }
 }
 
-struct DayButton: View {
-    var title: String
-    var isSelected: Bool
-    var action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            Text(title)
-                .foregroundColor(isSelected ? .white : .black)
-                .padding()
-                .background(isSelected ? Color.black : Color.white)
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.black, lineWidth: isSelected ? 0 : 1)
-                )
-        }
-    }
-}
 
-struct MedicineDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        MedicineDetail()
-    }
-}
+//struct MedicineDetail_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MedicineDetail()
+//    }
+//}
