@@ -20,17 +20,26 @@ struct Appointment: View {
             
                 VStack(alignment : .leading){
                     
-                    HStack{
-                        TextField("Search doctor", text: $searchText)
-                            .padding(10)
-                            .padding(.leading)
-                            .background(Color.elavated)
-                            .textFieldStyle(PlainTextFieldStyle())
-                            .cornerRadius(8)
-                            .frame(maxWidth: .infinity)
-                           
+                    NavigationLink(destination: SearchView()){
+                        HStack{
+                            Image(systemName: "magnifyingglass")
+                                .foregroundStyle(Color.myGray)
+                            Text("Skills, tutors, centers...")
+                            
+                            Spacer()
+                        }
+                        .foregroundStyle(Color.gray)
+                        .padding(3)
+                        .padding(.leading, 10)
+                        .frame(width: 370, height: 35)
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(8)
+                       
                     }
                     .padding()
+                    .onAppear() {
+                        viewModel.fetchDepartmentTypes()
+                    }
                   
                         Text("Select Departments")
                         .padding()

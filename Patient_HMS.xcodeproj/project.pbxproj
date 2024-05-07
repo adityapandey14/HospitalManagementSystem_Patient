@@ -25,6 +25,8 @@
 		4890D4232BE00C0300EF8750 /* DoctorProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4890D4222BE00C0300EF8750 /* DoctorProfile.swift */; };
 		4890D4252BE0D2B600EF8750 /* newPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4890D4242BE0D2B600EF8750 /* newPassword.swift */; };
 		48967FF72BE3883D00C38184 /* CurrentDepartDoctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48967FF62BE3883D00C38184 /* CurrentDepartDoctor.swift */; };
+		48EB950F2BE8D7430076DFE4 /* RatingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB950E2BE8D7430076DFE4 /* RatingFormView.swift */; };
+		48EB95122BE9FE130076DFE4 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB95112BE9FE130076DFE4 /* SearchView.swift */; };
 		84B3D1A02BD7CCAD00FADB4D /* onboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */; };
 		84B3D1A22BD8DB6D00FADB4D /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B3D1A12BD8DB6D00FADB4D /* NotificationHandler.swift */; };
 		DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B2EA92BD5898800FAD930 /* User.swift */; };
@@ -89,6 +91,8 @@
 		4890D4222BE00C0300EF8750 /* DoctorProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorProfile.swift; sourceTree = "<group>"; };
 		4890D4242BE0D2B600EF8750 /* newPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newPassword.swift; sourceTree = "<group>"; };
 		48967FF62BE3883D00C38184 /* CurrentDepartDoctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDepartDoctor.swift; sourceTree = "<group>"; };
+		48EB950E2BE8D7430076DFE4 /* RatingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFormView.swift; sourceTree = "<group>"; };
+		48EB95112BE9FE130076DFE4 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingPage.swift; sourceTree = "<group>"; };
 		84B3D1A12BD8DB6D00FADB4D /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		DF6B2EA92BD5898800FAD930 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				485FDF5F2BD8367A008E620D /* ReviewModel.swift */,
+				48EB950E2BE8D7430076DFE4 /* RatingFormView.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -180,6 +185,14 @@
 				48806FF82BE3B180006CF917 /* PatientBookingView.swift */,
 			);
 			path = Appointment;
+			sourceTree = "<group>";
+		};
+		48EB95102BE9FDF50076DFE4 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				48EB95112BE9FE130076DFE4 /* SearchView.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		DF64DF8E2BD27D4400E1F5A6 /* Authentication */ = {
@@ -251,6 +264,7 @@
 				4721C95B2BE1588300310CED /* SlotBokking */,
 				84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */,
 				2DBAF23C2BDF66FF00F71240 /* HealthDataView.swift */,
+				48EB95102BE9FDF50076DFE4 /* Search */,
 				48967FF52BE3851B00C38184 /* Appointment */,
 				48967FF22BE3447A00C38184 /* DoctorDetail */,
 				4890D41F2BDF814A00EF8750 /* Review */,
@@ -452,12 +466,14 @@
 				DF6B2EC12BD58F1400FAD930 /* signUpView.swift in Sources */,
 				84B3D1A22BD8DB6D00FADB4D /* NotificationHandler.swift in Sources */,
 				485FDF602BD8367A008E620D /* ReviewModel.swift in Sources */,
+				48EB950F2BE8D7430076DFE4 /* RatingFormView.swift in Sources */,
 				DF6B2EC52BD5925E00FAD930 /* ProfileInputView.swift in Sources */,
 				47394C972BD777FF00ADB1A4 /* ProfilePage.swift in Sources */,
 				4890D4252BE0D2B600EF8750 /* newPassword.swift in Sources */,
 				DFC22CA72BD26AE200B2AD68 /* ContentView.swift in Sources */,
 				47394C872BD6C13D00ADB1A4 /* Patient_Model.swift in Sources */,
 				48967FF72BE3883D00C38184 /* CurrentDepartDoctor.swift in Sources */,
+				48EB95122BE9FE130076DFE4 /* SearchView.swift in Sources */,
 				47394C912BD6ECC100ADB1A4 /* DocumentPicker.swift in Sources */,
 				DF6B2EC72BD5946C00FAD930 /* Homepage.swift in Sources */,
 				48806FF92BE3B180006CF917 /* PatientBookingView.swift in Sources */,

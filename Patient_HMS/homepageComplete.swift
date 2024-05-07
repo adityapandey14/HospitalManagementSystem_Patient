@@ -16,11 +16,13 @@ struct homepageComplete: View {
                     Label("Home", systemImage: "house")
                         .padding(.top)
                 }
-            appointView()
+            AppointmentRatingView()
                 .tabItem {
-                    Label("appointView", systemImage: "folder.fill")
+                    Label("Rating", systemImage: "folder.fill")
                         .padding(.top)
                 }
+            
+         
         
             HealthRecordAdd()
                 .tabItem {
