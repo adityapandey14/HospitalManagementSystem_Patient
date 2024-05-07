@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ChiduHomepage: View {
+    
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         
         
@@ -15,7 +17,7 @@ struct ChiduHomepage: View {
             
             //logo, (goodmorning, name), vitals button.
             HStack(spacing: 10){
-                Image("mednexLogoSmall")
+                Image(systemName: colorScheme == .dark ? "homePageLogoBlue" : "homePageLogo")
                 VStack(alignment: .leading) {
                     Text("Good Morning")
                         .font(.system(size: 19))
