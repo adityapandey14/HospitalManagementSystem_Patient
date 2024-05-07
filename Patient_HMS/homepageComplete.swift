@@ -11,7 +11,7 @@ struct homepageComplete: View {
    
     var body: some View {
         TabView {
-            Homepage()
+            ChiduHomepage()
                 .tabItem {
                     Label("Home", systemImage: "house")
                         .padding(.top)
