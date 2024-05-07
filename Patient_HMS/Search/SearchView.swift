@@ -21,48 +21,56 @@ struct SearchView: View {
                 ScrollView {
                     ForEach(departmentViewModel.departmentTypes) { department in
                         VStack(alignment: .leading) {
-//                            Text("Department: \(department.departmentType)")
-//                                .font(.headline)
-//                                .padding(.bottom, 8)
+                            // Get filtered doctors by department and searchText
+                            let filteredDoctors = doctorViewModel.doctorDetails.filter { doctor in
+                                (searchText.isEmpty || doctor.fullName.localizedCaseInsensitiveContains(searchText)) &&
+                                department.specialityDetails.contains { $0.doctorId == doctor.id }
+                            }
 
-                            ForEach(
-                                department.specialityDetails.compactMap { detail in
-                                    doctorViewModel.doctorDetails.first { doctor in
-                                        searchText.isEmpty ||
-                                        doctor.fullName.localizedCaseInsensitiveContains(searchText)
+                            if !filteredDoctors.isEmpty {
+                                Text("Department: \(department.departmentType)")
+                                    .font(.headline)
+                                    .padding(.bottom, 8)
+
+                                ForEach(filteredDoctors, id: \.id) { doctor in
+                                    NavigationLink(
+                                        destination: DoctorProfile(
+                                            imageUrl: doctor.profilephoto ?? "default_url", // Provide a valid default
+                                            fullName: doctor.fullName,
+                                            specialist: doctor.speciality,
+                                            doctor: doctor
+                                        )
+                                    ) {
+                                        HStack {
+                                            Image(systemName: "person.circle.fill")
+                                                .foregroundColor(.blue)
+                                            Text(doctor.fullName)
+                                                .padding()
+                                            Spacer()
+                                        }
+                                        Divider()
                                     }
-                                },
-                                id: \.id
-                            ) { doctorDetail in
-                                NavigationLink(destination: DoctorDetailView(doctor: doctorDetail)) {
-                                    HStack {
-                                        Image(systemName: "person.circle.fill")
-                                            .foregroundColor(.blue)
-                                        Text("\(doctorDetail.fullName)")
-                                            .padding()
-                                        Spacer()
-                                    }
-                                    .foregroundColor(.primary)
-                                    Divider()
                                 }
                             }
                         }
                         .padding()
                         .onAppear {
-                            departmentViewModel.fetchSpecialityOwnerDetails(for: department.id)
+                            if department.specialityDetails.isEmpty {
+                                departmentViewModel.fetchSpecialityOwnerDetails(for: department.id)
+                            }
                         }
-                    }
-                }
-                .onAppear {
-                    departmentViewModel.fetchDepartmentTypes() // Fetch department types when view appears
-                    Task {
-                        await doctorViewModel.fetchDoctorDetails() // Async data fetching
                     }
                 }
             }
             .padding()
             .background(Color.white) // Consistent background color
             .navigationTitle("Search Doctors")
+        }
+        .onAppear {
+            departmentViewModel.fetchDepartmentTypes()
+            Task {
+                await doctorViewModel.fetchDoctorDetails() // Async data fetching
+            }
         }
     }
 }

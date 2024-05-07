@@ -209,7 +209,7 @@ struct DoctorListView: View {
     @ObservedObject var viewModel = DoctorViewModel.shared
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List(viewModel.doctorDetails) { doctor in
                 NavigationLink(destination: DoctorDetailView(doctor: doctor)) {
                     HStack {
@@ -241,7 +241,7 @@ struct DoctorListView: View {
                     await viewModel.fetchDoctorDetails()
                 }
             }
-            .navigationTitle("Doctors List")
+//            .navigationTitle("Doctors List")
         }
     }
 }

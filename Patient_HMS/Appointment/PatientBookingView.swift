@@ -101,13 +101,15 @@ struct AppointmentListView: View {
     let currentUserID: String // This will be the current user's UID
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 // Display the appointments for the current user
                 ForEach(viewModel.appointments.filter { $0.patientID == currentUserID }) { appointment in
                     VStack(alignment: .leading) {
                         Text("Date: \(appointment.date)")
+                            .bold()
                         Text("Time Slot: \(appointment.timeSlot)")
+                            .fontWeight(.semibold)
                         Text("Doctor ID: \(appointment.doctorID)")
                         Text("Reason: \(appointment.reason)")
                         if appointment.isComplete {
@@ -127,6 +129,7 @@ struct AppointmentListView: View {
                     }
                 }
             }
+            .padding(.top)
             .navigationTitle("My Appointments")
             .onAppear {
                 viewModel.fetchAppointments() // Fetch data when the view appears

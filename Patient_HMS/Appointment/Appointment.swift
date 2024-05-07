@@ -19,29 +19,35 @@ struct Appointment: View {
         NavigationStack {
             
                 VStack(alignment : .leading){
+//                    VStack {
+//                        NavigationLink(destination: SearchView()){
+//                            HStack{
+//                                Image(systemName: "magnifyingglass")
+//                                    .foregroundStyle(Color.myGray)
+//                                Text("Skills, tutors, centers...")
+//                                
+//                                Spacer()
+//                            }
+//                            .foregroundStyle(Color.gray)
+//                            .padding(3)
+//                            .padding(.leading, 10)
+//                            .frame(width: 370, height: 35)
+//                            .background(Color.gray.opacity(0.1))
+//                            .cornerRadius(8)
+//                            
+//                        }
+//                        .onAppear() {
+//                            viewModel.fetchDepartmentTypes()
+//                        }
+//                        .padding()
+                    SearchView()
                     
-                    NavigationLink(destination: SearchView()){
-                        HStack{
-                            Image(systemName: "magnifyingglass")
-                                .foregroundStyle(Color.myGray)
-                            Text("Skills, tutors, centers...")
-                            
-                            Spacer()
-                        }
-                        .foregroundStyle(Color.gray)
-                        .padding(3)
-                        .padding(.leading, 10)
-                        .frame(width: 370, height: 35)
-                        .background(Color.gray.opacity(0.1))
-                        .cornerRadius(8)
-                       
-                    }
-                    .padding()
-                    .onAppear() {
-                        viewModel.fetchDepartmentTypes()
-                    }
+  //                  }
+                    
+                
                   
                         Text("Select Departments")
+                        .foregroundStyle(Color.myGray)
                         .padding()
                    
                     ScrollView(.horizontal) {
@@ -85,7 +91,7 @@ struct Appointment: View {
                                 } //end of the vstack
                                 
                             } //end of the for loop
-                            .padding(.horizontal)
+//                            .padding(.horizontal)
                         }
                             
                       
@@ -99,6 +105,47 @@ struct Appointment: View {
                     ScrollView {
                  
                     VStack(alignment : .leading){
+                        
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundStyle(Color.white)
+                                .frame(width: 350, height: 100)
+                            HStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundStyle(Color.gray)
+                                    .frame(width: 70, height: 70)
+//                                    .padding(.trailing, 250)
+                                    .padding(.trailing, 10)
+                                VStack {
+                                    VStack {
+                                        Text("Dr. Arlene McKoy")
+                                        //                                        .padding(.bottom)
+                                        Text("Pediatrics")
+                                            .foregroundStyle(Color.myGray)
+                                            .padding(.trailing, 70)
+                                            .font(.system(size: 13))
+                                    }
+                                    .padding(.trailing, 30)
+                                    HStack {
+                                        Image(systemName: "star.fill")
+                                            .resizable()
+                                            .frame(width: 15, height: 15)
+                                        Text("4.6       ")
+                                            .foregroundStyle(Color.myGray)
+//                                            .padding(.trailing)
+                                        Text("120 reviews")
+                                            .foregroundStyle(Color.myGray)
+//                                            .padding(.leading)
+                                    }
+                                    .padding(.leading)
+                                }
+                                .padding(.trailing, 30)
+//                                .padding(.bottom)
+                                Image(systemName: "chevron.right")
+                                    .padding(.bottom, 40)
+                            }
+                        }
+                        .padding()
                       
 //                        ForEach(viewModel.departmentTypes) { departmentType in
 //                            ForEach(departmentType.specialityDetails) { detail in
@@ -115,7 +162,7 @@ struct Appointment: View {
                 }  //End of the scroll view
            
             }
-                .navigationTitle("Book Appointment")
+                .navigationTitle("Book Appointments")
                 .background(
                     LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
                         .edgesIgnoringSafeArea(.all)

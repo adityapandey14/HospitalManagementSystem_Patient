@@ -17,7 +17,7 @@ struct loginView: View {
     
    
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack{
                 VStack{
 //                    VStack(alignment: .leading){
@@ -173,7 +173,7 @@ struct ForgotPassword: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 20) {
                 TextField("Enter your email", text: $email)
                     .padding()
