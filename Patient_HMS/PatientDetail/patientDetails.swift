@@ -137,6 +137,8 @@ struct Profile_Create: View {
                                     
                                     profileViewModel.updateProfile(profileViewModel.currentProfile, posterImage: posterImage ?? defaultposterImage, userId: viewModel.currentUser?.id) {
                                     }
+                                    
+                                
                                 } catch {
                                     
                                     print("Error: \(error.localizedDescription)")

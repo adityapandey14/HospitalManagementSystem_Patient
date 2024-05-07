@@ -16,16 +16,21 @@ struct homepageComplete: View {
                     Label("Home", systemImage: "house")
                         .padding(.top)
                 }
-            
-            DoctorProfile(imageUrl: "www.google.com", fullName: "fullName", specialist: "specialist", doctor: dummyDoctor)
+            appointView()
                 .tabItem {
-                    Label("Appointment", systemImage: "person.crop.rectangle.fill")
+                    Label("appointView", systemImage: "folder.fill")
                         .padding(.top)
                 }
         
             HealthRecordAdd()
                 .tabItem {
                     Label("HealthRecord", systemImage: "folder.fill")
+                        .padding(.top)
+                }
+            
+            Appointment()
+                .tabItem {
+                    Label("Appointment", systemImage: "person.fill")
                         .padding(.top)
                 }
             ProfileView()
