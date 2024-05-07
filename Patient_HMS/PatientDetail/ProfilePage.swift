@@ -274,21 +274,22 @@ struct ProfileView: View {
                             
                             
                             
-                            Button {
-                                
-                            } label : {
-                                Image(systemName: "book.pages.fill")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                                    .offset(x: -53)
-                                Text("Prescriptions")
-                                    .offset(x: -31)
-                                    .bold()
-                                Image(systemName: "chevron.right")
-                                    .offset(x: 52)
+                            NavigationLink(destination: PatientPrescriptionView()) {
+                                HStack {
+                                    Image(systemName: "book.pages.fill")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                        .offset(x: -53)
+                                    Text("Prescriptions")
+                                        .offset(x: -31)
+                                        .bold()
+                                    Image(systemName: "chevron.right")
+                                        .offset(x: 52)
+                                }
+                                .offset(y: 10)
+                                .foregroundColor(.midNightExpress)
                             }
-                            .offset(y: 10)
-                            .foregroundColor(.midNightExpress)
+
 
                         }
                     }

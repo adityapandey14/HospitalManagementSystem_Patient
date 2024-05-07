@@ -158,6 +158,8 @@ struct appointView: View {
 
 struct appointView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+//        ContentView()
+//            .environmentObject(AuthViewModel())
+        appointView()
     }
 }
