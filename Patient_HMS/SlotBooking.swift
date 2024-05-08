@@ -46,6 +46,7 @@ struct TimeButton: View {
 struct SlotBookView: View {
     let doctor: DoctorModel
     let times = ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 AM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"]
+    @State private var showConfirmationAlert = false
     
     @State private var selectedDate = Date()
     @State private var bookedSlots: [String] = []
@@ -108,6 +109,7 @@ struct SlotBookView: View {
             Button("Book Appointment") {
                 if let selectedSlot = selectedSlot {
                     createBooking(doctor: doctor, date: selectedDate, slot: selectedSlot)
+                    showConfirmationAlert = true
                 }
             }
             .padding()
@@ -115,6 +117,14 @@ struct SlotBookView: View {
             .foregroundColor(.white)
             .cornerRadius(10)
             .disabled(selectedSlot == nil)  // Disable if no slot is selected
+            .alert(isPresented: $showConfirmationAlert) {
+                          Alert(
+                              title: Text("Appointment Confirmed"),
+                              message: Text("Your appointment with \(doctor.fullName) on \(selectedDate) has been booked."),
+                              dismissButton: .default(Text("OK"))
+                          )
+                      }
+            
         }
         .onAppear {
             fetchBookedSlots()  // Fetch initial data
