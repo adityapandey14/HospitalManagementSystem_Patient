@@ -26,7 +26,7 @@ struct TimeButton: View {
             }
         }) {
             RoundedRectangle(cornerRadius: 15)
-                .fill(isBooked ? Color.gray.opacity(0.5) : (isSelected ? Color.midNightExpress : Color.white))
+                .fill(isBooked ? Color.gray.opacity(0.5) : (isSelected ? Color.accentBlue : Color.white))
                 .overlay(
                     Text(time)
                         .font(.headline)
@@ -249,7 +249,7 @@ struct DateView: View {
                 Text(dateInfo.date)
             }
             .padding(18)
-            .background(isSelected ? Color(.midNightExpress) : Color(uiColor: .secondarySystemBackground))
+            .background(isSelected ? Color(.accentBlue) : Color(uiColor: .secondarySystemBackground))
             .clipShape(Rectangle())
             .cornerRadius(10)
             .foregroundColor(isSelected ? .white : .primary)

@@ -56,7 +56,7 @@ struct DoctorProfile: View {
                                     .font(AppFont.mediumSemiBold)
                                 Text("\(specialist)")
                                     .font(AppFont.smallReg)
-                                    .foregroundStyle(Color.black).opacity(0.6)
+                                    .foregroundStyle(Color(uiColor: .secondaryLabel)).opacity(0.6)
                                     .padding(.bottom, 0.5)
                             }
                             
@@ -73,14 +73,14 @@ struct DoctorProfile: View {
                             VStack {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 30)
-                                        .foregroundStyle(Color("solitude"))
+                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground))
                                         .frame(width: 55, height: 55)
                                     Image(systemName: "person.2.fill")
                                         .resizable()
                                         .clipped()
-                                        .frame(width: 30, height: 30)
+                                        .frame(width: 40, height: 30)
+                                        .foregroundColor(.accentBlue)
                                         .cornerRadius(50)
-//                                        .padding(.trailing, 5)
                                         .foregroundStyle(Color.myGray)
                                 }
                                 Text("\(reviewCount)")
@@ -91,13 +91,14 @@ struct DoctorProfile: View {
                             VStack {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 30)
-                                        .foregroundStyle(Color("solitude"))
+                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground))
                                         .frame(width: 55, height: 55)
                                     Image(systemName: "star.fill")
                                         .resizable()
                                         .clipped()
                                         .frame(width: 30, height: 30)
                                         .cornerRadius(50)
+                                        .foregroundColor(.accentBlue)
 //                                        .padding(.trailing, 5)
                                         .foregroundStyle(Color("myGray"))
                                 }
@@ -122,12 +123,13 @@ struct DoctorProfile: View {
                             VStack {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 30)
-                                        .foregroundStyle(Color("solitude"))
+                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground))
                                         .frame(width: 55, height: 55)
                                     Image(systemName: "arrow.up.right.bottomleft.rectangle.fill")
                                         .resizable()
                                         .clipped()
                                         .frame(width: 30, height: 30)
+                                        .foregroundColor(.accentBlue)
                                         .cornerRadius(50)
 //                                        .padding(.trailing, 5)
                                         .foregroundColor(.myGray)
