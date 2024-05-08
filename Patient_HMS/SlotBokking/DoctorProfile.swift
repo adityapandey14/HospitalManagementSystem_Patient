@@ -83,7 +83,8 @@ struct DoctorProfile: View {
 //                                        .padding(.trailing, 5)
                                         .foregroundStyle(Color.myGray)
                                 }
-                                Text("\(reviewCount) Patients")
+                                Text("\(reviewCount)")
+                                Text("Patients")
                             }
                             
                             Spacer()
@@ -110,9 +111,8 @@ struct DoctorProfile: View {
                                     Text("\(reviewsForSkillOwner.count) Review\(reviewsForSkillOwner.count == 1 ? "" : "s")")
                                         .font(AppFont.smallReg)
                                 } else {
-                                    Text("no reviews")
-                                        .font(AppFont.smallReg)
-                                      
+                                    Text("no")
+                                    Text("reviews")
                     
                                 } //else
                            
