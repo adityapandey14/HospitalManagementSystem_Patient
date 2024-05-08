@@ -179,7 +179,7 @@ struct ChiduHomepage: View {
                 .padding()
                 .onAppear {
                     let userId = Auth.auth().currentUser?.uid
-                    medviewModel.getAllMedicines(userid: userId!){
+                    medviewModel.getTodayMedicines(userid: userId!){
                         medicines in
                         self.medicines = medicines
                     }
