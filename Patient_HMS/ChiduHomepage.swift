@@ -16,6 +16,8 @@ struct ChiduHomepage: View {
     
     @State private var isVitalsExpanded = false
     
+    @State private var greeting: String = ""
+    
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var profileViewModel:PatientViewModel
     
@@ -30,8 +32,11 @@ struct ChiduHomepage: View {
                 HStack(spacing: 10){
                     Image( colorScheme == .dark ? "homePageLogoBlue" : "mednexLogoSmall")
                     VStack(alignment: .leading) {
-                        Text("Good Morning")
+                        Text(greeting)
                             .font(.system(size: 19))
+                            .onAppear {
+                                updateGreeting()
+                            }
                         Text(profileViewModel.currentProfile.fullName )
                             .foregroundStyle(Color("accentBlue"))
                             .font(.system(size: 19))
@@ -45,9 +50,14 @@ struct ChiduHomepage: View {
                         Image(systemName: "doc.text.below.ecg")
                             .font(.title)
                     })
+                    
+                    
                 }
                 .padding(.horizontal)
                 .padding(.top, 40)
+                
+                
+                
                 
                 if isVitalsExpanded {
                     VStack {
@@ -283,8 +293,27 @@ struct ChiduHomepage: View {
             
             
         }
+        
+        
+    }
+    private func updateGreeting() {
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        print(hour)
+        if hour >= 6 && hour < 12 {
+            greeting = "Good Morning"
+        } else if hour >= 12 && hour < 18 {
+            greeting = "Good Afternoon"
+        } else if hour >= 18 && hour < 22 {
+            greeting = "Good Evening"
+        } else {
+            greeting = "Time to sleep"
+        }
     }
 }
+
+
 
 
 struct Vital: View {
@@ -376,17 +405,7 @@ struct Vital: View {
 //        }
 //    }
     
-    private func greeting() -> String {
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: currentTime)
-        if hour < 12 {
-            return "Good Morning"
-        } else if hour < 17 {
-            return "Good Afternoon"
-        } else {
-            return "Good Evening"
-        }
-    }
+    
     
     private func requestAuthorization() {
         let typesToRead: Set<HKObjectType> = [
@@ -485,6 +504,7 @@ struct MedicineCardView: View {
         .padding()
         .background(Color(uiColor: .secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))
+        
         
     }
 }
