@@ -10,6 +10,7 @@ import FirebaseAuth
 
 struct Appointment: View {
     @State private var searchText = ""
+    @ObservedObject var topratedDoctorviewModel = TopRatedDoctorsViewModel()
     
     @ObservedObject var viewModel = DepartmentViewModel()
 //    @State private var selectedSkillType: DepartmentDetail?
@@ -41,11 +42,7 @@ struct Appointment: View {
 //                        }
 //                        .padding()
                     SearchView()
-                    
   //                  }
-                    
-                
-                  
                         Text("Select Departments")
                         .foregroundStyle(Color.myGray)
                         .padding()
@@ -84,17 +81,11 @@ struct Appointment: View {
                                         //   selectedSkillType = departmentType
                                            viewModel.fetchSpecialityOwnerDetails(for: departmentType.id)
                                        }
-
-                                   
-                                    
-                                    
                                 } //end of the vstack
                                 
                             } //end of the for loop
 //                            .padding(.horizontal)
                         }
-                            
-                      
                     } 
                     .foregroundColor(.gray)//End of the scrollView
                    
@@ -107,58 +98,19 @@ struct Appointment: View {
                  
                     VStack(alignment : .leading){
                         
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundStyle(Color.white)
-                                .frame(width: 350, height: 100)
-                            HStack {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundStyle(Color.gray)
-                                    .frame(width: 70, height: 70)
-//                                    .padding(.trailing, 250)
-                                    .padding(.trailing, 10)
-                                VStack {
-                                    VStack {
-                                        Text("Dr. Arlene McKoy")
-                                        //                                        .padding(.bottom)
-                                        Text("Pediatrics")
-                                            .foregroundStyle(Color.myGray)
-                                            .padding(.trailing, 70)
-                                            .font(.system(size: 13))
-                                    }
-                                    .padding(.trailing, 30)
-                                    HStack {
-                                        Image(systemName: "star.fill")
-                                            .resizable()
-                                            .frame(width: 15, height: 15)
-                                        Text("4.6       ")
-                                            .foregroundStyle(Color.myGray)
-//                                            .padding(.trailing)
-                                        Text("120 reviews")
-                                            .foregroundStyle(Color.myGray)
-//                                            .padding(.leading)
-                                    }
-                                    .padding(.leading)
+                        VStack {
+                            ForEach(topratedDoctorviewModel.topRatedDoctors) { doctor in
+                                VStack(alignment: .leading) {
+                                    
+                                    topDoctorCard(fullName: doctor.fullName, specialist: doctor.speciality, doctorUid: doctor.id , imageUrl: doctor.profilephoto ?? "userphoto", doctorDetail: doctor)
                                 }
-                                .padding(.trailing, 30)
-//                                .padding(.bottom)
-                                Image(systemName: "chevron.right")
-                                    .padding(.bottom, 40)
                             }
                         }
-                        .padding()
-                      
-//                        ForEach(viewModel.departmentTypes) { departmentType in
-//                            ForEach(departmentType.specialityDetails) { detail in
-//                                topDoctorCard(fullName: "First", specialist: "Pediatrics", doctorUid: "1", imageUrl: "www.google.com")
-//                            }
-//                        }
-                            
+                        .onAppear {
+                            topratedDoctorviewModel.fetchTopFiveRatedDoctors()
+                        }
                         
-                        
-        //                topDoctorCard(fullName: "First", specialist: "Pediatrics", doctorUid: "1", imageUrl: "www.google.com")
-                      
-                    }
+                    } //End of VStack
                     
                 }  //End of the scroll view
            
@@ -172,11 +124,6 @@ struct Appointment: View {
              
             
         } //End of the Navigation Stack
-      
- 
-
-    
-        
     }
 }
 
@@ -190,6 +137,7 @@ struct topDoctorCard : View {
     var specialist : String
     var doctorUid : String
     var imageUrl : String
+
     var doctorDetail : DoctorModel
     @ObservedObject var reviewViewModel = ReviewViewModel()
     @ObservedObject var doctorViewModel = DoctorViewModel.shared
@@ -197,6 +145,7 @@ struct topDoctorCard : View {
     @State private var isCopied = false
 
     var body: some View {
+        
         NavigationLink(destination : DoctorProfile(imageUrl: imageUrl, fullName: fullName, specialist: specialist, doctor: doctorDetail)) {
             VStack(alignment: .leading) {
                 HStack {
@@ -238,35 +187,34 @@ struct topDoctorCard : View {
                             .padding(.bottom, 0.5)
                         
                         
-                        //reviews
+                                               //reviews
                         
                         
                         HStack{
-                            let reviewsForDoctor = reviewViewModel.reviewDetails.filter { $0.doctorId == doctorUid}
-                            
-                            if !reviewsForDoctor.isEmpty {
-                                let averageRating = reviewsForDoctor.reduce(0.0) { $0 + Double($1.ratingStar) } / Double(reviewsForDoctor.count)
-                                
-                                Text("⭐️ \(averageRating, specifier: "%.1f ") |")
+                            let reviewsForSkillOwner = reviewViewModel.reviewDetails.filter { $0.doctorId == "\(doctorDetail.id)" }
+                            if !reviewsForSkillOwner.isEmpty {
+                                //Calculating Average of the doctor
+                                let averageRating = reviewsForSkillOwner.reduce(0.0) { $0 + Double($1.ratingStar) } / Double(reviewsForSkillOwner.count)
+                        
+                                Text("\(averageRating, specifier: "%.1f") ⭐️")
                                     .font(AppFont.smallReg)
-                                    .foregroundColor(.myGray)
-                                
-                                Text("\(reviewsForDoctor.count) Review\(reviewsForDoctor.count == 1 ? "" : "s")")
+                        
+                                Text("\(reviewsForSkillOwner.count) Review\(reviewsForSkillOwner.count == 1 ? "" : "s")")
                                     .font(AppFont.smallReg)
-                                    .foregroundStyle(.myGray)
                             } else {
                                 Text("no reviews")
                                     .font(AppFont.smallReg)
-                                    .foregroundColor(.myGray)
-                                    .padding(.bottom)
+                                    .foregroundColor(.black).opacity(0.3)
+                
                             }
                             Spacer()
                         }
-                        .padding(.bottom, 4)
+                        .padding()
                         .font(AppFont.smallReg)
-                        .onAppear() {
-                            ReviewViewModel().fetchReviewDetail()
+                        .onAppear(){
+                            reviewViewModel.fetchReviewDetailByDoctorId(doctorId: doctorDetail.id)
                         }
+                        
                         
                     }
                     
@@ -281,6 +229,9 @@ struct topDoctorCard : View {
             .cornerRadius(10)
             .padding(.horizontal,20)
         }
+        .onAppear() {
+            reviewViewModel.fetchReviewDetail()
+            }
         
     }
 }

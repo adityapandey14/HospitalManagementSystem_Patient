@@ -21,11 +21,11 @@ struct homepageComplete: View {
 //                    Label("Home", systemImage: "pill.fill")
 //                        .padding(.top)
 //                }
-//            appointView()
-//                .tabItem {
-//                    Label("Appointments", systemImage: "folder.fill")
-//                        .padding(.top)
-//                }
+            AppointmentRatingView()
+                .tabItem {
+                    Label("Appointments", systemImage: "folder.fill")
+                        .padding(.top)
+                }
         
             HealthRecordAdd()
                 .tabItem {

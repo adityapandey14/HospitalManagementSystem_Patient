@@ -28,6 +28,7 @@ struct CurrentDepartDoctor: View {
                             doctorUid: detail.doctorId,
                             imageUrl: doctor.profilephoto ?? "www.google.com",
                             doctorDetail: doctor
+                            
                         )
                     } else {
                         Text("Doctor not found")

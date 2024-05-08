@@ -30,6 +30,7 @@
 		4762BFDE2BEA041900845B96 /* MedicineDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFDD2BEA041900845B96 /* MedicineDetail.swift */; };
 		4762BFE02BEA26C800845B96 /* PrescriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFDF2BEA26C800845B96 /* PrescriptionModel.swift */; };
 		485FDF602BD8367A008E620D /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485FDF5F2BD8367A008E620D /* ReviewModel.swift */; };
+		488069C52BEB53E900AA83B4 /* TopFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488069C42BEB53E900AA83B4 /* TopFive.swift */; };
 		48806FF92BE3B180006CF917 /* PatientBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48806FF82BE3B180006CF917 /* PatientBookingView.swift */; };
 		4890D4212BDFA32400EF8750 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4890D4202BDFA32400EF8750 /* Appointment.swift */; };
 		4890D4232BE00C0300EF8750 /* DoctorProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4890D4222BE00C0300EF8750 /* DoctorProfile.swift */; };
@@ -106,6 +107,7 @@
 		4762BFDD2BEA041900845B96 /* MedicineDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicineDetail.swift; sourceTree = "<group>"; };
 		4762BFDF2BEA26C800845B96 /* PrescriptionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescriptionModel.swift; sourceTree = "<group>"; };
 		485FDF5F2BD8367A008E620D /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
+		488069C42BEB53E900AA83B4 /* TopFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFive.swift; sourceTree = "<group>"; };
 		48806FF82BE3B180006CF917 /* PatientBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientBookingView.swift; sourceTree = "<group>"; };
 		4890D4202BDFA32400EF8750 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		4890D4222BE00C0300EF8750 /* DoctorProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorProfile.swift; sourceTree = "<group>"; };
@@ -201,6 +203,14 @@
 				13164F092BEAA995005F1BB8 /* ChiduMedicineView.swift */,
 			);
 			path = MedicineReminder;
+			sourceTree = "<group>";
+		};
+		488069C32BEB53D000AA83B4 /* TopFiveDoctor */ = {
+			isa = PBXGroup;
+			children = (
+				488069C42BEB53E900AA83B4 /* TopFive.swift */,
+			);
+			path = TopFiveDoctor;
 			sourceTree = "<group>";
 		};
 		4890D41F2BDF814A00EF8750 /* Review */ = {
@@ -307,6 +317,7 @@
 				2DBAF23E2BDF6AA300F71240 /* homepageComplete.swift */,
 				DF6B2EC62BD5946C00FAD930 /* Homepage.swift */,
 				13164F072BE9E400005F1BB8 /* ChiduHomepage.swift */,
+				488069C32BEB53D000AA83B4 /* TopFiveDoctor */,
 				4721C95B2BE1588300310CED /* SlotBokking */,
 				84B3D19F2BD7CCAD00FADB4D /* onboardingPage.swift */,
 				2DBAF23C2BDF66FF00F71240 /* HealthDataView.swift */,
@@ -546,6 +557,7 @@
 				DF6B2EAA2BD5898800FAD930 /* User.swift in Sources */,
 				4721C95F2BE159FA00310CED /* SlotBooking.swift in Sources */,
 				DFF2D7BB2BD632CC0087114A /* DepartmentModel.swift in Sources */,
+				488069C52BEB53E900AA83B4 /* TopFive.swift in Sources */,
 				47394C992BD7789600ADB1A4 /* HealthRecordAdd.swift in Sources */,
 				47394C8D2BD6CEBF00ADB1A4 /* ImagePicker.swift in Sources */,
 				4721C9612BE15A3100310CED /* DoctorModel.swift in Sources */,
