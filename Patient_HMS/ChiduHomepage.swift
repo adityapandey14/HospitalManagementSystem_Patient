@@ -7,7 +7,13 @@
 
 import SwiftUI
 import HealthKit
+import FirebaseAuth
+
 struct ChiduHomepage: View {
+    @EnvironmentObject var medviewModel: Medicine_ViewModel
+    @EnvironmentObject var viewModel: AuthViewModel
+    @State private var medicines: [Medicines] = []
+    
     @State private var isVitalsExpanded = false
     var body: some View {
         NavigationStack {
@@ -164,38 +170,21 @@ struct ChiduHomepage: View {
                 .padding(.top, 35)
                 .padding(.horizontal)
                 .padding(.bottom, 10)
-                ScrollView(.horizontal, showsIndicators: false){
-                    HStack(spacing: -15) {
-                        HStack(spacing: 15) {
-                            Image("iconTablet")
-                            VStack(alignment: .leading) {
-                                Text("Zincovit CL")
-                                    .font(.system(size: 15))
-                                Text("2 Tablespoon, After Meal")
-                                    .font(.system(size: 13))
-                                    .foregroundStyle(Color("accentBlue"))
-                            }
-                        }
-                        .padding()
-                        .background(Color(uiColor: .secondarySystemBackground))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .padding(.horizontal)
-                        HStack(spacing: 15) {
-                            Image("iconTablet")
-                            VStack(alignment: .leading) {
-                                Text("Zincovit CL")
-                                    .font(.system(size: 15))
-                                Text("2 Tablespoon, After Meal")
-                                    .font(.system(size: 13))
-                                    .foregroundStyle(Color("accentBlue"))
-                            }
-                        }
-                        .padding()
-                        .background(Color(uiColor: .secondarySystemBackground))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .padding(.horizontal)
-                    }
-                }
+                ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack(spacing: 15) {
+                                            ForEach(medicines) { medicine in
+                                                MedicineCardView(medicine: medicine)
+                                            }
+                                        }
+                                    }
+                .padding()
+                .onAppear {
+                                        let userId = Auth.auth().currentUser?.uid
+                                        medviewModel.getAllMedicines(userid: userId!){
+                                            medicines in
+                                                self.medicines = medicines
+                                        }
+                                    }
                 
                 
                 //Common Concerns
@@ -479,6 +468,27 @@ struct Vital: View {
             }
         }
         healthStore.execute(query)
+    }
+}
+
+struct MedicineCardView: View {
+    let medicine: Medicines // Assuming Medicine is your model
+
+    var body: some View {
+        HStack(spacing: 15) {
+            Image("iconTablet") // Assuming you have an image asset named "iconTablet"
+            VStack(alignment: .leading) {
+                Text(medicine.name)
+                    .font(.system(size: 15))
+                Text(medicine.dosage)
+                    .font(.system(size: 13))
+                    .foregroundStyle(Color("accentBlue")) // Assuming you have a color named "accentBlue"
+            }
+        }
+        .padding()
+        .background(Color(uiColor: .secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        
     }
 }
 

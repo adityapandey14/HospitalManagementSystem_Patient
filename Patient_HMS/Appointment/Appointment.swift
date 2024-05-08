@@ -95,7 +95,8 @@ struct Appointment: View {
                         }
                             
                       
-                    } //End of the scrollView
+                    } 
+                    .foregroundColor(.gray)//End of the scrollView
                    
                     Spacer()
                     Text("Top Doctors")
@@ -257,7 +258,7 @@ struct topDoctorCard : View {
                                 Text("no reviews")
                                     .font(AppFont.smallReg)
                                     .foregroundColor(.myGray)
-                                //                                .padding(.bottom)
+                                    .padding(.bottom)
                             }
                             Spacer()
                         }
