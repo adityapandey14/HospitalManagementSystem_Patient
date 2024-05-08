@@ -23,7 +23,7 @@ struct homepageComplete: View {
 //                }
             AppointmentRatingView()
                 .tabItem {
-                    Label("Appointments", systemImage: "folder.fill")
+                    Label("Rating", systemImage: "folder.fill")
                         .padding(.top)
                 }
         

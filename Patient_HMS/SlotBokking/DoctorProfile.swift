@@ -12,6 +12,8 @@ struct DoctorProfile: View {
     var fullName : String
     var specialist : String
     let doctor: DoctorModel
+    @ObservedObject var reviewViewModel = ReviewViewModel()
+    @State private var isFetching = false
 
     
     var body: some View {
@@ -54,7 +56,7 @@ struct DoctorProfile: View {
                                     .font(AppFont.mediumSemiBold)
                                 Text("\(specialist)")
                                     .font(AppFont.smallReg)
-                                    .foregroundStyle(Color.black).opacity(0.6)
+                                    .foregroundStyle(Color(uiColor: .secondaryLabel)).opacity(0.6)
                                     .padding(.bottom, 0.5)
                             }
                             
@@ -62,20 +64,26 @@ struct DoctorProfile: View {
                         .padding()
                         
                         HStack {
+                            
+   //Fetching review of current user
+                            let reviewsForSkillOwner = reviewViewModel.reviewDetails.filter { $0.doctorId == doctor.id }
+
+                            var reviewCount = reviewViewModel.reviewDetails.filter { $0.doctorId == doctor.id }.count
+                    
                             VStack {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 30)
-                                        .foregroundStyle(Color("solitude"))
+                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground))
                                         .frame(width: 55, height: 55)
                                     Image(systemName: "person.2.fill")
                                         .resizable()
                                         .clipped()
-                                        .frame(width: 35, height: 30)
+                                        .frame(width: 40, height: 30)
+                                        .foregroundColor(.accentBlue)
                                         .cornerRadius(50)
-//                                        .padding(.trailing, 5)
                                         .foregroundStyle(Color.myGray)
                                 }
-                                Text("+ 100")
+                                Text("\(reviewCount)")
                                 Text("Patients")
                             }
                             
@@ -83,41 +91,59 @@ struct DoctorProfile: View {
                             VStack {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 30)
-                                        .foregroundStyle(Color("solitude"))
+                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground))
                                         .frame(width: 55, height: 55)
                                     Image(systemName: "star.fill")
                                         .resizable()
                                         .clipped()
                                         .frame(width: 30, height: 30)
                                         .cornerRadius(50)
+                                        .foregroundColor(.accentBlue)
 //                                        .padding(.trailing, 5)
                                         .foregroundStyle(Color("myGray"))
                                 }
-                                Text("4.5")
-                                Text("Rating")
-                            }
+                                if !reviewsForSkillOwner.isEmpty {
+                                    //Calculating Average of the doctor
+                                    let averageRating = reviewsForSkillOwner.reduce(0.0) { $0 + Double($1.ratingStar) } / Double(reviewsForSkillOwner.count)
+                            
+                                    Text("\(averageRating, specifier: "%.1f") ⭐️")
+                                        .font(AppFont.smallReg)
+                            
+                                    Text("\(reviewsForSkillOwner.count) Review\(reviewsForSkillOwner.count == 1 ? "" : "s")")
+                                        .font(AppFont.smallReg)
+                                } else {
+                                    Text("no")
+                                    Text("reviews")
+                    
+                                } //else
+                           
+                            }//VStack
                             
                             Spacer()
                             VStack {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 30)
-                                        .foregroundStyle(Color("solitude"))
+                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground))
                                         .frame(width: 55, height: 55)
                                     Image(systemName: "arrow.up.right.bottomleft.rectangle.fill")
                                         .resizable()
                                         .clipped()
                                         .frame(width: 30, height: 30)
+                                        .foregroundColor(.accentBlue)
                                         .cornerRadius(50)
 //                                        .padding(.trailing, 5)
                                         .foregroundColor(.myGray)
                                 }
-                                Text("16 years")
+                                Text(doctor.experience)
                                 Text("Experience")
                             }
                             
                             
                         }
                         .padding()
+                        .onAppear() {
+                            reviewViewModel.fetchReviewDetail()
+                            }
                         
                         
 //                        Text("Select Schedule")
@@ -139,11 +165,7 @@ struct DoctorProfile: View {
                 } // End of Scroll View
                 .navigationTitle("Book Appointment")
             } //End of VStack
-            .background(
-                LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
-                    .edgesIgnoringSafeArea(.all)
-                
-            )
+            .background(Color.clear)
          
             
         } //End of the navigation Stack
