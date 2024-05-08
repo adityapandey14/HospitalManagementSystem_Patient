@@ -255,9 +255,7 @@ struct ProfileView: View {
                             }
 
                             
-                            Button {
-                                
-                            } label :{
+                            NavigationLink(destination: HealthRecordAdd()) {
                                 Image(systemName: "doc.fill")
                                     .resizable()
                                     .frame(width: 18, height: 20)
@@ -268,7 +266,7 @@ struct ProfileView: View {
                                 Image(systemName: "chevron.right")
                                     .offset(x: 32)
                             }
-                            .offset(y: 2)
+//                            .offset(y: 2)
                             .foregroundColor(.midNightExpress)
 
                             
