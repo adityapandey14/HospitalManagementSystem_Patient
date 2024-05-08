@@ -26,15 +26,15 @@ struct TimeButton: View {
             }
         }) {
             RoundedRectangle(cornerRadius: 15)
-                .fill(isBooked ? Color.gray.opacity(0.5) : (isSelected ? Color.blue : Color.white))
+                .fill(isBooked ? Color.gray.opacity(0.5) : (isSelected ? Color.midNightExpress : Color.white))
                 .overlay(
                     Text(time)
                         .font(.headline)
-                        .foregroundColor(isBooked ? .gray : (isSelected ? .white : .blue))
+                        .foregroundColor(isBooked ? .gray : (isSelected ? .white : .midNightExpress))
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
-                        .stroke(isBooked ? Color.gray : Color.blue, lineWidth: 2)
+                        .stroke(isBooked ? Color.gray : Color.white)
                 )
                 .opacity(isBooked ? 0.5 : 1.0)
                 .disabled(isBooked)  // Disable if booked
@@ -42,14 +42,21 @@ struct TimeButton: View {
         .frame(width: 90, height: 50)  // Set the size of the button
     }
 }
-
+struct DayDateInfo {
+    let date: String
+    let day: String
+}
 struct SlotBookView: View {
     let doctor: DoctorModel
     let times = ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 AM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"]
     @State private var showConfirmationAlert = false
     
-    @State private var selectedDate = Date()
+    @State var selectedDateIndex: Int = 0
+    var selectedDate: Date {
+        return Calendar.current.date(byAdding: .day, value: selectedDateIndex, to: Date())!
+    }
     @State private var bookedSlots: [String] = []
+    @State var dayDate: [DayDateInfo] = []
     @State private var selectedSlot: String? = nil
     @State private var text: String = ""
     
@@ -57,11 +64,26 @@ struct SlotBookView: View {
     
     var body: some View {
         VStack {
-            DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
-                .padding()
-                .onChange(of: selectedDate) { _ in
-                    fetchBookedSlots()  // Fetch slots when date changes
+            
+            Text("Select Schedule")
+                .font(.headline)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 20) {
+                    ForEach(dayDate.indices, id: \.self) { index in
+                        DateView(dateInfo: dayDate[index], isSelected: selectedDateIndex == index) {
+                            selectedDateIndex = index
+                        }
+                    }
                 }
+                .padding()
+            }
+            
+//            DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
+//                .padding()
+//                .onChange(of: selectedDate) { _ in
+//                    fetchBookedSlots()  // Fetch slots when date changes
+//                }
             
             Text("Available Slots")
                 .font(.headline)
@@ -105,6 +127,7 @@ struct SlotBookView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                     .frame(width: 390)
+                    .cornerRadius(10)
             }
             Button("Book Appointment") {
                 if let selectedSlot = selectedSlot {
@@ -113,7 +136,7 @@ struct SlotBookView: View {
                 }
             }
             .padding()
-            .background(Color.blue)
+            .background(Color.accentBlue)
             .foregroundColor(.white)
             .cornerRadius(10)
             .disabled(selectedSlot == nil)  // Disable if no slot is selected
@@ -127,7 +150,24 @@ struct SlotBookView: View {
             
         }
         .onAppear {
+            getDaysOfWeek()
             fetchBookedSlots()  // Fetch initial data
+        }
+    }
+    func getDaysOfWeek() {
+        let calendar = Calendar.current
+        let todayDate = Date()
+        
+        for dayOffset in 0..<7 {
+            if let date = calendar.date(byAdding: .day, value: dayOffset, to: todayDate) {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "d"
+                let dateFormatted = dateFormatter.string(from: date)
+                dateFormatter.dateFormat = "EE"
+                let dayFormatted = dateFormatter.string(from: date)
+                let dayDateInfo = DayDateInfo(date: dateFormatted, day: dayFormatted)
+                self.dayDate.append(dayDateInfo)
+            }
         }
     }
     
@@ -174,7 +214,7 @@ struct SlotBookView: View {
 
 
 struct SlotBookView_Previews: PreviewProvider {
-    static var previews: SlotBookView {
+    static var previews: some View {
         let dummyDoctor = DoctorModel(
             id: "1",
             fullName: "Dr. Jane Doe",
@@ -197,6 +237,35 @@ struct SlotBookView_Previews: PreviewProvider {
 }
 
 
+struct DateView: View {
+    let dateInfo: DayDateInfo
+    let isSelected: Bool
+    let onTap: () -> Void
+    
+    var body: some View {
+        VStack {
+            VStack{
+                Text(dateInfo.day)
+                Text(dateInfo.date)
+            }
+            .padding(18)
+            .background(isSelected ? Color(.midNightExpress) : Color(uiColor: .secondarySystemBackground))
+            .clipShape(Rectangle())
+            .cornerRadius(10)
+            .foregroundColor(isSelected ? .white : .primary)
+            .onTapGesture {
+                onTap()
+            }
+            
+            if isSelected {
+                Rectangle()
+                    .fill(Color("paleBlue"))
+                    .frame(width: 8, height: 8)
+                    .padding(.top, -6)
+            }
+        }
+    }
+}
 
 
 

@@ -12,6 +12,8 @@ struct DoctorProfile: View {
     var fullName : String
     var specialist : String
     let doctor: DoctorModel
+    @ObservedObject var reviewViewModel = ReviewViewModel()
+    @State private var isFetching = false
 
     
     var body: some View {
@@ -62,6 +64,12 @@ struct DoctorProfile: View {
                         .padding()
                         
                         HStack {
+                            
+   //Fetching review of current user
+                            let reviewsForSkillOwner = reviewViewModel.reviewDetails.filter { $0.doctorId == doctor.id }
+
+                            var reviewCount = reviewViewModel.reviewDetails.filter { $0.doctorId == doctor.id }.count
+                    
                             VStack {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 30)
@@ -75,7 +83,7 @@ struct DoctorProfile: View {
 //                                        .padding(.trailing, 5)
                                         .foregroundStyle(Color.myGray)
                                 }
-                                Text("+ 100")
+                                Text("\(reviewCount)")
                                 Text("Patients")
                             }
                             
@@ -93,9 +101,23 @@ struct DoctorProfile: View {
 //                                        .padding(.trailing, 5)
                                         .foregroundStyle(Color("myGray"))
                                 }
-                                Text("4.5")
-                                Text("Rating")
-                            }
+                                if !reviewsForSkillOwner.isEmpty {
+                                    //Calculating Average of the doctor
+                                    let averageRating = reviewsForSkillOwner.reduce(0.0) { $0 + Double($1.ratingStar) } / Double(reviewsForSkillOwner.count)
+                            
+                                    Text("\(averageRating, specifier: "%.1f") ⭐️")
+                                        .font(AppFont.smallReg)
+                            
+                                    Text("\(reviewsForSkillOwner.count) Review\(reviewsForSkillOwner.count == 1 ? "" : "s")")
+                                        .font(AppFont.smallReg)
+                                } else {
+                                    Text("no reviews")
+                                        .font(AppFont.smallReg)
+                                      
+                    
+                                } //else
+                           
+                            }//VStack
                             
                             Spacer()
                             VStack {
@@ -111,13 +133,16 @@ struct DoctorProfile: View {
 //                                        .padding(.trailing, 5)
                                         .foregroundColor(.myGray)
                                 }
-                                Text("16 years")
+                                Text(doctor.experience)
                                 Text("Experience")
                             }
                             
                             
                         }
                         .padding()
+                        .onAppear() {
+                            reviewViewModel.fetchReviewDetail()
+                            }
                         
                         
 //                        Text("Select Schedule")
@@ -139,11 +164,7 @@ struct DoctorProfile: View {
                 } // End of Scroll View
                 .navigationTitle("Book Appointment")
             } //End of VStack
-            .background(
-                LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
-                    .edgesIgnoringSafeArea(.all)
-                
-            )
+            .background(Color.clear)
          
             
         } //End of the navigation Stack
