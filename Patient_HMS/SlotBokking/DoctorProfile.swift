@@ -78,13 +78,12 @@ struct DoctorProfile: View {
                                     Image(systemName: "person.2.fill")
                                         .resizable()
                                         .clipped()
-                                        .frame(width: 35, height: 30)
+                                        .frame(width: 30, height: 30)
                                         .cornerRadius(50)
 //                                        .padding(.trailing, 5)
                                         .foregroundStyle(Color.myGray)
                                 }
-                                Text("\(reviewCount)")
-                                Text("Patients")
+                                Text("\(reviewCount) Patients")
                             }
                             
                             Spacer()
