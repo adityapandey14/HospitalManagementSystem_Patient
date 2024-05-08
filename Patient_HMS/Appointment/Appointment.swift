@@ -108,6 +108,7 @@ struct Appointment: View {
                                     }
                                 }
                             }
+                            .frame(minWidth: 300, minHeight: 180)
                         }
                     }
                     .navigationTitle("Search Doctors")
@@ -115,6 +116,7 @@ struct Appointment: View {
                     Text("Select Departments")
                         .foregroundStyle(Color.myGray)
                         .padding(.leading)
+                        .padding(.top)
                    
                     ScrollView(.horizontal) {
                         
