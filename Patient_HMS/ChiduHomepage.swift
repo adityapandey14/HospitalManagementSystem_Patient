@@ -483,7 +483,7 @@ struct MedicineCardView: View {
             }
             Spacer()
         }
-        .frame(width: 200)
+        .frame(width: 180)
         .padding()
         .background(Color(uiColor: .secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))
