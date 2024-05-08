@@ -14,7 +14,7 @@ struct ChiduHomepage: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var medicines: [Medicines] = []
     @ObservedObject var appointViewModel = AppointmentViewModel()
-
+    @State private var greeting: String = ""
     
     @State private var isVitalsExpanded = false
     let currentUserId = Auth.auth().currentUser?.uid
@@ -277,8 +277,26 @@ struct ChiduHomepage: View {
         }
         .onAppear(){
             profileViewModel.fetchProfile(userId: Auth.auth().currentUser?.uid)
+            
+            
         }
+        
     }
+    private func updateGreeting() {
+            let date = Date()
+            let calendar = Calendar.current
+            let hour = calendar.component(.hour, from: date)
+            print(hour)
+            if hour >= 6 && hour < 12 {
+                greeting = "Good Morning"
+            } else if hour >= 12 && hour < 18 {
+                greeting = "Good Afternoon"
+            } else if hour >= 18 && hour < 22 {
+                greeting = "Good Evening"
+            } else {
+                greeting = "Time to sleep"
+            }
+        }
 }
 
 
