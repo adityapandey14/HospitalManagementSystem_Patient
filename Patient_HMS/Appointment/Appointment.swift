@@ -190,6 +190,7 @@ struct topDoctorCard : View {
     var specialist : String
     var doctorUid : String
     var imageUrl : String
+    var id : String
     var doctorDetail : DoctorModel
     @ObservedObject var reviewViewModel = ReviewViewModel()
     @ObservedObject var doctorViewModel = DoctorViewModel.shared
@@ -197,6 +198,7 @@ struct topDoctorCard : View {
     @State private var isCopied = false
 
     var body: some View {
+        
         NavigationLink(destination : DoctorProfile(imageUrl: imageUrl, fullName: fullName, specialist: specialist, doctor: doctorDetail)) {
             VStack(alignment: .leading) {
                 HStack {
@@ -238,35 +240,34 @@ struct topDoctorCard : View {
                             .padding(.bottom, 0.5)
                         
                         
-                        //reviews
+                                               //reviews
                         
                         
                         HStack{
-                            let reviewsForDoctor = reviewViewModel.reviewDetails.filter { $0.doctorId == doctorUid}
-                            
-                            if !reviewsForDoctor.isEmpty {
-                                let averageRating = reviewsForDoctor.reduce(0.0) { $0 + Double($1.ratingStar) } / Double(reviewsForDoctor.count)
-                                
-                                Text("⭐️ \(averageRating, specifier: "%.1f ") |")
+                            let reviewsForSkillOwner = reviewViewModel.reviewDetails.filter { $0.doctorId == "\(doctorDetail.id)" }
+                            if !reviewsForSkillOwner.isEmpty {
+                                //Calculating Average of the doctor
+                                let averageRating = reviewsForSkillOwner.reduce(0.0) { $0 + Double($1.ratingStar) } / Double(reviewsForSkillOwner.count)
+                        
+                                Text("\(averageRating, specifier: "%.1f") ⭐️")
                                     .font(AppFont.smallReg)
-                                    .foregroundColor(.myGray)
-                                
-                                Text("\(reviewsForDoctor.count) Review\(reviewsForDoctor.count == 1 ? "" : "s")")
+                        
+                                Text("\(reviewsForSkillOwner.count) Review\(reviewsForSkillOwner.count == 1 ? "" : "s")")
                                     .font(AppFont.smallReg)
-                                    .foregroundStyle(.myGray)
                             } else {
                                 Text("no reviews")
                                     .font(AppFont.smallReg)
-                                    .foregroundColor(.myGray)
-                                    .padding(.bottom)
+                                    .foregroundColor(.black).opacity(0.3)
+                
                             }
                             Spacer()
                         }
-                        .padding(.bottom, 4)
+                        .padding()
                         .font(AppFont.smallReg)
-                        .onAppear() {
-                            ReviewViewModel().fetchReviewDetail()
+                        .onAppear(){
+                            reviewViewModel.fetchReviewDetailByDoctorId(doctorId: doctorDetail.id)
                         }
+                        
                         
                     }
                     
@@ -281,6 +282,9 @@ struct topDoctorCard : View {
             .cornerRadius(10)
             .padding(.horizontal,20)
         }
+        .onAppear() {
+            reviewViewModel.fetchReviewDetail()
+            }
         
     }
 }

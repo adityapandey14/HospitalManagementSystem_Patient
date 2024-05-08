@@ -160,8 +160,8 @@ struct ChiduHomepage: View {
 //                .padding(.top, 35)
 //                .padding(.horizontal)
 //                .padding(.bottom, 10)
-                //Today's Medicines
                 
+                //Today's Medicines
                 HStack {
                     Text("Today's Medicines")
                         .font(.system(size: 17))
@@ -180,20 +180,20 @@ struct ChiduHomepage: View {
                 .padding(.horizontal)
                 .padding(.bottom, 10)
                 ScrollView(.horizontal, showsIndicators: false) {
-                                        HStack(spacing: 15) {
-                                            ForEach(medicines) { medicine in
-                                                MedicineCardView(medicine: medicine)
-                                            }
-                                        }
-                                    }
+                    HStack(spacing: 15) {
+                        ForEach(medicines) { medicine in
+                            MedicineCardView(medicine: medicine)
+                        }
+                    }
+                }
                 .padding()
                 .onAppear {
-                                        let userId = Auth.auth().currentUser?.uid
-                                        medviewModel.getAllMedicines(userid: userId!){
-                                            medicines in
-                                                self.medicines = medicines
-                                        }
-                                    }
+                    let userId = Auth.auth().currentUser?.uid
+                    medviewModel.getTodayMedicines(userid: userId!){
+                        medicines in
+                        self.medicines = medicines
+                    }
+                }
                 
                 
                 //Common Concerns
@@ -500,7 +500,9 @@ struct MedicineCardView: View {
                     .font(.system(size: 13))
                     .foregroundStyle(Color("accentBlue")) // Assuming you have a color named "accentBlue"
             }
+            Spacer()
         }
+        .frame(width: 180)
         .padding()
         .background(Color(uiColor: .secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -512,4 +514,6 @@ struct MedicineCardView: View {
 #Preview {
     ChiduHomepage()
         .environmentObject(PatientViewModel())
+        .environmentObject(AuthViewModel())
+        .environmentObject(Medicine_ViewModel())
 }

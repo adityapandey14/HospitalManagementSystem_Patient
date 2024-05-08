@@ -64,6 +64,38 @@ class Medicine_ViewModel: ObservableObject {
             completion(medicines)
         }
     }
+    
+    func getTodayMedicines(userid: String, completion: @escaping ([Medicines]) -> Void) {
+        let collectionRef = db.collection("medicines/\(userid)/userMedicines")
+
+        collectionRef.getDocuments { snapshot, error in
+            guard let snapshot = snapshot, error == nil else {
+                print("Error retrieving medicines: \(error?.localizedDescription ?? "")")
+                completion([])
+                return
+            }
+
+            let medicines = snapshot.documents.compactMap { document -> Medicines? in
+                guard let medicineData = try? document.data(as: Medicines.self) else {
+                    // Failed to parse medicine data
+                    return nil
+                }
+
+                // Check if today's date is within the start and end date range
+                let currentDate = Date()
+                if currentDate >= medicineData.startDate && currentDate <= medicineData.endDate {
+                    return medicineData
+                } else {
+                    return nil
+                }
+            }
+            completion(medicines)
+        }
+    }
+
+
+
+
 
 }
 
