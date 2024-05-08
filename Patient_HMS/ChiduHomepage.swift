@@ -13,9 +13,11 @@ struct ChiduHomepage: View {
     @EnvironmentObject var medviewModel: Medicine_ViewModel
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var medicines: [Medicines] = []
+    @ObservedObject var appointViewModel = AppointmentViewModel()
+
     
     @State private var isVitalsExpanded = false
-    
+    let currentUserId = Auth.auth().currentUser?.uid
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var profileViewModel:PatientViewModel
     
@@ -70,73 +72,55 @@ struct ChiduHomepage: View {
                 .padding(.bottom, 10)
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack(spacing: -15) {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 20){
-                                VStack(alignment: .leading, spacing: 6) {
-                                    Text("Dr. Lorem Ipsum")
-                                        .font(.system(size: 17))
-                                    Text("Cardiologist")
-                                        .font(.system(size: 15))
-                                        .foregroundStyle(Color("accentBlue"))
-                                }
-                                
-                                VStack(spacing: 10){
-                                    HStack(spacing: 10) {
-                                        Image(systemName: "calendar")
-                                            .font(.system(size: 21))
-                                        Text("24th April 2024")
-                                            .font(.system(size: 15))
-                                        Spacer()
-                                    }
-                                    HStack(spacing: 10){
-                                        Image(systemName: "clock")
-                                            .font(.system(size: 21))
-                                        Text("02:30 PM - 03:00 PM")
-                                            .font(.system(size: 15))
-                                        Spacer()
-                                    }
-                                }
+                        
+                        LazyHStack() {
+                            ForEach(appointViewModel.appointments.filter { $0.patientID == currentUserId }) { appointment in
+                                HStack(alignment: .top) {
+                                    AppointmentCard(appointment: appointment)
+                                } //End of Horizontal Stack
                             }
                         }
-                        .padding()
-                        .frame(minWidth: 320)
-                        .background(Color(uiColor: .secondarySystemBackground))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .padding(.horizontal)
-                        HStack {
-                            VStack(alignment: .leading, spacing: 20){
-                                VStack(alignment: .leading, spacing: 6) {
-                                    Text("Dr. Lorem Ipsum")
-                                        .font(.system(size: 17))
-                                    Text("Cardiologist")
-                                        .font(.system(size: 15))
-                                        .foregroundStyle(Color("accentBlue"))
-                                }
-                                
-                                VStack(spacing: 10){
-                                    HStack(spacing: 10) {
-                                        Image(systemName: "calendar")
-                                            .font(.system(size: 21))
-                                        Text("24th April 2024")
-                                        Spacer()
-                                    }
-                                    HStack(spacing: 10){
-                                        Image(systemName: "clock")
-                                            .font(.system(size: 21))
-                                        Text("02:30 PM - 03:00 PM")
-                                        Spacer()
-                                    }
-                                }
-                            }
-                        }
-                        .padding()
-                        .frame(minWidth: 320)
-                        .background(Color(uiColor: .secondarySystemBackground))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .padding(.horizontal)
+//                        HStack {
+//                            VStack(alignment: .leading, spacing: 20){
+//                                VStack(alignment: .leading, spacing: 6) {
+//                                    Text("Dr. Lorem Ipsum")
+//                                        .font(.system(size: 17))
+//                                    Text("Cardiologist")
+//                                        .font(.system(size: 15))
+//                                        .foregroundStyle(Color("accentBlue"))
+//                                }
+//                                
+//                                VStack(spacing: 10){
+//                                    HStack(spacing: 10) {
+//                                        Image(systemName: "calendar")
+//                                            .font(.system(size: 21))
+//                                        Text("24th April 2024")
+//                                        Spacer()
+//                                    }
+//                                    HStack(spacing: 10){
+//                                        Image(systemName: "clock")
+//                                            .font(.system(size: 21))
+//                                        Text("02:30 PM - 03:00 PM")
+//                                        Spacer()
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        .padding()
+//                        .frame(minWidth: 320)
+//                        .background(Color(uiColor: .secondarySystemBackground))
+//                        .clipShape(RoundedRectangle(cornerRadius: 10))
+//                        .padding(.horizontal)
                     }
                 }
-                
+                .onAppear {
+//                    let date = Date()
+//                    let dateFormatter = DateFormatter()
+//                    dateFormatter.dateFormat = "MMM, yyyy"
+//                    currentDateMonth = dateFormatter.string(from: date)
+//                    getDaysOfWeek()
+                    appointViewModel.fetchAppointments() // Fetch appointments when the view appears
+                }
                 
 //                HStack {
 //                    Text("My Apointments")
@@ -283,6 +267,9 @@ struct ChiduHomepage: View {
             
             
         }
+        .onAppear(){
+            profileViewModel.fetchProfile(userId: Auth.auth().currentUser?.uid)
+        }
     }
 }
 
@@ -348,6 +335,8 @@ struct Vital: View {
 //////            }
 ////        }
 //    }
+
+
     
     private var vitalsView: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -492,9 +481,90 @@ struct MedicineCardView: View {
     }
 }
 
-#Preview {
-    ChiduHomepage()
-        .environmentObject(PatientViewModel())
-        .environmentObject(AuthViewModel())
-        .environmentObject(Medicine_ViewModel())
+//#Preview {
+//    ChiduHomepage()
+//        .environmentObject(PatientViewModel())
+//        .environmentObject(AuthViewModel())
+//        .environmentObject(Medicine_ViewModel())
+//}
+
+
+struct AppointmentCard: View {
+    let appointment: AppointmentModel
+    @StateObject var doctorViewModel = DoctorViewModel.shared
+    @State private var doctorName: String = "Unknown"
+    
+    var body: some View {
+        
+        
+        HStack {
+            VStack(alignment: .leading, spacing: 20){
+                VStack(alignment: .leading, spacing: 6) {
+                    if let doctor = doctorViewModel.doctorDetails.first(where: { $0.id == appointment.doctorID }) {
+                        HStack{
+                            Text(doctor.fullName)
+                                .font(.system(size: 17))
+                            Spacer()
+                        }
+                        
+                        Text(doctor.department)
+                            .font(.system(size: 15))
+                            .foregroundStyle(Color("accentBlue"))
+
+                    } else {
+                        Text("Loading...")
+                            .font(.system(size: 18))
+                            .onAppear {
+                                Task {
+                                    await doctorViewModel.fetchDoctorDetailsByID(doctorID: appointment.patientID)
+                            }
+                        }
+                    }
+                }
+                
+                VStack(spacing: 10){
+                    HStack(spacing: 10) {
+                        Image(systemName: "calendar")
+                            .font(.system(size: 21))
+                        Text(appointment.date)
+                            .font(.system(size: 15))
+                        Spacer()
+                    }
+                    HStack(spacing: 10){
+                        Image(systemName: "clock")
+                            .font(.system(size: 21))
+                        Text(appointment.timeSlot)
+                            .font(.system(size: 15))
+                        Spacer()
+                    }
+                }
+            }
+        }
+        .padding()
+        .frame(minWidth: 320)
+        .background(Color(uiColor: .secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .padding(.horizontal)
+    }
+    
+    func calculateAge(from dob: Date) -> String {
+        let now = Date()
+        let calendar = Calendar.current
+        
+        let ageComponents = calendar.dateComponents([.year, .month, .day, .hour], from: dob, to: now)
+        
+        if let years = ageComponents.year, years > 0 {
+            return "\(years) year\(years == 1 ? "" : "s")"
+        } else if let months = ageComponents.month, months > 0 {
+            return "\(months) month\(months == 1 ? "" : "s")"
+        } else if let days = ageComponents.day, days > 0 {
+            return "\(days) day\(days == 1 ? "" : "s")"
+        } else if let hours = ageComponents.hour, hours > 0 {
+            return "\(hours) hour\(hours == 1 ? "" : "s")"
+        } else {
+            return "0"
+        }
+    }
+
+
 }

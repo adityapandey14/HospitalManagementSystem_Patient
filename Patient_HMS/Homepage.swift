@@ -12,6 +12,7 @@ struct Homepage: View {
     @State private var selectedConcernIndex = 0
     @State private var isVitalsExpanded = false
     
+    
     let commonConcerns = ["Concern 1", "Concern 2", "Concern 3", "Concern 4", "Concern 5"]
     
     var body: some View {
