@@ -16,7 +16,7 @@ struct ChiduHomepage: View {
     @ObservedObject var appointViewModel = AppointmentViewModel()
     @State private var greeting: String = ""
     
-    @State private var isVitalsExpanded = false
+    @State private var isVitalsExpanded = true
     let currentUserId = Auth.auth().currentUser?.uid
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var profileViewModel:PatientViewModel
@@ -43,11 +43,13 @@ struct ChiduHomepage: View {
                     }
                     Spacer()
                     Button(action: {
-                            withAnimation {
-                                isVitalsExpanded.toggle()
-                            }
+//                            withAnimation {
+//                                isVitalsExpanded.toggle()
+//                            }
                     }, label: {
-                        Image(systemName: "doc.text.below.ecg")
+//                        Image(systemName: "doc.text.below.ecg")
+                        Image(systemName: "doc.text")
+                            .foregroundStyle(Color.accentBlue)
                             .font(.title)
                     })
                     
@@ -77,13 +79,13 @@ struct ChiduHomepage: View {
                 }
                 .padding(.top, isVitalsExpanded ? 0 : 30)
                 .padding(.horizontal)
-                .padding(.bottom, 10)
+//                .padding(.bottom)
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack() {
                         
-                        LazyHStack(spacing: -20) {
+                        LazyHStack(spacing: -15) {
                             ForEach(appointViewModel.appointments.filter { $0.patientID == currentUserId }) { appointment in
-                                HStack(alignment: .top) {
+                                HStack(alignment: .center) {
                                     AppointmentCard(appointment: appointment)
                                 } //End of Horizontal Stack
                             }
@@ -158,9 +160,9 @@ struct ChiduHomepage: View {
                             .foregroundStyle(Color.asparagus)
                     }
                 }
-                .padding(.top, 35)
+                .padding(.top, 30)
                 .padding(.horizontal)
-                .padding(.bottom, -5)
+//                .padding(.bottom)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
                         ForEach(medicines) { medicine in
@@ -168,7 +170,7 @@ struct ChiduHomepage: View {
                         }
                     }
                 }
-                .padding()
+                .padding(.horizontal)
                 .onAppear {
                     let userId = Auth.auth().currentUser?.uid
                     medviewModel.getTodayMedicines(userid: userId!){
@@ -185,9 +187,9 @@ struct ChiduHomepage: View {
                         .foregroundStyle(Color(uiColor: .secondaryLabel))
                     Spacer()
                 }
-                .padding(.top, 35)
+                .padding(.top, 30)
                 .padding(.horizontal)
-                .padding(.bottom, 10)
+//                .padding(.bottom)
                 HStack(spacing: 20) {
                     VStack {
                         ZStack {
@@ -289,9 +291,9 @@ struct ChiduHomepage: View {
             print(hour)
             if hour >= 6 && hour < 12 {
                 greeting = "Good Morning"
-            } else if hour >= 12 && hour < 18 {
+            } else if hour >= 12 && hour < 17 {
                 greeting = "Good Afternoon"
-            } else if hour >= 18 && hour < 22 {
+            } else if hour >= 17 && hour < 22 {
                 greeting = "Good Evening"
             } else {
                 greeting = "Time to sleep"
@@ -369,15 +371,17 @@ struct Vital: View {
     private var vitalsView: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Your vitals")
-//                .font(.title)
-//                .padding()
-                .font(.system(size: 20))
+                .font(.system(size: 17))
+                .foregroundStyle(Color(uiColor: .secondaryLabel))
             HStack {
                 HealthDataView(imageName: "heart.fill", value: heartRate ?? 0, unit: "bpm", imageColor: .red)
                 HealthDataView(imageName: "waveform.path.ecg", value: bloodOxygen ?? 0, unit: "%", imageColor: .blue)
                 HealthDataView(imageName: "powersleep", value: steps ?? 0, unit: "", imageColor: .purple)
                 HealthDataView(imageName: "figure.walk", value: sleepHours ?? 0, unit: "hrs", imageColor: .green)
             }
+            .padding(.vertical)
+            .background(Color(uiColor: .secondarySystemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
             
 //            Spacer()
         }
@@ -524,16 +528,14 @@ struct AppointmentCard: View {
                                 AsyncImage(url: imageUrl) { image in
                                     image
                                         .resizable()
-                                        .frame(width: 50, height: 50) // Square shape with equal width and height
-                                        .foregroundColor(.gray) // Optional color
-//                                            .padding(.trailing, 5)
+                                        .frame(width: 50, height: 50)
+                                        .foregroundColor(.gray)
                                         .clipShape(RoundedRectangle(cornerRadius: 5))
                                 } placeholder: {
                                     Image(systemName: "person.fill")
                                         .resizable()
                                         .frame(width: 50, height: 50)
                                         .foregroundColor(.gray)
-//                                            .padding(.trailing, 5)
                                         .clipShape(RoundedRectangle(cornerRadius: 5))
                                     
                                 }
@@ -544,7 +546,6 @@ struct AppointmentCard: View {
                                     .resizable()
                                     .frame(width: 50, height: 50)
                                     .foregroundColor(.gray)
-//                                        .padding(.trailing, 5)
                                     .clipShape(RoundedRectangle(cornerRadius: 5))
                                 
                             }
@@ -582,7 +583,7 @@ struct AppointmentCard: View {
                     }
                     Spacer()
                     HStack {
-                        Image(systemName: "clock")
+                        Image(systemName: "clock.fill")
                             .foregroundStyle(Color.accentBlue)
                             .font(.system(size: 18))
                         Text(appointment.timeSlot)
@@ -590,8 +591,7 @@ struct AppointmentCard: View {
                     }
                 }
                 .padding()
-//                .background(Color.accentBlue.opacity(0.4))
-                .background(Color(uiColor: .tertiarySystemFill))
+                .background(Color.accentBlue.opacity(0.1))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
 //                VStack(spacing: 10){
