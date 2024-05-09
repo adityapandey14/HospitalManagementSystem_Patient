@@ -84,7 +84,9 @@ struct ChiduHomepage: View {
                     HStack() {
                         
                         LazyHStack(spacing: -15) {
-                            ForEach(appointViewModel.appointments.filter { $0.patientID == currentUserId && $0.isComplete == false }) { appointment in
+                            ForEach(appointViewModel.appointments.filter {
+                                                          (  $0.patientID == currentUserId) && (Date() <= returnInDate(dateTime: $0.date, timeString: $0.timeSlot))
+                                                        }) { appointment in
                                 HStack(alignment: .center) {
                                     AppointmentCard(appointment: appointment)
                                 } //End of Horizontal Stack
@@ -637,6 +639,12 @@ struct AppointmentCard: View {
             return "0"
         }
     }
+}
 
-
+func returnInDate(dateTime: String, timeString: String) -> Date {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd/MM/yyyy h:mm a" // Adjusted date format to match the incoming format
+    
+    let finalDate = "\(dateTime) \(timeString)"
+    return dateFormatter.date(from: finalDate) ?? Date()
 }
