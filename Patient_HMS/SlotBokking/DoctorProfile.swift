@@ -71,49 +71,53 @@ struct DoctorProfile: View {
                             var reviewCount = reviewViewModel.reviewDetails.filter { $0.doctorId == doctor.id }.count
                     
                             VStack {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 30)
-                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground))
-                                        .frame(width: 55, height: 55)
-                                    Image(systemName: "person.2.fill")
-                                        .resizable()
-                                        .clipped()
-                                        .frame(width: 40, height: 30)
-                                        .foregroundColor(.accentBlue)
-                                        .cornerRadius(50)
-                                        .foregroundStyle(Color.myGray)
+                                Image(systemName: "person.2.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30)
+                                    .foregroundColor(.accentBlue)
+                                    .padding()
+                                    .background(Color(uiColor: .secondarySystemBackground))
+                                    .clipShape(Circle())
+                                VStack() {
+                                    Text("\(reviewCount)")
+                                        .font(.system(size: 17))
+                                    Text("Patients")
+                                        .font(.system(size: 15))
+                                        .fontWeight(.light)
                                 }
-                                Text("\(reviewCount)")
-                                Text("Patients")
                             }
                             
                             Spacer()
                             VStack {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 30)
-                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground))
-                                        .frame(width: 55, height: 55)
-                                    Image(systemName: "star.fill")
-                                        .resizable()
-                                        .clipped()
-                                        .frame(width: 30, height: 30)
-                                        .cornerRadius(50)
-                                        .foregroundColor(.accentBlue)
-//                                        .padding(.trailing, 5)
-                                        .foregroundStyle(Color("myGray"))
-                                }
+                                Image(systemName: "star.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 23)
+                                    .foregroundColor(.accentBlue)
+                                    .padding()
+                                    .background(Color(uiColor: .secondarySystemBackground))
+                                    .clipShape(Circle())
+
                                 if !reviewsForSkillOwner.isEmpty {
                                     //Calculating Average of the doctor
                                     let averageRating = reviewsForSkillOwner.reduce(0.0) { $0 + Double($1.ratingStar) } / Double(reviewsForSkillOwner.count)
                             
-                                    Text("\(averageRating, specifier: "%.1f") ⭐️")
-                                        .font(AppFont.smallReg)
-                            
-                                    Text("\(reviewsForSkillOwner.count) Review\(reviewsForSkillOwner.count == 1 ? "" : "s")")
-                                        .font(AppFont.smallReg)
+                                    VStack{
+                                        Text("\(averageRating, specifier: "%.1f") ⭐️")
+                                            .font(.system(size: 17))
+                                
+                                        Text("\(reviewsForSkillOwner.count) Review\(reviewsForSkillOwner.count == 1 ? "" : "s")")
+                                            .font(.system(size: 15))
+                                            .fontWeight(.light)
+                                    }
                                 } else {
-                                    Text("no")
-                                    Text("reviews")
+                                    VStack{
+                                        Text("no")
+                                        Text("reviews")
+                                            .font(.system(size: 15))
+                                            .fontWeight(.light)
+                                    }
                     
                                 } //else
                            
@@ -121,25 +125,26 @@ struct DoctorProfile: View {
                             
                             Spacer()
                             VStack {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 30)
-                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground))
-                                        .frame(width: 55, height: 55)
-                                    Image(systemName: "arrow.up.right.bottomleft.rectangle.fill")
-                                        .resizable()
-                                        .clipped()
-                                        .frame(width: 30, height: 30)
-                                        .foregroundColor(.accentBlue)
-                                        .cornerRadius(50)
-//                                        .padding(.trailing, 5)
-                                        .foregroundColor(.myGray)
+                                Image(systemName: "arrow.up.right.bottomleft.rectangle.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 30)
+                                    .foregroundColor(.accentBlue)
+                                    .padding()
+                                    .background(Color(uiColor: .secondarySystemBackground))
+                                    .clipShape(Circle())
+                                VStack{
+                                    Text(doctor.experience)
+                                        .font(.system(size: 17))
+                                    Text("Experience")
+                                        .font(.system(size: 15))
+                                        .fontWeight(.light)
                                 }
-                                Text(doctor.experience)
-                                Text("Experience")
                             }
                             
                             
                         }
+                        .padding(.horizontal)
                         .padding()
                         .onAppear() {
                             reviewViewModel.fetchReviewDetail()
@@ -148,15 +153,9 @@ struct DoctorProfile: View {
                         
 //                        Text("Select Schedule")
 //                            .padding()
-                        
-                        HStack{
-                           
-                            //Calendar Code will be here
-                            
-                        } //End of HStack
-                        Divider()
-                            .padding()
+    
                         SlotBookView( doctor: doctor)
+                            .padding(.top)
                    
                         
                         

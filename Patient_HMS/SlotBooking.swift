@@ -26,16 +26,16 @@ struct TimeButton: View {
             }
         }) {
             RoundedRectangle(cornerRadius: 15)
-                .fill(isBooked ? Color.gray.opacity(0.5) : (isSelected ? Color.accentBlue : Color.white))
+                .fill(isBooked ? Color.gray.opacity(0.5) : (isSelected ? Color.accentBlue : Color(uiColor: .systemBackground)))
                 .overlay(
                     Text(time)
-                        .font(.headline)
-                        .foregroundColor(isBooked ? .gray : (isSelected ? .white : .midNightExpress))
+                        .font(.system(size: 16))
+                        .foregroundColor(isBooked ? .gray : (isSelected ? .white : .primary))
                 )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 15)
-                        .stroke(isBooked ? Color.gray : Color.white)
-                )
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 15)
+//                        .stroke(isBooked ? Color.gray : Color.white)
+//                )
                 .opacity(isBooked ? 0.5 : 1.0)
                 .disabled(isBooked)  // Disable if booked
         }
@@ -65,8 +65,13 @@ struct SlotBookView: View {
     var body: some View {
         VStack {
             
-            Text("Select Schedule")
-                .font(.headline)
+            HStack {
+                Text("Select Schedule")
+                    .font(.system(size: 17))
+                Spacer()
+            }
+            .padding(.top)
+            .padding(.horizontal)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
@@ -88,9 +93,13 @@ struct SlotBookView: View {
 //                    fetchBookedSlots()  // Fetch slots when date changes
 //                }
             
-            Text("Available Slots")
-                .font(.headline)
-                .padding(.bottom, 30)
+            HStack {
+                Text("Available Slots")
+                    .font(.system(size: 17))
+                Spacer()
+            }
+            .padding(.top)
+            .padding(.horizontal)
             
 //            Divider()
 //                .padding(.bottom, 30)
