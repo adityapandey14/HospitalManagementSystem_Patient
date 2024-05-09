@@ -33,66 +33,65 @@ struct HealthRecordAdd: View {
     }
 
     var body: some View {
-        ZStack{
+        ZStack {
             NavigationView {
                 Form {
-                    Section{
+                    Section {
                         Button(action: {
                             isDocumentPickerPresented.toggle()
                         }) {
-                            Text("Upload PDF")
-                                .foregroundColor(.buttonForeground)
-                                .frame(width: 325, height: 20)
-                                .background(Color.midNightExpress)
-                                .cornerRadius(10)
+                            HStack {
+                                Image(systemName: "doc.fill")
+                                    .foregroundStyle(.white)
+                                Text("Upload PDF")
+                                    .foregroundColor(.white)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.accentBlue)
+                            .cornerRadius(10)
                         }
                     }
-                    .listRowBackground(Color.midNightExpress)
+                    .listRowBackground(Color.clear)
 
-                    Section{
+                    Section {
                         SearchBar(searchText: $searchText)
+                            .listRowBackground(Color.clear)
 
                         ForEach(uploadedDocuments.indices, id: \.self) { index in
                             let documentRef = uploadedDocuments[index]
                             if searchText.isEmpty || documentRef.name.lowercased().contains(searchText.lowercased()) {
                                 HStack {
-                                    Button(action: {
-                                        viewDocument(documentRef: documentRef)
-                                    }) {
-                                        Text(documentRef.name)
-                                    }
+                                    Text(documentRef.name)
+                                        .foregroundColor(.primary)
                                     Spacer()
                                     Image(systemName: "square.and.arrow.down")
-                                        .frame(width: 40, height: 40)
-                                        .foregroundColor(Color.blue)
+                                        .foregroundColor(.blue)
                                         .onTapGesture {
                                             downloadDocument(documentRef: documentRef)
                                         }
                                     Image(systemName: "trash")
-                                        .foregroundColor(Color.red)
+                                        .foregroundColor(.red)
                                         .onTapGesture {
                                             deleteDocument(at: index)
                                         }
                                 }
+                                .padding(.vertical, 8)
                             }
                         }
                     }
-                    .listRowBackground(Color.white)
-                }
-                
-                .background(Color.clear)
-                .sheet(isPresented: $isDocumentPickerPresented) {
-                    DocumentPicker { urls in
-                        handlePDFSelection(result: .success(urls))
-                    }
+                    .listRowBackground(Color.clear)
                 }
                 .navigationTitle("Add Health Record")
-                .background(Color.solitude)
             }
-            .background(Color.solitude)
-            .scrollContentBackground(.hidden)
+            .background(Color(.systemGroupedBackground))
             .onAppear {
                 fetchUploadedDocuments()
+            }
+            .sheet(isPresented: $isDocumentPickerPresented) {
+                DocumentPicker { urls in
+                    handlePDFSelection(result: .success(urls))
+                }
             }
             .sheet(isPresented: $isPreviewPresented) {
                 if let previewURL = previewURL, let pdfDocument = PDFDocument(url: previewURL) {
@@ -102,14 +101,16 @@ struct HealthRecordAdd: View {
                 }
             }
 
-            if isPDFLoading { // Show loading animation if PDF is loading
+            if isPDFLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
                     .scaleEffect(2)
                     .foregroundColor(.blue)
             }
         }
-        .background(Color.solitude)
+        .background(Color(.systemGroupedBackground))
+
+//        .background(Color.solitude)
     }
 
 
@@ -290,6 +291,7 @@ struct SearchBar: View {
 //                    .foregroundColor(.gray)
 //                    .padding(.trailing, 10)
                 Text("Clear")
+                    .foregroundStyle(Color(.secondaryLabel))
             }
         }
     }
