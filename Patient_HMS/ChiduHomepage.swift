@@ -42,16 +42,18 @@ struct ChiduHomepage: View {
                             .font(.system(size: 19))
                     }
                     Spacer()
-                    Button(action: {
-//                            withAnimation {
-//                                isVitalsExpanded.toggle()
-//                            }
-                    }, label: {
-//                        Image(systemName: "doc.text.below.ecg")
-                        Image(systemName: "doc.text")
+//                    Button(action: {
+////                            withAnimation {
+////                                isVitalsExpanded.toggle()
+////                            }
+//                    }, label: {
+                    NavigationLink(destination : BillsView()) {
+                        //                        Image(systemName: "doc.text.below.ecg")
+                        Image(systemName: "dollarsign.circle")
                             .foregroundStyle(Color.accentBlue)
                             .font(.title)
-                    })
+                        //                    })
+                    }
                     
                     
                 }
