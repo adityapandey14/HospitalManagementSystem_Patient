@@ -110,6 +110,6 @@ struct EditMedicineView: View {
 //}
 
 //#Preview {
-//    EditMedicineView(medicine: <#Medicines#>)
+//    EditMedicineView(medicine: Medicines)
 //        .environmentObject(Medicine_ViewModel())
 //}

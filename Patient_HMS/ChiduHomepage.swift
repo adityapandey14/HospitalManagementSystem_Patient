@@ -79,9 +79,9 @@ struct ChiduHomepage: View {
                 .padding(.horizontal)
                 .padding(.bottom, 10)
                 ScrollView(.horizontal, showsIndicators: false){
-                    HStack(spacing: -15) {
+                    HStack() {
                         
-                        LazyHStack() {
+                        LazyHStack(spacing: -20) {
                             ForEach(appointViewModel.appointments.filter { $0.patientID == currentUserId }) { appointment in
                                 HStack(alignment: .top) {
                                     AppointmentCard(appointment: appointment)
@@ -160,7 +160,7 @@ struct ChiduHomepage: View {
                 }
                 .padding(.top, 35)
                 .padding(.horizontal)
-                .padding(.bottom, 10)
+                .padding(.bottom, -5)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
                         ForEach(medicines) { medicine in
@@ -519,15 +519,47 @@ struct AppointmentCard: View {
             VStack(alignment: .leading, spacing: 20){
                 VStack(alignment: .leading, spacing: 6) {
                     if let doctor = doctorViewModel.doctorDetails.first(where: { $0.id == appointment.doctorID }) {
-                        HStack{
-                            Text(doctor.fullName)
-                                .font(.system(size: 17))
-                            Spacer()
+                        HStack(spacing: 10){
+                            if let imageUrl = URL(string: doctor.profilephoto ?? "userphoto") {
+                                AsyncImage(url: imageUrl) { image in
+                                    image
+                                        .resizable()
+                                        .frame(width: 50, height: 50) // Square shape with equal width and height
+                                        .foregroundColor(.gray) // Optional color
+//                                            .padding(.trailing, 5)
+                                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                                } placeholder: {
+                                    Image(systemName: "person.fill")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                        .foregroundColor(.gray)
+//                                            .padding(.trailing, 5)
+                                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                                    
+                                }
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                            } else {
+                                Image(systemName: "person.fill")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(.gray)
+//                                        .padding(.trailing, 5)
+                                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                                
+                            }
+                            
+                            
+                            VStack(alignment: .leading, spacing: 3){
+                                Text(doctor.fullName)
+                                    .font(.system(size: 18))
+                                Text(doctor.department)
+                                    .font(.system(size: 16))
+                                    .foregroundStyle(Color("accentBlue"))
+                                Spacer()
+                            }
+                            .padding(.top, 5)
                         }
-                        
-                        Text(doctor.department)
-                            .font(.system(size: 15))
-                            .foregroundStyle(Color("accentBlue"))
 
                     } else {
                         Text("Loading...")
@@ -540,22 +572,44 @@ struct AppointmentCard: View {
                     }
                 }
                 
-                VStack(spacing: 10){
-                    HStack(spacing: 10) {
+                HStack {
+                    HStack {
                         Image(systemName: "calendar")
-                            .font(.system(size: 21))
+                            .foregroundStyle(Color.accentBlue)
+                            .font(.system(size: 18))
                         Text(appointment.date)
                             .font(.system(size: 15))
-                        Spacer()
                     }
-                    HStack(spacing: 10){
+                    Spacer()
+                    HStack {
                         Image(systemName: "clock")
-                            .font(.system(size: 21))
+                            .foregroundStyle(Color.accentBlue)
+                            .font(.system(size: 18))
                         Text(appointment.timeSlot)
                             .font(.system(size: 15))
-                        Spacer()
                     }
                 }
+                .padding()
+//                .background(Color.accentBlue.opacity(0.4))
+                .background(Color(uiColor: .tertiarySystemFill))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+//                VStack(spacing: 10){
+//                    HStack(spacing: 10) {
+//                        Image(systemName: "calendar")
+//                            .font(.system(size: 21))
+//                        Text(appointment.date)
+//                            .font(.system(size: 15))
+//                        Spacer()
+//                    }
+//                    HStack(spacing: 10){
+//                        Image(systemName: "clock")
+//                            .font(.system(size: 21))
+//                        Text(appointment.timeSlot)
+//                            .font(.system(size: 15))
+//                        Spacer()
+//                    }
+//                }
             }
         }
         .padding()

@@ -167,33 +167,33 @@ struct ProfileView: View {
                     HStack {
                         // Profile image
                         HStack{
-                                                if let posterURL = profileViewModel.currentProfile.profilephoto {
-                                                    AsyncImage(url: URL(string: posterURL)) { phase in
-                                                        switch phase {
-                                                        case .success(let image):
-                                                            image
-                                                                .resizable()
-                                                                .aspectRatio(contentMode: .fill)
-                                                                .frame(width: 100, height: 100)
-                                                                .cornerRadius(10.0)
-                                                                .clipShape(Circle())
-                                                                .padding([.leading, .bottom, .trailing])
-                                                        default:
-                                                            ProgressView()
-                                                                .frame(width: 50, height: 50)
-                                                                .padding([.leading, .bottom, .trailing])
-                                                        }
-                                                    }
-                                                } else {
-                                                    Image(uiImage: UIImage(named: "default_hackathon_poster")!)
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fill)
-                                                        .frame(width: 100, height: 100)
-                                                        .cornerRadius(10.0)
-                                                        .clipShape(Circle())
-                                                        .padding([.leading, .bottom, .trailing])
-                                                }
-                                            }
+                            if let posterURL = profileViewModel.currentProfile.profilephoto {
+                                AsyncImage(url: URL(string: posterURL)) { phase in
+                                    switch phase {
+                                    case .success(let image):
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 100, height: 100)
+                                            .cornerRadius(10.0)
+                                            .clipShape(Circle())
+                                            .padding([.leading, .bottom, .trailing])
+                                    default:
+                                        ProgressView()
+                                            .frame(width: 50, height: 50)
+                                            .padding([.leading, .bottom, .trailing])
+                                    }
+                                }
+                            } else {
+                                Image(uiImage: UIImage(named: "default_hackathon_poster")!)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 100, height: 100)
+                                    .cornerRadius(10.0)
+                                    .clipShape(Circle())
+                                    .padding([.leading, .bottom, .trailing])
+                            }
+                        }
                                             
                         
                         // Profile details
