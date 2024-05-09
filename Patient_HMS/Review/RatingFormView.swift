@@ -26,41 +26,65 @@ struct RatingFormView: View {
                     reviewViewModel.fetchReviewDetail() // Refresh reviews
                 }
                 .padding()
+//                            .padding(.top)
+                .background(Color(uiColor: .secondarySystemBackground))
+                .foregroundStyle(Color("accentBlue"))
+                .cornerRadius(8)
             } else {
                 ForEach(viewModel.appointments.filter { $0.patientID == currentUserID && $0.isComplete }) { appointment in
                     if !reviewViewModel.reviewDetails.contains(where: { $0.appointmentId == appointment.id }) {
                         VStack {
+                            Text("Reviews")
+//                                .font(.headline)
+                                .bold()
+                                .padding(.bottom, 30)
+                                .padding(.trailing, 235)
+                                .font(.system(size: 30))
                             
-                            
-                            
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color(uiColor: .secondarySystemBackground))
+                                    .frame(width: 360, height: 60)
                             HStack {
-                                     if let doctor = doctorviewmodel.doctorDetails.first(where: { $0.id == appointment.doctorID }) {
-                                         Text(doctor.fullName)
-                                             .font(.system(size: 18))
-                                         Spacer()
-
-                                         Text(appointment.date)
-                                             .foregroundColor(.blue) // Use .foregroundColor instead of .foregroundStyle for simplicity
-                                     } else {
-                                         Text("Doctor detail not found")
-                                     }
-                                 }
+                                
+                                if let doctor = doctorviewmodel.doctorDetails.first(where: { $0.id == appointment.doctorID }) {
+                                    Text("Name: \(doctor.fullName)")
+//                                        .padding()
+                                        .font(.system(size: 18))
+//                                        .padding(.trailing, 110)
+                                        .padding(.leading, 15)
+                                        .padding(.top)
+                                    Spacer()
+                                    
+                                    Text("Date: \(appointment.date)")
+                                        .padding(.trailing, 15)
+                                        .padding(.top)
+//                                        .padding()
+//                                        .foregroundColor(Color(")) // Use .foregroundColor instead of .foregroundStyle for simplicity
+                                } else {
+                                    Text("Doctor detail not found")
+                                }
+                                
+                            }
                             .padding(.bottom)
-                                 .onAppear {
-                                     Task {
-                                         await doctorviewmodel.fetchDoctorDetails()
-                                         await doctorviewmodel.fetchDoctorDetailsByID(doctorID: appointment.doctorID)
-                                     }
-                                 }
+                            .onAppear {
+                                Task {
+                                    await doctorviewmodel.fetchDoctorDetails()
+                                    await doctorviewmodel.fetchDoctorDetailsByID(doctorID: appointment.doctorID)
+                                }
+                            }
+                        }
                         
                          
                       
                             
                             StarRatingView(rating: $rating)
+                                .padding()
                             TextField("Enter your feedback", text: $feedback)
                                 .padding()
                                 .background(Color(UIColor.systemGray6))
                                 .cornerRadius(8)
+                                .padding(.bottom)
                             
                             Button("Submit Review") {
                                 Task {
@@ -73,6 +97,12 @@ struct RatingFormView: View {
                                     showSubmitAlert = true
                                 }
                             }
+                            .padding()
+//                            .padding(.top)
+                            .background(Color(uiColor: .secondarySystemBackground))
+                            .foregroundStyle(Color("accentBlue"))
+                            .cornerRadius(8)
+
                             .alert(isPresented: $showSubmitAlert) {
                                 Alert(
                                     title: Text("Review Submitted"),
@@ -94,6 +124,7 @@ struct RatingFormView: View {
             viewModel.fetchAppointments() // Fetch data when the view appears
             reviewViewModel.fetchReviewDetail()
         }
+        .padding(.bottom, 300)
     }
 }
 
