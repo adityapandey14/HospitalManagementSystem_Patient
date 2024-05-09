@@ -85,8 +85,8 @@ struct newPassword: View {
                 .padding()
                 .disabled(!FormIsValid)
                 .opacity(FormIsValid ? 1.0 : 0.5)
-                .background(Color.accent)
-                .cornerRadius(50)
+                .background(Color.accentBlue)
+                .cornerRadius(10)
                 Spacer()
             }
             .padding()

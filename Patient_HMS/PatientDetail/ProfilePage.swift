@@ -152,10 +152,7 @@ struct ProfileView: View {
     @State private var navigateToNewPassword = false
     var body: some View {
         NavigationStack {
-            ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
-                    .edgesIgnoringSafeArea(.all)
-                
+            VStack {
                 VStack {
                     Text("Profile")
                         .font(.system(size: 29))

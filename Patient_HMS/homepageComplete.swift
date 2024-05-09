@@ -16,28 +16,31 @@ struct homepageComplete: View {
                     Label("Home", systemImage: "house")
                         .padding(.top)
                 }
-                BillsView()
-                .tabItem {
-                    Label("Home", systemImage: "pill.fill")
-                        .padding(.top)
-                }
+            
+            BillsView()
+            .tabItem {
+                Label("Home", systemImage: "pill.fill")
+                    .padding(.top)
+            }
+            
             AppointmentRatingView()
                 .tabItem {
                     Label("Rating", systemImage: "folder.fill")
                         .padding(.top)
                 }
         
-            HealthRecordAdd()
-                .tabItem {
-                    Label("Records", systemImage: "doc.fill")
-                        .padding(.top)
-                }
+//            HealthRecordAdd()
+//                .tabItem {
+//                    Label("Records", systemImage: "doc.fill")
+//                        .padding(.top)
+//                }
             
             Appointment()
                 .tabItem {
                     Label("Appointment", systemImage: "stethoscope")
                         .padding(.top)
                 }
+            
             ProfileView()
                 .tabItem {
                    Label("Profile", systemImage: "person.fill")
@@ -45,6 +48,7 @@ struct homepageComplete: View {
                 }
             
         }
+        .tint(Color.accentBlue)
     }
 }
 

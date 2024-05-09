@@ -395,7 +395,7 @@ struct DayButton: View {
             Text(title)
                 .foregroundColor(isSelected ? .white : .primary)
                 .padding()
-                .background(isSelected ? Color.blue : Color.gray.opacity(0.2))
+                .background(isSelected ? Color.accentBlue : Color.gray.opacity(0.2))
                 .cornerRadius(10)
         }
     }

@@ -141,7 +141,7 @@ struct Appointment: View {
                                            label: {
                                                Text("\(deptWithFirstCapital)")
                                                    .frame(width: 140, height: 50)
-                                                   .background(Color.white)
+                                                   .background(Color(uiColor: .secondarySystemBackground))
                                                    .cornerRadius(10)
                                                    .font(.headline)
                                                    .padding()
@@ -185,11 +185,11 @@ struct Appointment: View {
            
             }
                 .navigationTitle("Book Appointments")
-                .background(
-                    LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
-                        .edgesIgnoringSafeArea(.all)
-                    
-                )
+//                .background(
+//                    LinearGradient(gradient: Gradient(colors: [Color(hex: "e8f2fd"), Color(hex: "ffffff")]), startPoint: .top, endPoint: .bottom)
+//                        .edgesIgnoringSafeArea(.all)
+//                    
+//                )
              
             
         } //End of the Navigation Stack
@@ -290,7 +290,7 @@ struct topDoctorCard : View {
             }
             .frame(maxWidth: .infinity, maxHeight: 110)
             .foregroundColor(Color.black)
-            .background(Color.white)
+            .background(Color(uiColor: .secondarySystemBackground))
             .cornerRadius(10)
             .padding(.horizontal,20)
         }
