@@ -73,10 +73,13 @@ struct SlotBookView: View {
                     ForEach(dayDate.indices, id: \.self) { index in
                         DateView(dateInfo: dayDate[index], isSelected: selectedDateIndex == index) {
                             selectedDateIndex = index
+                            fetchBookedSlots()
                         }
+                        
                     }
                 }
                 .padding()
+               
             }
             
 //            DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
@@ -109,6 +112,7 @@ struct SlotBookView: View {
                 .foregroundStyle(Color.black)
             }
             .padding(.bottom)
+         
             
             ZStack {
                 
