@@ -84,7 +84,7 @@ struct ChiduHomepage: View {
                     HStack() {
                         
                         LazyHStack(spacing: -15) {
-                            ForEach(appointViewModel.appointments.filter { $0.patientID == currentUserId }) { appointment in
+                            ForEach(appointViewModel.appointments.filter { $0.patientID == currentUserId && $0.isComplete == false }) { appointment in
                                 HStack(alignment: .center) {
                                     AppointmentCard(appointment: appointment)
                                 } //End of Horizontal Stack
