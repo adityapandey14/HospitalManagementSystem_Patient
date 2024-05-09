@@ -263,7 +263,7 @@ struct DateView: View {
             
             if isSelected {
                 Rectangle()
-                    .fill(Color("paleBlue"))
+                    .fill(Color.accentBlue)
                     .frame(width: 8, height: 8)
                     .padding(.top, -6)
             }

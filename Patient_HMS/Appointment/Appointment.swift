@@ -114,16 +114,17 @@ struct Appointment: View {
                     .navigationTitle("Search Doctors")
 
                     Text("Select Departments")
-                        .foregroundStyle(Color.myGray)
-                        .padding(.leading)
-                        .padding(.top)
+                        .font(.system(size: 15))
+                        .foregroundStyle(Color(uiColor: .secondaryLabel))
+                        .padding(.horizontal)
+                        .padding(.top, 40)
                    
-                    ScrollView(.horizontal) {
+                    ScrollView(.horizontal, showsIndicators: false) {
                         
-                        HStack{
+                        HStack(spacing: -10){
                             
                             ForEach(viewModel.departmentTypes) { departmentType in
-                                VStack(alignment: .leading) {
+                                VStack() {
                                     
                                     let dept = departmentType.departmentType
 
@@ -140,10 +141,12 @@ struct Appointment: View {
                                         destination: CurrentDepartDoctor(selecteddeptType : departmentType),
                                            label: {
                                                Text("\(deptWithFirstCapital)")
-                                                   .frame(width: 140, height: 50)
+//                                                   .frame(width: 140, height: 50)
+                                                   .padding()
+                                                   .padding(.horizontal)
                                                    .background(Color(uiColor: .secondarySystemBackground))
                                                    .cornerRadius(10)
-                                                   .font(.headline)
+                                                   .font(.system(size: 18))
                                                    .padding()
                                            }
                                        )
@@ -158,11 +161,14 @@ struct Appointment: View {
 //                            .padding(.horizontal)
                         }
                     } 
-                    .foregroundColor(.gray)//End of the scrollView
+                    .padding(.top, -10)
+                    .foregroundColor(Color(uiColor: .secondaryLabel))//End of the scrollView
                    
                     Text("Top Doctors")
-                        .foregroundStyle(Color.myGray)
-                        .padding()
+                        .font(.system(size: 15))
+                        .foregroundStyle(Color(uiColor: .secondaryLabel))
+                        .padding(.horizontal)
+                        .padding(.vertical, 10)
                     
                     ScrollView {
                  
@@ -217,82 +223,95 @@ struct topDoctorCard : View {
         
         NavigationLink(destination : DoctorProfile(imageUrl: imageUrl, fullName: fullName, specialist: specialist, doctor: doctorDetail)) {
             VStack(alignment: .leading) {
-                HStack {
+                HStack() {
                     VStack {
                         if let imageUrl = URL(string: imageUrl) {
                             AsyncImage(url: imageUrl) { image in
                                 image
                                     .resizable()
-                                    .frame(width: 85, height: 85) // Square shape with equal width and height
+                                    .frame(width: 75, height: 75) // Square shape with equal width and height
                                     .foregroundColor(.gray) // Optional color
-                                    .padding(.trailing, 5)
+//                                    .padding(.trailing, 5)
                             } placeholder: {
                                 Image(systemName: "person.fill")
                                     .resizable()
-                                    .frame(width: 85, height: 85)
+                                    .frame(width: 75, height: 75)
                                     .foregroundColor(.gray)
-                                    .padding(.trailing, 5)
+//                                    .padding(.trailing, 5)
                                 
                             }
-                            .frame(width: 90, height: 90)
+                            .frame(width: 75, height: 75)
                         } else {
                             Image(systemName: "person.fill")
                                 .resizable()
-                                .frame(width: 85, height: 85)
+                                .frame(width: 75, height: 75)
                                 .foregroundColor(.gray)
-                                .padding(.trailing, 5)
+//                                .padding(.trailing, 5)
                             
                         }
                         
                     } //End of VStack
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
                     
                     VStack(alignment: .leading) {
                         
-                        Text("\(fullName)")
-                            .font(AppFont.mediumSemiBold)
-                            .padding(.top)
-                        
-                        Text("\(specialist)")
-                            .font(AppFont.smallReg)
+                        VStack(alignment:.leading, spacing: 2){
+                            Text("\(fullName)")
+                                .font(.system(size: 18))
+                                .foregroundStyle(Color.primary)
+                                .padding(.top)
                             
-                        
+                            Text("\(specialist)")
+                                .font(.system(size: 15))
+                                .foregroundStyle(Color.accentBlue)
+                        }
+                            
+                        Spacer()
                         HStack{
                             let reviewsForSkillOwner = reviewViewModel.reviewDetails.filter { $0.doctorId == "\(doctorDetail.id)" }
                             if !reviewsForSkillOwner.isEmpty {
                                 //Calculating Average of the doctor
                                 let averageRating = reviewsForSkillOwner.reduce(0.0) { $0 + Double($1.ratingStar) } / Double(reviewsForSkillOwner.count)
                         
-                                Text("\(averageRating, specifier: "%.1f") ⭐️")
-                                    .font(AppFont.smallReg)
+                                Text("⭐️ \(averageRating, specifier: "%.1f")")
+                                    .font(.system(size: 15))
+//                                    .foregroundStyle(Color.accentBlue)
+                                Divider()
                         
                                 Text("\(reviewsForSkillOwner.count) Review\(reviewsForSkillOwner.count == 1 ? "" : "s")")
-                                    .font(AppFont.smallReg)
+                                    .font(.system(size: 15))
+//                                    .foregroundStyle(Color.accentBlue)
+                                
                             } else {
                                 Text("no reviews")
-                                    .font(AppFont.smallReg)
-                                    .foregroundColor(.black).opacity(0.3)
+                                    .font(.system(size: 15))
+//                                    .foregroundStyle(Color.accentBlue)
                 
                             }
                             Spacer()
                         }
                         .padding(.bottom)
-                        .font(AppFont.smallReg)
+//                        .font(AppFont.smallReg)
                         .onAppear(){
                             reviewViewModel.fetchReviewDetailByDoctorId(doctorId: doctorDetail.id)
                         }
 
                     }
+                    .padding(.leading, 7)
                     
                     Spacer()
+                    
+                    Image(systemName: "chevron.forward")
+                    
+                        .foregroundStyle(Color.primary)
                 }
                 .padding()
-                Spacer()
+//                Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: 110)
-            .foregroundColor(Color.black)
+            .frame(maxWidth: .infinity, maxHeight: 102)
             .background(Color(uiColor: .secondarySystemBackground))
             .cornerRadius(10)
-            .padding(.horizontal,20)
+            .padding(.horizontal, 20)
         }
         .onAppear() {
             reviewViewModel.fetchReviewDetail()
