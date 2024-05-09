@@ -79,7 +79,7 @@ struct ChiduHomepage: View {
                         .foregroundStyle(Color(uiColor: .secondaryLabel))
                     Spacer()
                 }
-                .padding(.top, isVitalsExpanded ? 0 : 30)
+                .padding(.top, isVitalsExpanded ? 10 : 30)
                 .padding(.horizontal)
 //                .padding(.bottom)
                 ScrollView(.horizontal, showsIndicators: false){
