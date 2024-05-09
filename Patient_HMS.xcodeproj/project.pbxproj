@@ -29,6 +29,8 @@
 		4762BFD62BE9FC3F00845B96 /* MedicineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFD52BE9FC3F00845B96 /* MedicineView.swift */; };
 		4762BFDE2BEA041900845B96 /* MedicineDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFDD2BEA041900845B96 /* MedicineDetail.swift */; };
 		4762BFE02BEA26C800845B96 /* PrescriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFDF2BEA26C800845B96 /* PrescriptionModel.swift */; };
+		4762BFEF2BECE51800845B96 /* BillsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFEE2BECE51800845B96 /* BillsViewModel.swift */; };
+		4762BFF12BECE52600845B96 /* BillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BFF02BECE52500845B96 /* BillsView.swift */; };
 		485FDF602BD8367A008E620D /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485FDF5F2BD8367A008E620D /* ReviewModel.swift */; };
 		488069C52BEB53E900AA83B4 /* TopFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488069C42BEB53E900AA83B4 /* TopFive.swift */; };
 		48806FF92BE3B180006CF917 /* PatientBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48806FF82BE3B180006CF917 /* PatientBookingView.swift */; };
@@ -106,6 +108,8 @@
 		4762BFD52BE9FC3F00845B96 /* MedicineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineView.swift; sourceTree = "<group>"; };
 		4762BFDD2BEA041900845B96 /* MedicineDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicineDetail.swift; sourceTree = "<group>"; };
 		4762BFDF2BEA26C800845B96 /* PrescriptionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescriptionModel.swift; sourceTree = "<group>"; };
+		4762BFEE2BECE51800845B96 /* BillsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsViewModel.swift; sourceTree = "<group>"; };
+		4762BFF02BECE52500845B96 /* BillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsView.swift; sourceTree = "<group>"; };
 		485FDF5F2BD8367A008E620D /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
 		488069C42BEB53E900AA83B4 /* TopFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopFive.swift; sourceTree = "<group>"; };
 		48806FF82BE3B180006CF917 /* PatientBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientBookingView.swift; sourceTree = "<group>"; };
@@ -203,6 +207,15 @@
 				13164F092BEAA995005F1BB8 /* ChiduMedicineView.swift */,
 			);
 			path = MedicineReminder;
+			sourceTree = "<group>";
+		};
+		4762BFED2BECE50700845B96 /* Bills */ = {
+			isa = PBXGroup;
+			children = (
+				4762BFEE2BECE51800845B96 /* BillsViewModel.swift */,
+				4762BFF02BECE52500845B96 /* BillsView.swift */,
+			);
+			path = Bills;
 			sourceTree = "<group>";
 		};
 		488069C32BEB53D000AA83B4 /* TopFiveDoctor */ = {
@@ -308,6 +321,7 @@
 		DFC22CA32BD26AE200B2AD68 /* Patient_HMS */ = {
 			isa = PBXGroup;
 			children = (
+				4762BFED2BECE50700845B96 /* Bills */,
 				4762BFCE2BE9DC5300845B96 /* MedicineReminder */,
 				4762BFC52BE8A82000845B96 /* Prescription */,
 				DF6B2EB82BD58DEA00FAD930 /* appFonts.swift */,
@@ -523,6 +537,7 @@
 				4762BFD22BE9DCC900845B96 /* Medicine_ViewModel.swift in Sources */,
 				DF6B2EC12BD58F1400FAD930 /* signUpView.swift in Sources */,
 				84B3D1A22BD8DB6D00FADB4D /* NotificationHandler.swift in Sources */,
+				4762BFEF2BECE51800845B96 /* BillsViewModel.swift in Sources */,
 				485FDF602BD8367A008E620D /* ReviewModel.swift in Sources */,
 				48EB950F2BE8D7430076DFE4 /* RatingFormView.swift in Sources */,
 				DF6B2EC52BD5925E00FAD930 /* ProfileInputView.swift in Sources */,
@@ -538,6 +553,7 @@
 				4762BFC92BE8A8AE00845B96 /* PrescriptionViewmodel.swift in Sources */,
 				DF6B2EB92BD58DEA00FAD930 /* appFonts.swift in Sources */,
 				47394C9B2BD7A41E00ADB1A4 /* PatientEdit.swift in Sources */,
+				4762BFF12BECE52600845B96 /* BillsView.swift in Sources */,
 				4762BFC72BE8A83700845B96 /* PrescriptionView.swift in Sources */,
 				2DBAF23D2BDF66FF00F71240 /* HealthDataView.swift in Sources */,
 				2DBAF23F2BDF6AA400F71240 /* homepageComplete.swift in Sources */,
