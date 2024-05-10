@@ -99,6 +99,8 @@ class AppointmentViewModel: ObservableObject {
 struct AppointmentListView: View {
     @ObservedObject var viewModel = AppointmentViewModel()
     let currentUserID: String // This will be the current user's UID
+    @ObservedObject var doctorviewmodel = DoctorViewModel.shared
+    @ObservedObject var doctorviewModel = DoctorViewModel()
 
     var body: some View {
         NavigationStack {
@@ -110,7 +112,14 @@ struct AppointmentListView: View {
                             .bold()
                         Text("Time Slot: \(appointment.timeSlot)")
                             .fontWeight(.semibold)
-                        Text("Doctor ID: \(appointment.doctorID)")
+                        // Find the first doctor with a matching ID to the appointment's doctorID
+                        if let doctor = doctorviewmodel.doctorDetails.first(where: { $0.id == appointment.doctorID }) {
+                            // Display the doctor's name
+                            Text("Doctor Name: \(doctor.fullName)")
+                        }
+
+                      
+//                        Text("Doctor ID: \(appointment.doctorID)")
                         Text("Reason: \(appointment.reason)")
                         if appointment.isComplete {
                             Text("Status: Complete")
@@ -133,6 +142,9 @@ struct AppointmentListView: View {
             .navigationTitle("My Appointments")
             .onAppear {
                 viewModel.fetchAppointments() // Fetch data when the view appears
+                Task {
+                   await doctorviewmodel.fetchDoctorDetails()
+                }
             }
             .alert(isPresented: Binding<Bool>(
                 get: { viewModel.errorMessage != nil },
