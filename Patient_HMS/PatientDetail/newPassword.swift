@@ -28,13 +28,14 @@ struct newPassword: View {
         VStack(alignment: .leading){
             HStack{
                 Text("Change password")
-                    .font(AppFont.largeBold)
+                    .font(.title)
+                    .foregroundStyle(Color.primary)
                 Spacer()
             }
             .padding()
             List {
                 VStack(alignment: .leading){
-                    Section(header: CustomSectionHeader(title: "New password").foregroundColor(.black)){
+                    Section(header: CustomSectionHeader(title: "New password").foregroundColor(Color.primary)){
                         SecureField("Password", text: $password)
                             .cornerRadius(8)
                     }
@@ -43,7 +44,7 @@ struct newPassword: View {
                 .listRowBackground(Color.clear)
                 
                 VStack(alignment: .leading){
-                    Section(header: CustomSectionHeader(title: "Confirm password").foregroundColor(.black)){
+                    Section(header: CustomSectionHeader(title: "Confirm password").foregroundColor(Color.primary)){
                         SecureField("Password", text: $confirmPassword)
                             .cornerRadius(8)
                         

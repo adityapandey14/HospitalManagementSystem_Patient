@@ -185,97 +185,97 @@ struct ChiduHomepage: View {
                 
                 
                 //Common Concerns
-                HStack {
-                    Text("Common Concerns")
-                        .font(.system(size: 17))
-                        .foregroundStyle(Color(uiColor: .secondaryLabel))
-                    Spacer()
-                }
-                .padding(.top, 30)
-                .padding(.horizontal)
-//                .padding(.bottom)
-                HStack(spacing: 20) {
-                    VStack {
-                        ZStack {
-                            Circle()
-                                .frame(width: 42, height: 42)
-                                .foregroundStyle(Color("accentBlue"))
-                                .opacity(0.2)
-                            Image("cough")
-                                .resizable()
-                                .frame(width:25, height: 25)
-                                .opacity(0.8)
-                        }
-                        Text("Cough, cold\nFever")
-                            .multilineTextAlignment(.center)
-                            .font(.system(size: 11))
-                            .opacity(0.8)
-                    }
-                    VStack {
-                        ZStack {
-                            Circle()
-                                .frame(width: 42, height: 42)
-                                .foregroundStyle(Color("accentBlue"))
-                                .opacity(0.2)
-                            Image("person")
-                                .resizable()
-                                .frame(width:25, height: 25)
-                                .opacity(0.8)
-                        }
-                        Text("Child\n unwell")
-                            .multilineTextAlignment(.center)
-                            .font(.system(size: 11))
-                            .opacity(0.8)
-                    }
-                    VStack {
-                        ZStack {
-                            Circle()
-                                .frame(width: 42, height: 42)
-                                .foregroundStyle(Color("accentBlue"))
-                                .opacity(0.2)
-                            Image("depressed")
-                                .resizable()
-                                .frame(width:25, height: 25)
-                                .opacity(0.8)
-                        }
-                        Text("Depression\nor Anxiety")
-                            .multilineTextAlignment(.center)
-                            .font(.system(size: 11))
-                            .opacity(0.8)
-                    }
-                    VStack {
-                        ZStack {
-                            Circle()
-                                .frame(width: 42, height: 42)
-                                .foregroundStyle(Color("accentBlue"))
-                                .opacity(0.2)
-                            Image("dermatology")
-                                .resizable()
-                                .frame(width:25, height: 25)
-                                .opacity(0.8)
-                        }
-                        Text("Acne &\nPimples")
-                            .multilineTextAlignment(.center)
-                            .font(.system(size: 11))
-                            .opacity(0.8)
-                    }
-                    VStack {
-                        ZStack {
-                            Circle()
-                                .frame(width: 42, height: 42)
-                                .foregroundStyle(Color("accentBlue"))
-                                .opacity(0.2)
-                            Image("woman")
-                                .resizable()
-                                .frame(width:25, height: 25)
-                                .opacity(0.8)
-                        }
-                        Text("Period\nProblems")
-                            .multilineTextAlignment(.center)
-                            .font(.system(size: 11))
-                            .opacity(0.8)
-                    }
-                }
+//                HStack {
+//                    Text("Common Concerns")
+//                        .font(.system(size: 17))
+//                        .foregroundStyle(Color(uiColor: .secondaryLabel))
+//                    Spacer()
+//                }
+//                .padding(.top, 30)
+//                .padding(.horizontal)
+////                .padding(.bottom)
+//                HStack(spacing: 20) {
+//                    VStack {
+//                        ZStack {
+//                            Circle()
+//                                .frame(width: 42, height: 42)
+//                                .foregroundStyle(Color("accentBlue"))
+//                                .opacity(0.2)
+//                            Image("cough")
+//                                .resizable()
+//                                .frame(width:25, height: 25)
+//                                .opacity(0.8)
+//                        }
+//                        Text("Cough, cold\nFever")
+//                            .multilineTextAlignment(.center)
+//                            .font(.system(size: 11))
+//                            .opacity(0.8)
+//                    }
+//                    VStack {
+//                        ZStack {
+//                            Circle()
+//                                .frame(width: 42, height: 42)
+//                                .foregroundStyle(Color("accentBlue"))
+//                                .opacity(0.2)
+//                            Image("person")
+//                                .resizable()
+//                                .frame(width:25, height: 25)
+//                                .opacity(0.8)
+//                        }
+//                        Text("Child\n unwell")
+//                            .multilineTextAlignment(.center)
+//                            .font(.system(size: 11))
+//                            .opacity(0.8)
+//                    }
+//                    VStack {
+//                        ZStack {
+//                            Circle()
+//                                .frame(width: 42, height: 42)
+//                                .foregroundStyle(Color("accentBlue"))
+//                                .opacity(0.2)
+//                            Image("depressed")
+//                                .resizable()
+//                                .frame(width:25, height: 25)
+//                                .opacity(0.8)
+//                        }
+//                        Text("Depression\nor Anxiety")
+//                            .multilineTextAlignment(.center)
+//                            .font(.system(size: 11))
+//                            .opacity(0.8)
+//                    }
+//                    VStack {
+//                        ZStack {
+//                            Circle()
+//                                .frame(width: 42, height: 42)
+//                                .foregroundStyle(Color("accentBlue"))
+//                                .opacity(0.2)
+//                            Image("dermatology")
+//                                .resizable()
+//                                .frame(width:25, height: 25)
+//                                .opacity(0.8)
+//                        }
+//                        Text("Acne &\nPimples")
+//                            .multilineTextAlignment(.center)
+//                            .font(.system(size: 11))
+//                            .opacity(0.8)
+//                    }
+//                    VStack {
+//                        ZStack {
+//                            Circle()
+//                                .frame(width: 42, height: 42)
+//                                .foregroundStyle(Color("accentBlue"))
+//                                .opacity(0.2)
+//                            Image("woman")
+//                                .resizable()
+//                                .frame(width:25, height: 25)
+//                                .opacity(0.8)
+//                        }
+//                        Text("Period\nProblems")
+//                            .multilineTextAlignment(.center)
+//                            .font(.system(size: 11))
+//                            .opacity(0.8)
+//                    }
+//                }
             }
             
             
