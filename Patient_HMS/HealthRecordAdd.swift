@@ -62,8 +62,11 @@ struct HealthRecordAdd: View {
                             let documentRef = uploadedDocuments[index]
                             if searchText.isEmpty || documentRef.name.lowercased().contains(searchText.lowercased()) {
                                 HStack {
-                                    Text(documentRef.name)
-                                        .foregroundColor(.primary)
+                                    Button(action: {
+                                        viewDocument(documentRef: documentRef)
+                                    }) {
+                                        Text(documentRef.name)
+                                    }
                                     Spacer()
                                     Image(systemName: "square.and.arrow.down")
                                         .foregroundColor(.blue)
