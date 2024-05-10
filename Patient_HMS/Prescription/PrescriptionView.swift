@@ -17,7 +17,7 @@ struct PatientPrescriptionView: View {
                     .font(.headline)
                     .padding()
             } else {
-                Text("Prescriptions for Patient ID: \(xviewModel.currentUser?.id ?? "")")
+                Text("Prescriptions for \(xviewModel.currentUser?.fullName ?? "")")
                     .font(.headline)
                     .padding()
                 
